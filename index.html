@@ -10,14 +10,256 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- ... everything above remains unchanged ... -->
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-container">
+            <div class="loader"></div>
+            <div class="loading-text">Crafting Excellence...</div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <span class="brand-text">SP</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#education" class="nav-link">Education</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#reads" class="nav-link">Reads</a></li>
+            <li><a href="#interests" class="nav-link">Interests</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="mobile-menu-toggle" id="mobileToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-image-container">
+                <div class="hero-image">
+                    <span class="hero-initials">SP</span>
+                    <div class="image-glow"></div>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span>Available for opportunities</span>
+                </div>
+            </div>
+            <div class="hero-text">
+                <div class="hero-greeting">Hello World! 👋</div>
+                <h1 class="hero-name">
+                    I'm <span class="gradient-text">Seeramreddi</span><br>
+                    <span class="gradient-text typing-text">Sai Pawan</span>
+                </h1>
+                <p class="hero-tagline">
+                    Transforming ideas into <span class="highlight">impactful digital experiences</span> 
+                    and <span class="highlight">groundbreaking prototypes</span>
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">2+</div>
+                        <div class="stat-label">Years Learning</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Technologies</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Curiosity</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-section">
+                <div class="cta-buttons">
+                    <a href="https://github.com/saipawan-01" class="btn btn-primary" target="_blank">
+                        <span class="btn-text">Explore My Work</span>
+                        <div class="btn-bg"></div>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="btn-text">Let's Connect</span>
+                        <div class="btn-bg"></div>
+                    </a>
+                </div>
+                <div class="scroll-indicator">
+                    <div class="scroll-line"></div>
+                    <span class="scroll-text">Scroll to explore</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-number">01</div>
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Passionate learner exploring the intersection of technology and creativity</p>
+            </div>
+            <div class="about-grid animate-on-scroll">
+                <div class="about-visual">
+                    <div class="about-image">
+                        <span class="about-emoji">🚀</span>
+                        <div class="about-bg-pattern"></div>
+                    </div>
+                    <div class="about-decorations">
+                        <div class="deco deco-1"></div>
+                        <div class="deco deco-2"></div>
+                        <div class="deco deco-3"></div>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <div class="content-block">
+                        <h3>My Journey</h3>
+                        <p>Hi! I'm Seeramreddi Sai Pawan, currently in my 2nd year of B.Tech in Electronics and Communication Engineering (ECE). I'm a passionate learner, deeply engaged in exploring and mastering my core domain, while also diving into interdisciplinary fields that excite me.</p>
+                    </div>
+                    
+                    <div class="content-block">
+                        <h3>What Drives Me</h3>
+                        <p>I am exploring all facets of Artificial Intelligence. I love building stories through visuals, words, and design, and I'm especially curious about how Artificial Intelligence is transforming the way we create, think, and innovate.</p>
+                    </div>
+                    
+                    <div class="content-block">
+                        <h3>Beyond Technology</h3>
+                        <p>Alongside my academic journey, I actively explore UI/UX design using tools like Figma, Canva, and Penpot, creating intuitive and visually compelling user experiences. I also run a blog — <a href="https://fuelyourfiretoelevate.blogspot.com" target="_blank" class="text-link">fuelyourfiretoelevate.blogspot.com</a> — where I share thoughts on personal growth, self-worth, and the importance of not settling for less.</p>
+                    </div>
+                    
+                    <div class="mission-statement">
+                        <div class="mission-icon">💫</div>
+                        <p><strong>My mission is to learn relentlessly, create meaningfully, and inspire consistently — whether it's through design, content, or technology.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-number">02</div>
+                <h2 class="section-title">Education</h2>
+                <p class="section-subtitle">Academic journey shaping my technical foundation</p>
+            </div>
+            <div class="education-timeline animate-on-scroll">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023 - 2027</div>
+                        <h3>Bachelor of Technology</h3>
+                        <h4>Electronics & Communication Engineering</h4>
+                        <p class="institution">Indian Institute of Technology (IIT)</p>
+                        <p class="location">📍 India</p>
+                        <div class="education-highlights">
+                            <span class="highlight-tag">Current Student</span>
+                            <span class="highlight-tag">Second Year</span>
+                            <span class="highlight-tag">ECE Specialization</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-number">03</div>
+                <h2 class="section-title">Skills & Expertise</h2>
+                <p class="section-subtitle">Technical proficiencies across multiple domains</p>
+            </div>
+            <div class="skills-grid animate-on-scroll">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>Programming Languages</h3>
+                    <p>Proficient in multiple programming languages with focus on problem-solving and algorithm development.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">MATLAB</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-bar" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <h3>Electronics & Hardware</h3>
+                    <p>Strong foundation in electronics engineering with hands-on experience in circuit design and analysis.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Circuit Theory</span>
+                        <span class="skill-tag">Analog Electronics</span>
+                        <span class="skill-tag">Digital Electronics</span>
+                        <span class="skill-tag">Linear IC</span>
+                        <span class="skill-tag">Analog IC Lab</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-bar" data-progress="78"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🌐</div>
+                    <h3>Communication & Networking</h3>
+                    <p>Understanding of data communication networks and fundamental networking concepts and protocols.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Data Communication</span>
+                        <span class="skill-tag">Network Protocols</span>
+                        <span class="skill-tag">Basic Networking</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-bar" data-progress="72"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>Design & Creativity</h3>
+                    <p>Creating intuitive user experiences and compelling visual narratives through modern design tools.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">UI/UX Design</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Canva</span>
+                        <span class="skill-tag">Penpot</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-bar" data-progress="80"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Reads Section -->
     <section id="reads" class="section">
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <div class="section-number">04</div>
-                <h2 class="section-title">My Readings</h2>
+                <h2 class="section-title">Currently Reading</h2>
                 <p class="section-subtitle">Books that shape my perspective and mindset</p>
             </div>
             <div class="reads-container animate-on-scroll">
@@ -36,14 +278,14 @@
                         <div class="reading-status">
                             <div class="status-indicator-book">
                                 <div class="status-dot-book"></div>
-                                <span>My Readings</span>
+                                <span>Currently Reading</span>
                             </div>
                             <div class="reading-progress">
                                 <div class="progress-label">Progress</div>
                                 <div class="progress-bar-book">
-                                    <div class="progress-fill" style="width: 100%"></div>
+                                    <div class="progress-fill" style="width: 65%"></div>
                                 </div>
-                                <span class="progress-text">100%</span>
+                                <span class="progress-text">65%</span>
                             </div>
                         </div>
                     </div>
@@ -51,9 +293,91 @@
             </div>
         </div>
     </section>
-    <!-- ... (rest of your sections unchanged till Contact) ... -->
 
-    <!-- Contact Section, with your requested social links and SVG icons -->
+    <!-- Creative Interests Section -->
+    <section id="interests" class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-number">05</div>
+                <h2 class="section-title">Creative & Personal Interests</h2>
+                <p class="section-subtitle">Exploring passions beyond the realm of technology</p>
+            </div>
+            <div class="interests-grid animate-on-scroll">
+                <div class="interest-card" data-tilt>
+                    <div class="interest-icon">📝</div>
+                    <h3>Blogging</h3>
+                    <p>Writing about personal growth, self-worth, and inspiring others to never settle for less.</p>
+                    <a href="https://fuelyourfiretoelevate.blogspot.com" target="_blank" class="interest-link">Visit Blog →</a>
+                </div>
+                <div class="interest-card" data-tilt>
+                    <div class="interest-icon">🎬</div>
+                    <h3>Movies</h3>
+                    <p>Exploring storytelling through cinema, analyzing narratives and visual aesthetics.</p>
+                </div>
+                <div class="interest-card" data-tilt>
+                    <div class="interest-icon">🎵</div>
+                    <h3>Music</h3>
+                    <p>Finding inspiration in melodies, rhythms that fuel creativity and innovation.</p>
+                </div>
+                <div class="interest-card" data-tilt>
+                    <div class="interest-icon">✈️</div>
+                    <h3>Travelling</h3>
+                    <p>Discovering new perspectives, cultures, and experiences that broaden horizons.</p>
+                </div>
+                <div class="interest-card" data-tilt>
+                    <div class="interest-icon">🎨</div>
+                    <h3>Designing</h3>
+                    <p>Creating visual narratives and user experiences that connect and inspire people.</p>
+                </div>
+                <div class="interest-card" data-tilt>
+                    <div class="interest-icon">📚</div>
+                    <h3>Learning</h3>
+                    <p>Continuously exploring new domains, technologies, and ideas that shape the future.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-number">06</div>
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Innovation through practical implementation</p>
+            </div>
+            <div class="projects-grid animate-on-scroll">
+                <div class="project-card" data-tilt>
+                    <div class="project-image">
+                        <div class="project-icon">💡</div>
+                        <div class="project-bg-pattern"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Hardware Engineering</div>
+                        <h3>Automatic Street Lights Using IR Sensors</h3>
+                        <p>An energy-efficient lighting system that automatically turns street lights ON and OFF based on IR sensor detection of vehicles or pedestrians. This system reduces energy consumption, extends equipment lifespan, and enhances smart infrastructure development for urban and rural areas.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Electronics</span>
+                            <span class="tech-tag">IR Sensors</span>
+                            <span class="tech-tag">Circuit Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://docs.google.com/document/d/1UMtTjkOt2FVrOtXioqkYDQKIErjQ_vVL/edit?usp=sharing&ouid=110624517811539726024&rtpof=true&sd=true" class="project-link" target="_blank">
+                                <span>Documentation</span>
+                                <div class="link-arrow">→</div>
+                            </a>
+                            <a href="https://docs.google.com/document/d/1UMtTjkOt2FVrOtXioqkYDQKIErjQ_vVL/edit?usp=sharing&ouid=110624517811539726024&rtpof=true&sd=true" class="project-link" target="_blank">
+                                <span>Proof of Work</span>
+                                <div class="link-arrow">→</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
             <div class="section-header animate-on-scroll">
@@ -65,37 +389,46 @@
                 <div class="contact-intro">
                     <p>I'd love to hear from you! Whether it's about a potential collaboration, a question about my work, or just a friendly hello.</p>
                 </div>
-                <!-- Contact form unchanged -->
+                
                 <form class="contact-form" id="contactForm">
-                    <!-- form content (unchanged) -->
-                    <!-- ... -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="from_name">Name *</label>
+                            <input type="text" name="from_name" id="from_name" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="from_email">Email *</label>
+                            <input type="email" name="from_email" id="from_email" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" name="subject" id="subject" placeholder="What's this about?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea name="message" id="message" placeholder="Tell me more about your project or inquiry..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-btn" id="submit-btn">
+                        <span class="btn-text">Send Message</span>
+                        <div class="btn-bg"></div>
+                    </button>
                 </form>
+                
                 <div class="contact-alternatives">
                     <p>Prefer other ways to connect?</p>
                     <div class="contact-methods">
                         <a href="mailto:saiseeramreddi@gmail.com" class="contact-method">
-                            <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4.72l-8 5.03-8-5.03V6l8 5 8-5v2.72z"/></svg>
-                            <span>Email</span>
+                            <div class="method-icon">📧</div>
+                            <span>Email directly</span>
                         </a>
-                        <a href="https://www.instagram.com/sai_seeramreddi?igsh=MTI4MmYzZXVqdWhuMg==" target="_blank" class="contact-method">
-                            <svg class="social-icon" viewBox="0 0 24 24" width="20" height="20"><g fill="none"><circle cx="12" cy="12" r="3.2" fill="currentColor"/><path stroke="currentColor" stroke-width="2" d="M16.8 4H7.2C5.43 4 4 5.43 4 7.2v9.6C4 18.57 5.43 20 7.2 20h9.6c1.77 0 3.2-1.43 3.2-3.2V7.2C20 5.43 18.57 4 16.8 4z"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></g></svg>
-                            <span>Instagram</span>
+                        <a href="https://github.com/saipawan-01" target="_blank" class="contact-method">
+                            <div class="method-icon">💻</div>
+                            <span>GitHub</span>
                         </a>
-                        <a href="https://x.com/sai_seeramreddi?t=0nKDJSN1El1A3wNyEIHPrQ&s=09" target="_blank" class="contact-method">
-                            <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M17.9 4.2h3.51l-7.662 8.784 9.019 10.363h-7.079l-5.573-6.41-6.377 6.41H0l8.195-9.441L0 3.51h7.242l5.145 5.922L17.9 4.2zm-2.12 16.11h1.98l-6.341-7.293-1.803 1.97 6.164 5.323zm-11.278-15h-1.98l6.16 7.093 1.803-1.97L4.502 5.31zm2.438 15l2.963-2.977 1.724 1.978 6.089-6.615.003.004-1.711-1.97-7.068 8.58zm8.876-11.998L7.803 4.2h3.004l1.422 1.621zm1.388 1.618l5.583 6.415-2.963 2.977-6.09-6.615-.002-.003 1.712-1.97 5.76 5.196z"/></svg>
-                            <span>X (Twitter)</span>
-                        </a>
-                        <a href="https://wa.me/qr/RKEY6OETLAH3L1" target="_blank" class="contact-method">
-                            <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M12.004 2.003a9.997 9.997 0 0 0-8.884 15.054l-1.113 4.068 4.169-1.097A9.97 9.97 0 0 0 12.005 22a10 10 0 1 0 0-19.997zm5.15 14.592a2.203 2.203 0 0 1-1.487 1.033c-.401.088-.919.154-2.677-.57-2.248-.926-3.708-3.193-3.817-3.34-.11-.147-.912-1.217-.912-2.323 0-1.105.581-1.55.789-1.76.207-.209.451-.262.601-.263.152-.001.303-.001.415.008.456.037.724.467.814.642.092.177.29.646.335.743.045.098.076.215.015.347-.06.132-.088.216-.173.333-.086.118-.182.259-.261.347-.075.085-.152.177-.129.311.023.133.107.219.226.347.119.127.425.418.914.678.624.343 1.285.544 1.467.605.183.061.29.051.397-.03s.548-.608.695-.816a.428.428 0 0 1 .492-.182c.135.037 1.086.518 1.283.612.197.095.328.142.375.22.047.078.047.447-.099.88z"/></svg>
-                            <span>WhatsApp</span>
-                        </a>
-                        <a href="https://www.facebook.com/share/1V23uMRX6L/" target="_blank" class="contact-method">
-                            <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2.04c-5.49 0-9.95 4.46-9.95 9.95 0 5.09 3.82 9.29 8.74 9.92v-7.02H8.08V12h2.71V9.75c0-2.7 1.63-4.18 4.12-4.18 1.19 0 2.44.17 2.44.17v2.68h-1.38c-1.36 0-1.78.84-1.78 1.71V12h3.03l-.48 2.89h-2.55v7.02c4.92-.63 8.74-4.83 8.74-9.92 0-5.49-4.46-9.95-9.95-9.95z"/></svg>
-                            <span>Facebook</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/sai-pawan-seeramreddi-5a9825218?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="contact-method">
-                            <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11c-.828 0-1.5-.672-1.5-1.5S5.672 5 6.5 5 8 5.672 8 6.5 7.328 8 6.5 8zm13.5 11h-3v-5.357c0-1.276-.027-2.919-1.78-2.919-1.78 0-2.052 1.389-2.052 2.825V19h-3v-10h2.881v1.357h.041c.401-.759 1.381-1.559 2.841-1.559 3.037 0 3.601 2.001 3.601 4.601V19z"/></svg>
-                            <span>LinkedIn</span>
+                        <a href="https://fuelyourfiretoelevate.blogspot.com" target="_blank" class="contact-method">
+                            <div class="method-icon">📝</div>
+                            <span>My Blog</span>
                         </a>
                     </div>
                 </div>
@@ -103,7 +436,17 @@
         </div>
     </section>
 
-    <!-- Footer, with updated Connect links and SVG icons -->
+    <!-- Footer -->
+     <div class="footer-section">
+  <h4>Connect</h4>
+  <a href="mailto:saiseeramreddi@gmail.com">Email</a>
+  <a href="https://www.instagram.com/sai_seeramreddi" target="_blank">Instagram</a>
+  <a href="https://x.com/sai_seeramreddi" target="_blank">X (Twitter)</a>
+  <a href="https://wa.me/qr/RKEY6OETLAH3L1" target="_blank">WhatsApp</a>
+  <a href="https://www.facebook.com/share/1V23uMRX6L/" target="_blank">Facebook</a>
+  <a href="https://www.linkedin.com/in/sai-pawan-seeramreddi-5a9825218" target="_blank">LinkedIn</a>
+  <a href="https://fuelyourfiretoelevate.blogspot.com" target="_blank">Blog</a>
+</div>
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -114,30 +457,9 @@
                 <div class="footer-links">
                     <div class="footer-section">
                         <h4>Connect</h4>
-                        <a href="mailto:saiseeramreddi@gmail.com">
-                            <svg class="footer-icon" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4.72l-8 5.03-8-5.03V6l8 5 8-5v2.72z"/></svg>
-                            Email
-                        </a>
-                        <a href="https://www.instagram.com/sai_seeramreddi?igsh=MTI4MmYzZXVqdWhuMg==" target="_blank">
-                            <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18"><g fill="none"><circle cx="12" cy="12" r="3.2" fill="currentColor"/><path stroke="currentColor" stroke-width="2" d="M16.8 4H7.2C5.43 4 4 5.43 4 7.2v9.6C4 18.57 5.43 20 7.2 20h9.6c1.77 0 3.2-1.43 3.2-3.2V7.2C20 5.43 18.57 4 16.8 4z"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></g></svg>
-                            Instagram
-                        </a>
-                        <a href="https://x.com/sai_seeramreddi?t=0nKDJSN1El1A3wNyEIHPrQ&s=09" target="_blank">
-                            <svg class="footer-icon" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M17.9 4.2h3.51l-7.662 8.784 9.019 10.363h-7.079l-5.573-6.41-6.377 6.41H0l8.195-9.441L0 3.51h7.242l5.145 5.922L17.9 4.2zm-2.12 16.11h1.98l-6.341-7.293-1.803 1.97 6.164 5.323zm-11.278-15h-1.98l6.16 7.093 1.803-1.97L4.502 5.31zm2.438 15l2.963-2.977 1.724 1.978 6.089-6.615.003.004-1.711-1.97-7.068 8.58zm8.876-11.998L7.803 4.2h3.004l1.422 1.621zm1.388 1.618l5.583 6.415-2.963 2.977-6.09-6.615-.002-.003 1.712-1.97 5.76 5.196z"/></svg>
-                            X (Twitter)
-                        </a>
-                        <a href="https://wa.me/qr/RKEY6OETLAH3L1" target="_blank">
-                            <svg class="footer-icon" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12.004 2.003a9.997 9.997 0 0 0-8.884 15.054l-1.113 4.068 4.169-1.097A9.97 9.97 0 0 0 12.005 22a10 10 0 1 0 0-19.997zm5.15 14.592a2.203 2.203 0 0 1-1.487 1.033c-.401.088-.919.154-2.677-.57-2.248-.926-3.708-3.193-3.817-3.34-.11-.147-.912-1.217-.912-2.323 0-1.105.581-1.55.789-1.76.207-.209.451-.262.601-.263.152-.001.303-.001.415.008.456.037.724.467.814.642.092.177.29.646.335.743.045.098.076.215.015.347-.06.132-.088.216-.173.333-.086.118-.182.259-.261.347-.075.085-.152.177-.129.311.023.133.107.219.226.347.119.127.425.418.914.678.624.343 1.285.544 1.467.605.183.061.29.051.397-.03s.548-.608.695-.816a.428.428 0 0 1 .492-.182c.135.037 1.086.518 1.283.612.197.095.328.142.375.22.047.078.047.447-.099.88z"/></svg>
-                            WhatsApp
-                        </a>
-                        <a href="https://www.facebook.com/share/1V23uMRX6L/" target="_blank">
-                            <svg class="footer-icon" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12 2.04c-5.49 0-9.95 4.46-9.95 9.95 0 5.09 3.82 9.29 8.74 9.92v-7.02H8.08V12h2.71V9.75c0-2.7 1.63-4.18 4.12-4.18 1.19 0 2.44.17 2.44.17v2.68h-1.38c-1.36 0-1.78.84-1.78 1.71V12h3.03l-.48 2.89h-2.55v7.02c4.92-.63 8.74-4.83 8.74-9.92 0-5.49-4.46-9.95-9.95-9.95z"/></svg>
-                            Facebook
-                        </a>
-                        <a href="https://www.linkedin.com/in/sai-pawan-seeramreddi-5a9825218?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
-                            <svg class="footer-icon" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11c-.828 0-1.5-.672-1.5-1.5S5.672 5 6.5 5 8 5.672 8 6.5 7.328 8 6.5 8zm13.5 11h-3v-5.357c0-1.276-.027-2.919-1.78-2.919-1.78 0-2.052 1.389-2.052 2.825V19h-3v-10h2.881v1.357h.041c.401-.759 1.381-1.559 2.841-1.559 3.037 0 3.601 2.001 3.601 4.601V19z"/></svg>
-                            LinkedIn
-                        </a>
+                        <a href="mailto:saiseeramreddi@gmail.com">Email</a>
+                        <a href="https://github.com/saipawan-01" target="_blank">GitHub</a>
+                        <a href="https://fuelyourfiretoelevate.blogspot.com" target="_blank">Blog</a>
                     </div>
                     <div class="footer-section">
                         <h4>Quick Links</h4>
