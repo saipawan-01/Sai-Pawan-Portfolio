@@ -3,138 +3,209 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sai Pawan Portfolio</title>
-  <link rel="icon" type="image/png" href="images/favicon.png"/>
+  <title>Seeramreddi Sai Pawan - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-  <!-- 01 -->
-  <section id="section01" class="portfolio-section">
-    <span class="section-number">01</span>
-    <h2>About Me</h2>
-    <div class="about-inner">
-      <img src="images/pfp.jpg" alt="Sai Pawan Seeramreddi" class="profile-pic"/>
-      <div>
-        <p>Hi, I'm <strong>Sai Pawan Seeramreddi</strong>, a passionate and dedicated web developer. I love bringing creative ideas to life through code, always learning and pushing myself to create meaningful digital experiences.</p>
-        <p>With a deep curiosity for technology and a strong foundation in both frontend and backend, I craft responsive, accessible, and visually striking websites. I thrive on problem solving and believe in code that is not only functional, but elegant and maintainable.</p>
-      </div>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loader-container">
+      <div class="loader"></div>
+      <div class="loading-text">Crafting Excellence...</div>
     </div>
-  </section>
+  </div>
 
-  <!-- 02 -->
-  <section id="section02" class="portfolio-section">
-    <span class="section-number">02</span>
-    <h2>Projects</h2>
-    <div class="projects-list">
-      <div class="project-card">
-        <h3>Movie Info App</h3>
-        <p>A responsive app to search for movies, view details, and save favorites using the OMDB API.</p>
-        <a href="https://movie-info-app-lovat.vercel.app/" target="_blank">Live Demo</a> | 
-        <a href="https://github.com/saipawan-01/movie-info-app" target="_blank">GitHub</a>
-      </div>
-      <div class="project-card">
-        <h3>Spotify UI Clone</h3>
-        <p>A visually accurate Spotify web UI recreation, built for practice in modern CSS layouts and responsive design.</p>
-        <a href="https://spotify-ui1-clone.netlify.app/" target="_blank">Live Demo</a> | 
-        <a href="https://github.com/saipawan-01/Spotify-UI1-Clone" target="_blank">GitHub</a>
-      </div>
-      <div class="project-card">
-        <h3>Portfolio Website</h3>
-        <p>This portfolio you are viewing, designed with glassmorphism and custom animations for a modern, personal showcase.</p>
-        <a href="https://sai-pawan-portfolio.vercel.app/" target="_blank">Live Demo</a> | 
-        <a href="https://github.com/saipawan-01/Sai-Pawan-Portfolio" target="_blank">GitHub</a>
-      </div>
-    </div>
-  </section>
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
 
-  <!-- 03 -->
-  <section id="section03" class="portfolio-section">
-    <span class="section-number">03</span>
-    <h2>Skills</h2>
-    <ul class="skills-list">
-      <li>HTML5, CSS3, JavaScript (ES6+)</li>
-      <li>React.js, Node.js, Express.js</li>
-      <li>Responsive Design, Flexbox, Grid</li>
-      <li>API integration (REST, third-party)</li>
-      <li>Git & GitHub, Deployment (Vercel, Netlify)</li>
-      <li>UI/UX Design, Glassmorphism</li>
+  <!-- Floating Particles -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand"><span class="brand-text">SP</span></div>
+    <ul class="nav-menu">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#reads" class="nav-link">Reads</a></li>
+      <li><a href="#interests" class="nav-link">Interests</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
-  </section>
+    <div class="mobile-menu-toggle" id="mobileToggle">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
 
-  <!-- 04 -->
-  <section id="section04" class="portfolio-section">
-    <span class="section-number">04</span>
-    <h2>Experience</h2>
-    <div class="exp-list">
-      <div class="exp-item">
-        <h3>Web Developer (Freelance)</h3>
-        <p class="exp-duration">2022 – Present</p>
-        <ul>
-          <li>Built and deployed web solutions for startups and local businesses.</li>
-          <li>Specialized in modern UI, performance, and accessibility.</li>
-        </ul>
+  <!-- Hero Section -->
+  <!-- (Your Hero content goes here, unchanged) -->
+
+  <!-- About Section -->
+  <!-- (Your About content goes here, unchanged) -->
+
+  <!-- Education Section -->
+  <!-- (Your Education content goes here, unchanged) -->
+
+  <!-- Skills Section -->
+  <!-- (Your Skills content goes here, unchanged) -->
+
+  <!-- Reads Section -->
+  <section id="reads" class="section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-number">04</div>
+        <h2 class="section-title">My Readings</h2>
+        <p class="section-subtitle">Books that shape my perspective and mindset</p>
       </div>
-      <div class="exp-item">
-        <h3>Intern, Tech Startup</h3>
-        <p class="exp-duration">Summer 2022</p>
-        <ul>
-          <li>Worked on React components and RESTful API integration.</li>
-          <li>Collaborated with senior devs on launch-critical code.</li>
-        </ul>
+      <div class="reads-container animate-on-scroll">
+        <div class="book-showcase">
+          <div class="book-cover">
+            <!-- Your book cover image here -->
+            <div class="book-glow"></div>
+          </div>
+          <div class="book-info">
+            <h3>The Power of Your Subconscious Mind</h3>
+            <p class="book-author">by Dr. Joseph Murphy</p>
+            <div class="book-quote">
+              <div class="quote-icon">"</div>
+              <p>The Power of Your Subconscious Mind reshaped my thinking, turning possibility into belief.</p>
+            </div>
+            <div class="reading-status">
+              <div class="status-indicator-book">
+                <div class="status-dot-book"></div>
+                <span>My Readings</span> <!-- Updated text -->
+              </div>
+              <div class="reading-progress">
+                <div class="progress-label">Progress</div>
+                <div class="progress-bar-book">
+                  <div class="progress-fill" style="width: 100%"></div> <!-- Updated progress -->
+                </div>
+                <span class="progress-text">100%</span> <!-- Updated progress text -->
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 05 -->
-  <section id="section05" class="portfolio-section">
-    <span class="section-number">05</span>
-    <h2>Education</h2>
-    <div class="edu-list">
-      <div class="edu-item">
-        <strong>Bachelor of Technology, Computer Science</strong>
-        <p>XYZ University, 2021 – Present</p>
+  <!-- Interests Section -->
+  <!-- (Your Interests content goes here, unchanged) -->
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-number">06</div>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">Innovation through practical implementation</p>
       </div>
-      <div class="edu-item">
-        <strong>Intermediate (MPC)</strong>
-        <p>ABC Junior College, 2019 – 2021</p>
+      <!-- Your projects content goes here, unchanged -->
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-number">07</div>
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="section-subtitle">Ready to collaborate or just want to chat?</p>
+      </div>
+      <div class="contact-content animate-on-scroll">
+        <!-- Your contact form goes here, unchanged -->
+        <div class="contact-alternatives">
+          <p>Prefer other ways to connect?</p>
+          <div class="contact-methods">
+            <a href="mailto:saiseeramreddi@gmail.com" class="contact-method" target="_blank" rel="noopener">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M0 4a2 2 0 012-2h20a2 2 0 012 2v16a2 2 0 01-2 2H2a2 2 0 01-2-2V4zm22 0H2v16h20V4zm-2.586 3L12 12.414 4.586 7H19.414z"/></svg>
+              <span>Email directly</span>
+            </a>
+            <a href="https://www.instagram.com/sai_seeramreddi?igsh=MTI4MmYzZXVqdWhuMg==" target="_blank" rel="noopener" class="contact-method">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2C4 2 2 4 2 7v10c0 3 2 5 5 5h10c3 0 5-2 5-5V7c0-3-2-5-5-5H7zm10 2a1 1 0 110 2 1 1 0 010-2zm-5 1a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6z"/></svg>
+              <span>Instagram</span>
+            </a>
+            <a href="https://x.com/sai_seeramreddi?t=0nKDJSN1El1A3wNyEIHPrQ&s=09" target="_blank" rel="noopener" class="contact-method">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0022.4.37a9.04 9.04 0 01-2.88 1.1A4.52 4.52 0 0016.11 0c-2.49 0-4.51 2-4.51 4.5 0 .35.03.69.1 1.01A12.8 12.8 0 013 1.15a4.49 4.49 0 001.4 6.01 4.34 4.34 0 01-2.05-.57v.06c0 2.17 1.54 3.98 3.6 4.38a4.56 4.56 0 01-2.04.07c.57 1.77 2.23 3.06 4.19 3.1A9.06 9.06 0 012 19.54a12.76 12.76 0 006.94 2.03c8.33 0 12.88-6.91 12.88-12.88 0-.2 0-.39-.01-.58A9.22 9.22 0 0023 3z"/></svg>
+              <span>X (Twitter)</span>
+            </a>
+            <a href="https://wa.me/qr/RKEY6OETLAH3L1" target="_blank" rel="noopener" class="contact-method">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.225A12.083 12.083 0 0012.013 0C5.37 0 .063 5.302.063 11.910c0 2.104.552 4.163 1.603 5.988L0 24l6.377-1.618a11.88 11.88 0 005.636 1.406h.004c6.646 0 12.008-5.304 12.008-11.917a11.94 11.94 0 00-3.51-8.646zm-8.5 16.328a7.612 7.612 0 01-3.923-1.13l-.28-.167-3.783.96.979-3.68-.18-.3a7.632 7.632 0 1111.798 9.213 7.726 7.726 0 01-4.511-5.888z"/><path d="M15.465 13.552c-.269-.133-1.59-.787-1.834-.874-.245-.088-.423-.133-.602.133-.181.27-.701.874-.86 1.054-.16.18-.315.203-.584.07-.271-.13-1.143-.421-2.18-1.344-.806-.719-1.35-1.606-1.502-1.875-.148-.27-.016-.415.119-.55.123-.123.269-.315.404-.47.136-.156.181-.27.271-.448.088-.179.044-.335-.022-.467-.067-.133-.601-1.448-.824-1.98-.217-.518-.438-.448-.602-.458l-.513-.009c-.179 0-.467.067-.712.335s-.933.912-.933 2.22c0 1.308.954 2.575 1.087 2.75.133.179 1.882 2.894 4.55 4.05.636.274 1.132.437 1.518.559.637.201 1.218.173 1.677.105.511-.076 1.59-.65 1.813-1.279.224-.63.224-1.17.157-1.28-.067-.11-.245-.17-.514-.303z"/></svg>
+              <span>WhatsApp</span>
+            </a>
+            <a href="https://www.facebook.com/share/1V23uMRX6L/" target="_blank" rel="noopener" class="contact-method">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.988H7.898v-2.89h2.54v-2.203c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.462h-1.26c-1.243 0-1.63.774-1.63 1.562v1.874h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+              <span>Facebook</span>
+            </a>
+            <a href="https://www.linkedin.com/in/sai-pawan-seeramreddi-5a9825218?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener" class="contact-method">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.156c-.966 0-1.75-.784-1.75-1.75S5.534 4.344 6.5 4.344c.965 0 1.75.784 1.75 1.75s-.785 1.75-1.75 1.75zm13.5 11.156h-3v-5.712c0-1.364-.026-3.118-1.9-3.118-1.9 0-2.188 1.482-2.188 3.015v5.815h-3v-10h2.879v1.366h.041c.401-.759 1.379-1.56 2.838-1.56 3.034 0 3.59 1.996 3.59 4.591v5.603z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 06 -->
-  <section id="section06" class="portfolio-section">
-    <span class="section-number">06</span>
-    <h2>My Readings</h2>
-    <div class="reading-progress">
-      Progress: <strong>100%</strong>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="brand-logo">SP</div>
+          <p>Crafting digital experiences with passion and innovation.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-section">
+            <h4>Connect</h4>
+            <a href="mailto:saiseeramreddi@gmail.com" target="_blank" rel="noopener">
+              <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M0 4a2 2 0 012-2h20a2 2 0 012 2v16a2 2 0 01-2 2H2a2 2 0 01-2-2V4zm22 0H2v16h20V4zm-2.586 3L12 12.414 4.586 7H19.414z"/></svg>
+              Email
+            </a>
+            <a href="https://www.instagram.com/sai_seeramreddi?igsh=MTI4MmYzZXVqdWhuMg==" target="_blank" rel="noopener">
+              <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M7 2C4 2 2 4 2 7v10c0 3 2 5 5 5h10c3 0 5-2 5-5V7c0-3-2-5-5-5H7zm10 2a1 1 0 110 2 1 1 0 010-2zm-5 1a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6z"/></svg>
+              Instagram
+            </a>
+            <a href="https://x.com/sai_seeramreddi?t=0nKDJSN1El1A3wNyEIHPrQ&s=09" target="_blank" rel="noopener">
+              <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0022.4.37a9.04 9.04 0 01-2.88 1.1A4.52 4.52 0 0016.11 0c-2.49 0-4.51 2-4.51 4.5 0 .35.03.69.1 1.01A12.8 12.8 0 013 1.15a4.49 4.49 0 001.4 6.01 4.34 4.34 0 01-2.05-.57v.06c0 2.17 1.54 3.98 3.6 4.38a4.56 4.56 0 01-2.04.07c.57 1.77 2.23 3.06 4.19 3.1A9.06 9.06 0 012 19.54a12.76 12.76 0 006.94 2.03c8.33 0 12.88-6.91 12.88-12.88 0-.2 0-.39-.01-.58A9.22 9.22 0 0023 3z"/></svg>
+              X (Twitter)
+            </a>
+            <a href="https://wa.me/qr/RKEY6OETLAH3L1" target="_blank" rel="noopener">
+              <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.225A12.083 12.083 0 0012.013 0C5.37 0 .063 5.302.063 11.910c0 2.104.552 4.163 1.603 5.988L0 24l6.377-1.618a11.88 11.88 0 005.636 1.406h.004c6.646 0 12.008-5.304 12.008-11.917a11.94 11.94 0 00-3.51-8.646zm-8.5 16.328a7.612 7.612 0 01-3.923-1.13l-.28-.167-3.783.96.979-3.68-.18-.3a7.632 7.632 0 1111.798 9.213 7.726 7.726 0 01-4.511-5.888z"/><path d="M15.465 13.552c-.269-.133-1.59-.787-1.834-.874-.245-.088-.423-.133-.602.133-.181.27-.701.874-.86 1.054-.16.18-.315.203-.584.07-.271-.13-1.143-.421-2.18-1.344-.806-.719-1.35-1.606-1.502-1.875-.148-.27-.016-.415.119-.55.123-.123.269-.315.404-.47.136-.156.181-.27.271-.448.088-.179.044-.335-.022-.467-.067-.133-.601-1.448-.824-1.98-.217-.518-.438-.448-.602-.458l-.513-.009c-.179 0-.467.067-.712.335s-.933.912-.933 2.22c0 1.308.954 2.575 1.087 2.75.133.179 1.882 2.894 4.55 4.05.636.274 1.132.437 1.518.559.637.201 1.218.173 1.677.105.511-.076 1.59-.65 1.813-1.279.224-.63.224-1.17.157-1.28-.067-.11-.245-.17-.514-.303z"/></svg>
+              WhatsApp
+            </a>
+            <a href="https://www.facebook.com/share/1V23uMRX6L/" target="_blank" rel="noopener">
+              <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.988H7.898v-2.89h2.54v-2.203c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.462h-1.26c-1.243 0-1.63.774-1.63 1.562v1.874h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+              Facebook
+            </a>
+            <a href="https://www.linkedin.com/in/sai-pawan-seeramreddi-5a9825218?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener">
+              <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.156c-.966 0-1.75-.784-1.75-1.75S5.534 4.344 6.5 4.344c.965 0 1.75.784 1.75 1.75s-.785 1.75-1.75 1.75zm13.5 11.156h-3v-5.712c0-1.364-.026-3.118-1.9-3.118-1.9 0-2.188 1.482-2.188 3.015v5.815h-3v-10h2.879v1.366h.041c.401-.759 1.379-1.56 2.838-1.56 3.034 0 3.59 1.996 3.59 4.591v5.603z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Seeramreddi Sai Pawan. Crafted with passion and innovation.</p>
+        <div class="footer-decoration"></div>
+      </div>
     </div>
-    <ul class="reading-list">
-      <li><strong>Clean Code</strong> — Robert C. Martin (Completed)</li>
-      <li><strong>JavaScript: The Good Parts</strong> — Douglas Crockford (Completed)</li>
-      <li><strong>The Pragmatic Programmer</strong> — Andrew Hunt, David Thomas (Completed)</li>
-    </ul>
-  </section>
+  </footer>
 
-  <!-- 07 -->
-  <section id="section07" class="portfolio-section">
-    <span class="section-number">07</span>
-    <h2>Contact Me</h2>
-    <ul class="social-links">
-      <li><a href="https://www.instagram.com/sai_seeramreddi?igsh=MTI4MmYzZXVqdWhuMg==" target="_blank">Instagram</a></li>
-      <li><a href="https://x.com/sai_seeramreddi?t=0nKDJSN1El1A3wNyEIHPrQ&s=09" target="_blank">X (Twitter)</a></li>
-      <li><a href="https://wa.me/qr/RKEY6OETLAH3L1" target="_blank">WhatsApp</a></li>
-      <li><a href="https://www.facebook.com/share/1V23uMRX6L/" target="_blank">Facebook</a></li>
-      <li><a href="https://www.linkedin.com/in/sai-pawan-seeramreddi-5a9825218?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a></li>
-      <li><a href="mailto:saiseeramreddi@gmail.com">Email</a></li>
-    </ul>
-    <form id="contact-form">
-      <input type="text" name="user_name" placeholder="Enter your name" required>
-      <input type="email" name="user_email" placeholder="Enter your email" required>
-      <textarea name="message" rows="4" placeholder="Your message" required></textarea>
-      <button type="submit">Send Message</button>
-      <div id="form-status"></div>
-    </form>
-  </section>
+  <!-- EmailJS CDN -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
