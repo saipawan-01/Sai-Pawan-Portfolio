@@ -1977,3 +1977,122 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
 }
+/* ========================================
+   MOBILE SECTION OVERLAP FIX
+   Add this CSS to the bottom of your css/style.css file
+   ======================================== */
+
+/* Fix section positioning and z-index issues */
+.section {
+    position: relative;
+    z-index: 10;
+}
+
+/* Specific fixes for reads and interests sections */
+#reads {
+    position: relative;
+    z-index: 15;
+    margin-bottom: 80px; /* Extra space after reads section */
+}
+
+#interests {
+    position: relative;
+    z-index: 12;
+    margin-top: 60px; /* Extra space before interests section */
+}
+
+/* Mobile-specific enhancements */
+@media (max-width: 768px) {
+    /* Increase section padding on mobile for better spacing */
+    .section {
+        padding: 100px 0; /* Increased from default 80px */
+    }
+    
+    /* Extra spacing for reads section on mobile */
+    #reads {
+        padding-bottom: 120px; /* More bottom padding */
+        margin-bottom: 100px; /* Increased bottom margin */
+    }
+    
+    /* Extra spacing for interests section header */
+    #interests {
+        margin-top: 80px; /* Increased top margin */
+        padding-top: 120px; /* Extra top padding */
+    }
+    
+    #interests .section-header {
+        margin-top: 40px; /* Add top margin to section header */
+        margin-bottom: 80px; /* Ensure enough space below header */
+        position: relative;
+        z-index: 20; /* High z-index for section headers */
+        background: var(--primary-bg); /* Add background to prevent see-through */
+        padding: 20px 0; /* Add padding around headers */
+    }
+    
+    /* Fix book showcase spacing */
+    .book-showcase {
+        margin-bottom: 80px; /* Add bottom margin to book showcase */
+    }
+    
+    /* Ensure proper spacing for section content */
+    .reads-container {
+        margin-bottom: 60px;
+    }
+    
+    /* Force clear any floating issues */
+    #reads::after {
+        content: "";
+        display: block;
+        clear: both;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Even more spacing on very small screens */
+    .section {
+        padding: 120px 0;
+    }
+    
+    #reads {
+        padding-bottom: 140px;
+        margin-bottom: 120px;
+    }
+    
+    #interests {
+        margin-top: 100px;
+        padding-top: 140px;
+    }
+    
+    #interests .section-header {
+        margin-top: 60px;
+        margin-bottom: 100px;
+        padding: 30px 0;
+    }
+    
+    /* Additional clearfix for very small screens */
+    #reads::after {
+        height: 80px;
+    }
+}
+
+/* Additional safety measures for section headers */
+.section-header {
+    position: relative;
+    z-index: 20;
+}
+
+/* Ensure section numbers don't overlap */
+.section-number {
+    position: relative;
+    z-index: 21;
+}
+
+/* Book progress bar fix (from your original CSS) */
+#reads .progress-fill {
+    width: 100% !important;
+}
+
+#reads .progress-text::after {
+    content: "100%";
+}
