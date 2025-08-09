@@ -1,43 +1,9 @@
-/* === Custom Updates for Spacing and Labels === */
+/* ========================================
+   COMPLETE RESPONSIVE CSS - NO OVERLAPPING
+   Advanced portfolio styling with perfect separation
+   ======================================== */
 
-/* Increase space between all numbered sections */
-.section {
-    padding: 160px 0; /* was 120px */
-}
-
-/* More breathing room under the section number */
-.section-number {
-    margin-bottom: 25px; /* was 12px */
-}
-
-/* Extra gap before section content */
-.section-header {
-    margin-bottom: 100px; /* was 80px */
-}
-
-/* Visually separate section 06 (Projects) and 07 (Contact) */
-#projects::after {
-    content: "";
-    display: block;
-    height: 2px;
-    background: var(--glass-border);
-    margin-top: 80px;
-}
-
-#contact {
-    background-color: var(--primary-bg);
-    padding-top: 180px;
-}
-
-/* Force Reads section progress bar to full */
-#reads .progress-fill {
-    width: 100% !important;
-}
-#reads .progress-text::after {
-    content: "100%";
-}
-
-/* CSS Custom Properties */
+/* === CSS Custom Properties === */
 :root {
     --primary-bg: #0f0f0f;
     --secondary-bg: #181818;
@@ -62,9 +28,19 @@
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
     --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
     --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Responsive Spacing Variables */
+    --section-padding-desktop: 200px;
+    --section-padding-laptop: 160px;
+    --section-padding-tablet: 120px;
+    --section-padding-mobile: 80px;
+    --section-padding-small: 60px;
+    
+    --container-padding-desktop: 5%;
+    --container-padding-mobile: 20px;
 }
 
-/* Reset and Base Styles */
+/* === Reset and Base Styles === */
 * {
     margin: 0;
     padding: 0;
@@ -79,6 +55,7 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    font-size: 16px; /* Base font size */
 }
 
 body {
@@ -91,9 +68,10 @@ body {
     font-feature-settings: 'kern' 1, 'liga' 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
 }
 
-/* Loading Screen */
+/* === Loading Screen === */
 .loading-screen {
     position: fixed;
     top: 0;
@@ -118,8 +96,8 @@ body {
 }
 
 .loader {
-    width: 60px;
-    height: 60px;
+    width: clamp(40px, 8vw, 60px);
+    height: clamp(40px, 8vw, 60px);
     border: 3px solid transparent;
     border-top: 3px solid var(--accent);
     border-radius: 50%;
@@ -129,7 +107,7 @@ body {
 
 .loading-text {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     font-weight: 500;
     animation: fadeInOut 2s ease-in-out infinite;
 }
@@ -144,7 +122,7 @@ body {
     50% { opacity: 1; }
 }
 
-/* Custom Cursor */
+/* === Custom Cursor === */
 .cursor {
     position: fixed;
     width: 20px;
@@ -169,7 +147,13 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Floating Particles */
+@media (max-width: 768px) {
+    .cursor, .cursor-trail {
+        display: none; /* Hide custom cursor on mobile */
+    }
+}
+
+/* === Floating Particles === */
 .particles {
     position: fixed;
     top: 0;
@@ -182,8 +166,8 @@ body {
 
 .particle {
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: clamp(2px, 0.5vw, 4px);
+    height: clamp(2px, 0.5vw, 4px);
     background: rgba(245, 230, 211, 0.2);
     border-radius: 50%;
     animation: float-particle 20s linear infinite;
@@ -206,7 +190,7 @@ body {
     }
 }
 
-/* Navigation */
+/* === Navigation === */
 .navbar {
     position: fixed;
     top: 0;
@@ -218,11 +202,11 @@ body {
     border-bottom: 1px solid var(--glass-border);
     z-index: 1000;
     transition: all 0.3s var(--ease-out-quart);
-    padding: 0 5%;
+    padding: 0 var(--container-padding-desktop);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    height: clamp(70px, 12vh, 80px);
 }
 
 .navbar.scrolled {
@@ -237,7 +221,7 @@ body {
 }
 
 .brand-text {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     font-weight: 800;
     background: var(--gradient);
     -webkit-background-clip: text;
@@ -249,7 +233,7 @@ body {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 40px;
+    gap: clamp(20px, 5vw, 40px);
     margin: 0;
     padding: 0;
 }
@@ -258,7 +242,7 @@ body {
     color: var(--text-primary);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     transition: all 0.3s var(--ease-out-quart);
     position: relative;
     padding: 8px 0;
@@ -291,6 +275,7 @@ body {
     gap: 4px;
     cursor: pointer;
     padding: 10px;
+    z-index: 1001;
 }
 
 .mobile-menu-toggle span {
@@ -298,9 +283,10 @@ body {
     height: 3px;
     background: var(--text-primary);
     transition: all 0.3s var(--ease-out-quart);
+    border-radius: 2px;
 }
 
-/* Hero Section */
+/* === Hero Section === */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -309,7 +295,7 @@ body {
     position: relative;
     overflow: hidden;
     background: var(--primary-bg);
-    padding: 0 5%;
+    padding: clamp(80px, 15vh, 120px) var(--container-padding-desktop) 0;
 }
 
 .hero-bg {
@@ -337,24 +323,24 @@ body {
 }
 
 .shape-1 {
-    width: 300px;
-    height: 300px;
+    width: clamp(200px, 30vw, 300px);
+    height: clamp(200px, 30vw, 300px);
     top: 10%;
     left: 10%;
     animation-delay: 0s;
 }
 
 .shape-2 {
-    width: 200px;
-    height: 200px;
+    width: clamp(150px, 20vw, 200px);
+    height: clamp(150px, 20vw, 200px);
     top: 60%;
     right: 15%;
     animation-delay: -7s;
 }
 
 .shape-3 {
-    width: 150px;
-    height: 150px;
+    width: clamp(100px, 15vw, 150px);
+    height: clamp(100px, 15vw, 150px);
     bottom: 20%;
     left: 60%;
     animation-delay: -14s;
@@ -369,7 +355,7 @@ body {
 .hero-content {
     display: grid;
     grid-template-columns: auto 1fr auto;
-    gap: 60px;
+    gap: clamp(30px, 8vw, 60px);
     align-items: center;
     max-width: 1400px;
     width: 100%;
@@ -384,14 +370,14 @@ body {
 }
 
 .hero-image {
-    width: 200px;
-    height: 200px;
+    width: clamp(150px, 25vw, 200px);
+    height: clamp(150px, 25vw, 200px);
     border-radius: 50%;
     background: var(--gradient);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 5rem;
+    font-size: clamp(3rem, 8vw, 5rem);
     color: #333;
     font-weight: 800;
     position: relative;
@@ -438,7 +424,7 @@ body {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
     color: var(--text-secondary);
 }
 
@@ -461,7 +447,7 @@ body {
 }
 
 .hero-greeting {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     color: var(--accent);
     font-weight: 500;
     margin-bottom: 16px;
@@ -469,7 +455,7 @@ body {
 }
 
 .hero-name {
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 8vw, 6rem);
     font-weight: 900;
     line-height: 0.9;
     margin-bottom: 24px;
@@ -506,7 +492,7 @@ body {
 }
 
 .hero-tagline {
-    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    font-size: clamp(1rem, 3vw, 1.6rem);
     color: var(--text-secondary);
     margin-bottom: 40px;
     line-height: 1.5;
@@ -521,9 +507,10 @@ body {
 .hero-stats {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: clamp(15px, 5vw, 30px);
     margin-bottom: 40px;
     animation: slideUp 1s var(--ease-out-quart) 0.8s both;
+    flex-wrap: wrap;
 }
 
 .stat-item {
@@ -531,14 +518,14 @@ body {
 }
 
 .stat-number {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     font-weight: 800;
     color: var(--accent);
     line-height: 1;
 }
 
 .stat-label {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     color: var(--text-muted);
     font-weight: 500;
 }
@@ -565,7 +552,7 @@ body {
 
 .btn {
     position: relative;
-    padding: 16px 32px;
+    padding: clamp(12px, 2.5vw, 16px) clamp(24px, 5vw, 32px);
     border: none;
     border-radius: 50px;
     font-weight: 600;
@@ -574,10 +561,10 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
     transition: all 0.3s var(--ease-out-quart);
     overflow: hidden;
-    min-width: 160px;
+    min-width: clamp(140px, 30vw, 160px);
 }
 
 .btn-text {
@@ -652,7 +639,7 @@ body {
 }
 
 .scroll-text {
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
     color: var(--text-muted);
     font-weight: 500;
 }
@@ -673,35 +660,40 @@ body {
     }
 }
 
-/* Section Styles */
+/* === Section Base Styles === */
 .section {
-    padding: 160px 0; /* Updated from earlier custom section */
+    padding: var(--section-padding-desktop) 0;
     position: relative;
+    z-index: 1;
+    margin-bottom: 60px;
+    isolation: isolate;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 5%;
+    padding: 0 var(--container-padding-desktop);
+    position: relative;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 100px; /* Updated from earlier custom section */
+    margin-bottom: clamp(60px, 15vw, 120px);
     position: relative;
+    z-index: 10;
 }
 
 .section-number {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     color: var(--accent);
     font-weight: 700;
-    margin-bottom: 25px; /* Updated from earlier custom section */
+    margin-bottom: clamp(15px, 4vw, 30px);
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
 .section-title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-size: clamp(2rem, 6vw, 4rem);
     font-weight: 800;
     background: var(--gradient);
     -webkit-background-clip: text;
@@ -713,18 +705,18 @@ body {
 }
 
 .section-subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
 }
 
-/* About Section */
+/* === About Section === */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
-    gap: 80px;
+    gap: clamp(40px, 10vw, 80px);
     align-items: center;
 }
 
@@ -740,7 +732,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 8rem;
+    font-size: clamp(4rem, 12vw, 8rem);
     color: #333;
     box-shadow: 0 30px 80px rgba(245, 230, 211, 0.3);
     position: relative;
@@ -779,8 +771,8 @@ body {
 
 .deco {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: clamp(15px, 3vw, 20px);
+    height: clamp(15px, 3vw, 20px);
     background: var(--accent);
     border-radius: 50%;
     opacity: 0.3;
@@ -819,13 +811,13 @@ body {
 
 .content-block h3 {
     color: var(--text-primary);
-    font-size: 1.3rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
     font-weight: 700;
     margin-bottom: 12px;
 }
 
 .content-block p {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2vw, 1.1rem);
     line-height: 1.8;
 }
 
@@ -847,7 +839,7 @@ body {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
-    padding: 30px;
+    padding: clamp(20px, 5vw, 30px);
     display: flex;
     align-items: flex-start;
     gap: 20px;
@@ -855,17 +847,17 @@ body {
 }
 
 .mission-icon {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     flex-shrink: 0;
 }
 
 .mission-statement p {
     color: var(--text-primary);
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2vw, 1.1rem);
     line-height: 1.7;
 }
 
-/* Education Section */
+/* === Education Section === */
 .education-timeline {
     max-width: 800px;
     margin: 0 auto;
@@ -873,16 +865,16 @@ body {
 
 .timeline-item {
     position: relative;
-    padding-left: 60px;
-    margin-bottom: 60px;
+    padding-left: clamp(40px, 8vw, 60px);
+    margin-bottom: clamp(40px, 8vw, 60px);
 }
 
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: 20px;
+    left: clamp(15px, 3vw, 20px);
     top: 0;
-    bottom: -60px;
+    bottom: clamp(-40px, -8vw, -60px);
     width: 2px;
     background: linear-gradient(to bottom, var(--accent), transparent);
 }
@@ -893,10 +885,10 @@ body {
 
 .timeline-dot {
     position: absolute;
-    left: 12px;
+    left: clamp(7px, 1.5vw, 12px);
     top: 12px;
-    width: 16px;
-    height: 16px;
+    width: clamp(12px, 2.5vw, 16px);
+    height: clamp(12px, 2.5vw, 16px);
     background: var(--accent);
     border-radius: 50%;
     box-shadow: 0 0 0 4px var(--primary-bg), 0 0 0 8px var(--glass-border);
@@ -908,7 +900,7 @@ body {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
-    padding: 30px;
+    padding: clamp(20px, 5vw, 30px);
     transition: all 0.3s var(--ease-out-quart);
 }
 
@@ -920,7 +912,7 @@ body {
 
 .timeline-year {
     color: var(--accent);
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -929,28 +921,28 @@ body {
 
 .timeline-content h3 {
     color: var(--text-primary);
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     font-weight: 700;
     margin-bottom: 8px;
 }
 
 .timeline-content h4 {
     color: var(--text-secondary);
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     font-weight: 600;
     margin-bottom: 12px;
 }
 
 .institution {
     color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2vw, 1.1rem);
     font-weight: 500;
     margin-bottom: 8px;
 }
 
 .location {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
     margin-bottom: 20px;
 }
 
@@ -965,16 +957,17 @@ body {
     color: var(--accent);
     padding: 6px 12px;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
     font-weight: 600;
     border: 1px solid rgba(245, 230, 211, 0.2);
 }
 
-/* Skills Section */
+/* === Skills Section === */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 40vw, 300px), 1fr));
+    gap: clamp(20px, 4vw, 30px);
+    align-items: start;
 }
 
 .skill-card {
@@ -983,10 +976,13 @@ body {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
-    padding: 40px 30px;
+    padding: clamp(30px, 6vw, 40px) clamp(20px, 4vw, 30px);
     transition: all 0.4s var(--ease-out-quart);
     position: relative;
     overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .skill-card::before {
@@ -1011,14 +1007,14 @@ body {
 }
 
 .skill-icon {
-    font-size: 3rem;
+    font-size: clamp(2.5rem, 6vw, 3rem);
     margin-bottom: 20px;
     display: block;
 }
 
 .skill-card h3 {
     color: var(--accent);
-    font-size: 1.4rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
     font-weight: 700;
     margin-bottom: 16px;
 }
@@ -1027,6 +1023,8 @@ body {
     color: var(--text-secondary);
     margin-bottom: 24px;
     line-height: 1.7;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    flex-grow: 1;
 }
 
 .skill-tags {
@@ -1041,7 +1039,7 @@ body {
     color: var(--accent);
     padding: 6px 14px;
     border-radius: 20px;
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
     font-weight: 500;
     border: 1px solid rgba(245, 230, 211, 0.2);
     transition: all 0.3s ease;
@@ -1058,6 +1056,7 @@ body {
     background: rgba(245, 230, 211, 0.1);
     border-radius: 3px;
     overflow: hidden;
+    margin-top: auto;
 }
 
 .progress-bar {
@@ -1068,7 +1067,7 @@ body {
     transition: width 1s var(--ease-out-quart);
 }
 
-/* Reads Section */
+/* === Reads Section === */
 .reads-container {
     max-width: 900px;
     margin: 0 auto;
@@ -1076,15 +1075,15 @@ body {
 
 .book-showcase {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 60px;
+    grid-template-columns: auto 1fr;
+    gap: clamp(30px, 8vw, 60px);
     align-items: center;
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 30px;
-    padding: 50px;
+    padding: clamp(30px, 6vw, 50px);
     transition: all 0.4s var(--ease-out-quart);
 }
 
@@ -1096,8 +1095,8 @@ body {
 
 .book-cover {
     position: relative;
-    width: 200px;
-    height: 300px;
+    width: clamp(150px, 25vw, 200px);
+    height: clamp(225px, 37.5vw, 300px);
     margin: 0 auto;
     transform-style: preserve-3d;
     transition: transform 0.6s var(--ease-out-quart);
@@ -1131,7 +1130,7 @@ body {
 
 .book-info h3 {
     color: var(--text-primary);
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     font-weight: 800;
     margin-bottom: 8px;
     line-height: 1.2;
@@ -1139,7 +1138,7 @@ body {
 
 .book-author {
     color: var(--accent);
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2vw, 1.1rem);
     font-weight: 600;
     margin-bottom: 24px;
 }
@@ -1150,7 +1149,7 @@ body {
 }
 
 .quote-icon {
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     color: var(--accent);
     opacity: 0.3;
     position: absolute;
@@ -1160,7 +1159,7 @@ body {
 
 .book-quote p {
     font-style: italic;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: var(--text-secondary);
     line-height: 1.6;
     padding-left: 30px;
@@ -1188,7 +1187,7 @@ body {
 
 .status-indicator-book span {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
     font-weight: 500;
 }
 
@@ -1200,7 +1199,7 @@ body {
 
 .progress-label {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
     font-weight: 500;
 }
 
@@ -1218,6 +1217,7 @@ body {
     border-radius: 4px;
     transition: width 1s var(--ease-out-quart);
     position: relative;
+    width: 100% !important; /* Force 100% completion */
 }
 
 .progress-fill::after {
@@ -1238,17 +1238,22 @@ body {
 
 .progress-text {
     color: var(--accent);
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
     font-weight: 600;
     align-self: flex-end;
     position: relative;
 }
 
-/* Interests Section */
+.progress-text::after {
+    content: "100%"; /* Force 100% display */
+}
+
+/* === Interests Section === */
 .interests-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 40vw, 280px), 1fr));
+    gap: clamp(20px, 4vw, 30px);
+    align-items: start;
 }
 
 .interest-card {
@@ -1257,12 +1262,15 @@ body {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
-    padding: 40px 30px;
+    padding: clamp(30px, 6vw, 40px) clamp(20px, 4vw, 30px);
     text-align: center;
     transition: all 0.4s var(--ease-out-quart);
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .interest-card::before {
@@ -1288,7 +1296,7 @@ body {
 }
 
 .interest-icon {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
     margin-bottom: 20px;
     display: block;
     transition: transform 0.4s var(--ease-elastic);
@@ -1300,7 +1308,7 @@ body {
 
 .interest-card h3 {
     color: var(--text-primary);
-    font-size: 1.3rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
     font-weight: 700;
     margin-bottom: 16px;
     position: relative;
@@ -1313,16 +1321,19 @@ body {
     margin-bottom: 20px;
     position: relative;
     z-index: 2;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    flex-grow: 1;
 }
 
 .interest-link {
     color: var(--accent);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
     transition: all 0.3s ease;
     position: relative;
     z-index: 2;
+    margin-top: auto;
 }
 
 .interest-link:hover {
@@ -1330,14 +1341,22 @@ body {
     transform: translateX(5px);
 }
 
-/* Projects Section Grid */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 40px;
+/* === Projects Section === */
+#projects {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 280px !important; /* Extra large bottom padding */
+    margin-bottom: 0;
 }
 
-/* Make cards flexible height */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(300px, 45vw, 400px), 1fr));
+    gap: clamp(30px, 6vw, 40px);
+    align-items: start;
+    margin-bottom: 120px;
+}
+
 .project-card {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
@@ -1350,7 +1369,7 @@ body {
     overflow: visible;
     transition: all 0.4s var(--ease-out-quart);
     position: relative;
-    padding-bottom: 20px; /* extra breathing room */
+    padding-bottom: 20px;
 }
 
 .project-card:hover {
@@ -1360,7 +1379,7 @@ body {
 }
 
 .project-image {
-    height: 200px;
+    height: clamp(150px, 25vw, 200px);
     background: var(--gradient);
     display: flex;
     align-items: center;
@@ -1368,14 +1387,16 @@ body {
     position: relative;
     overflow: hidden;
     z-index: 0;
+    border-radius: 25px 25px 0 0;
 }
 
 .project-icon {
-    font-size: 4rem;
+    font-size: clamp(3rem, 6vw, 4rem);
     color: #333;
     z-index: 2;
     transition: transform 0.4s var(--ease-elastic);
 }
+
 .project-card:hover .project-icon {
     transform: scale(1.2) rotate(15deg);
 }
@@ -1389,11 +1410,27 @@ body {
 }
 
 .project-content {
-    padding: 35px;
+    padding: clamp(25px, 5vw, 35px);
     position: relative;
     z-index: 2;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-content h3 {
+    color: var(--text-primary);
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.project-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    flex-grow: 1;
 }
 
 .project-links {
@@ -1413,9 +1450,10 @@ body {
     color: var(--accent);
     border-radius: 25px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
     transition: all 0.3s var(--ease-out-quart);
     cursor: pointer;
+    text-decoration: none;
 }
 
 .project-link:hover {
@@ -1424,24 +1462,21 @@ body {
     transform: translateY(-2px);
 }
 
-/* ---- Fix Section Spacing & Layering ---- */
-#projects {
-    position: relative;
-    z-index: 2;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    margin-bottom: 60px; /* creates gap before Let's Connect */
-}
-
-/* Contact Section */
+/* === Contact Section === */
 #contact {
     background-color: var(--primary-bg);
-    padding-top: 180px;
+    padding-top: 320px !important; /* Massive top padding to prevent overlap */
+    padding-bottom: 160px !important;
+    position: relative;
+    z-index: 1;
+    margin-top: 100px;
 }
 
 .contact-content {
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
+    z-index: 5;
 }
 
 .contact-intro {
@@ -1450,7 +1485,7 @@ body {
 }
 
 .contact-intro p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: var(--text-secondary);
     line-height: 1.6;
 }
@@ -1461,8 +1496,10 @@ body {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 25px;
-    padding: 50px;
+    padding: clamp(30px, 6vw, 50px);
     margin-bottom: 50px;
+    position: relative;
+    z-index: 6;
 }
 
 .form-row {
@@ -1481,7 +1518,7 @@ body {
 .form-group label {
     color: var(--text-primary);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
 }
 
 .contact-form input,
@@ -1491,9 +1528,9 @@ body {
     -webkit-backdrop-filter: blur(10px);
     border: 2px solid var(--glass-border);
     border-radius: 15px;
-    padding: 16px 20px;
+    padding: clamp(12px, 2.5vw, 16px) clamp(16px, 3vw, 20px);
     color: var(--text-primary);
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
     font-family: inherit;
     transition: all 0.3s var(--ease-out-quart);
     outline: none;
@@ -1513,14 +1550,14 @@ body {
 }
 
 .contact-form textarea {
-    min-height: 140px;
+    min-height: clamp(120px, 20vh, 140px);
     resize: vertical;
 }
 
 .submit-btn {
     width: fit-content;
     margin: 20px auto 0;
-    min-width: 200px;
+    min-width: clamp(180px, 35vw, 200px);
 }
 
 .contact-alternatives {
@@ -1530,20 +1567,13 @@ body {
 .contact-alternatives p {
     color: var(--text-secondary);
     margin-bottom: 24px;
-    font-size: 1.1rem;
-}
-
-.contact-methods {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+    font-size: clamp(1rem, 2vw, 1.1rem);
 }
 
 .contact-methods {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: clamp(12px, 3vw, 16px);
     justify-content: center;
     margin-top: 16px;
 }
@@ -1554,29 +1584,29 @@ body {
     gap: 8px;
     text-decoration: none;
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
     font-weight: 500;
-    padding: 6px 12px;
+    padding: clamp(6px, 1.5vw, 8px) clamp(10px, 2.5vw, 12px);
     border-radius: 6px;
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1.5px solid var(--glass-border);
-    transition: color 0.3s ease, background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .contact-method .method-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: clamp(18px, 3vw, 20px);
+    height: clamp(18px, 3vw, 20px);
     color: var(--accent);
 }
 
 .contact-method svg {
-    width: 20px;
-    height: 20px;
+    width: clamp(18px, 3vw, 20px);
+    height: clamp(18px, 3vw, 20px);
     fill: var(--accent);
     transition: fill 0.3s ease;
 }
@@ -1593,12 +1623,14 @@ body {
     fill: #333;
 }
 
-/* Footer */
+/* === Footer === */
 .footer {
     background: var(--secondary-bg);
     border-top: 1px solid var(--glass-border);
-    padding: 80px 0 40px;
+    padding: clamp(60px, 12vh, 100px) 0 clamp(30px, 6vh, 60px);
     position: relative;
+    z-index: 1;
+    margin-top: clamp(40px, 8vh, 80px);
 }
 
 .footer::before {
@@ -1615,9 +1647,9 @@ body {
 .footer-content {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 60px;
+    gap: clamp(30px, 8vw, 60px);
     align-items: start;
-    margin-bottom: 50px;
+    margin-bottom: clamp(30px, 6vh, 50px);
 }
 
 .footer-brand {
@@ -1625,14 +1657,14 @@ body {
 }
 
 .brand-logo {
-    width: 60px;
-    height: 60px;
+    width: clamp(50px, 8vw, 60px);
+    height: clamp(50px, 8vw, 60px);
     background: var(--gradient);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     font-weight: 800;
     color: #333;
     margin-bottom: 20px;
@@ -1641,16 +1673,17 @@ body {
 .footer-brand p {
     color: var(--text-secondary);
     line-height: 1.6;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
 }
 
 .footer-links {
     display: flex;
-    gap: 50px;
+    gap: clamp(25px, 6vw, 50px);
 }
 
 .footer-section h4 {
     color: var(--text-primary);
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2vw, 1.1rem);
     font-weight: 700;
     margin-bottom: 16px;
 }
@@ -1665,7 +1698,7 @@ body {
     color: var(--text-secondary);
     text-decoration: none;
     transition: all 0.3s ease;
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
 }
 
 .footer-section a:hover {
@@ -1684,77 +1717,61 @@ body {
 
 .footer-bottom p {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
 }
 
 .footer-decoration {
-    width: 100px;
+    width: clamp(80px, 15vw, 100px);
     height: 2px;
     background: var(--gradient);
     border-radius: 1px;
     opacity: 0.3;
 }
 
-/* Animations */
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(60px);
-    transition: all 0.8s var(--ease-out-quart);
+/* === Responsive Design Breakpoints === */
+
+/* === Desktop Large (1440px+) === */
+@media (min-width: 1440px) {
+    :root {
+        --section-padding-desktop: 220px;
+    }
+    
+    .container {
+        max-width: 1400px;
+    }
 }
 
-.animate-on-scroll.animate {
-    opacity: 1;
-    transform: translateY(0);
+/* === Desktop (1024px to 1439px) === */
+@media (max-width: 1439px) and (min-width: 1024px) {
+    :root {
+        --section-padding-desktop: 180px;
+    }
+    
+    .hero-content {
+        gap: 50px;
+    }
+    
+    .about-grid {
+        gap: 60px;
+    }
+    
+    .book-showcase {
+        gap: 50px;
+    }
 }
 
-/* Tilt Effect */
-[data-tilt] {
-    transition: transform 0.3s ease;
-}
-
-/* Pulse Animation */
-@keyframes pulse {
-    0%, 100% { opacity: 0.8; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.05); }
-}
-
-/* Success/Error States */
-.btn-success {
-    background: var(--success) !important;
-    color: white !important;
-}
-
-.btn-error {
-    background: var(--error) !important;
-    color: white !important;
-}
-
-/* Button Loading States */
-.btn.loading {
-    pointer-events: none; /* Disable clicks while loading */
-    opacity: 0.7;
-}
-
-.btn.loading .btn-text {
-    transition: 0.3s ease;
-}
-
-/* Spinner loader next to the loading text */
-.btn.loading::after {
-    content: "";
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    margin-left: 8px;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin 0.6s linear infinite;
-    vertical-align: middle;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
+/* === Laptop (768px to 1023px) === */
+@media (max-width: 1023px) {
+    :root {
+        --section-padding-desktop: var(--section-padding-laptop);
+        --container-padding-desktop: 4%;
+    }
+    
+    .section {
+        padding: var(--section-padding-laptop) 0;
+        margin-bottom: 40px;
+    }
+    
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1786,15 +1803,569 @@ body {
     .footer-links {
         justify-content: center;
     }
+    
+    #projects {
+        padding-bottom: 180px !important;
+    }
+    
+    #contact {
+        padding-top: 220px !important;
+        padding-bottom: 100px !important;
+        margin-top: 60px;
+    }
+    
+    .footer {
+        margin-top: 50px;
+    }
 }
 
-@media (max-width: 768px) {
-    .container {
-        padding: 0 20px;
+/* === Mobile Large (480px to 599px) === */
+@media (max-width: 599px) {
+    :root {
+        --section-padding-desktop: var(--section-padding-mobile);
+    }
+    
+    .section {
+        padding: var(--section-padding-mobile) 0;
+        margin-bottom: 20px;
+    }
+    
+    .section-header {
+        margin-bottom: 50px;
+    }
+    
+    .hero {
+        padding: 80px var(--container-padding-mobile) 50px;
+    }
+    
+    .hero-stats {
+        gap: 15px;
+    }
+    
+    .stat-divider {
+        height: 30px;
+    }
+    
+    .contact-methods {
+        gap: 10px;
+    }
+    
+    .contact-method {
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+    
+    .contact-method .method-icon,
+    .contact-method svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .book-cover {
+        width: 140px;
+        height: 210px;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .skills-grid,
+    .interests-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    #projects {
+        padding-bottom: 160px !important;
+    }
+    
+    #contact {
+        padding-top: 200px !important;
+        padding-bottom: 80px !important;
+        margin-top: 50px;
+    }
+    
+    .footer {
+        margin-top: 40px;
+        padding: 50px 0 30px;
+    }
+}
+
+/* === Mobile Small (320px to 479px) === */
+@media (max-width: 479px) {
+    :root {
+        --section-padding-desktop: var(--section-padding-small);
+    }
+    
+    html {
+        font-size: 14px; /* Smaller base font for very small screens */
+    }
+    
+    .section {
+        padding: var(--section-padding-small) 0;
+        margin-bottom: 15px;
+    }
+    
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
+    .hero {
+        padding: 70px var(--container-padding-mobile) 40px;
     }
     
     .navbar {
-        padding: 0 20px;
+        height: 60px;
+    }
+    
+    .hero-name {
+        font-size: 2.2rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-stats {
+        gap: 12px;
+    }
+    
+    .stat-item {
+        min-width: 60px;
+    }
+    
+    .stat-divider {
+        height: 25px;
+    }
+    
+    .book-cover {
+        width: 120px;
+        height: 180px;
+    }
+    
+    .book-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .contact-form {
+        padding: 25px 20px;
+    }
+    
+    .contact-methods {
+        gap: 8px;
+    }
+    
+    .contact-method {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+    
+    .contact-method .method-icon,
+    .contact-method svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .projects-grid,
+    .skills-grid,
+    .interests-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .project-card,
+    .skill-card,
+    .interest-card {
+        margin-bottom: 15px;
+    }
+    
+    .timeline-item {
+        padding-left: 35px;
+        margin-bottom: 35px;
+    }
+    
+    .timeline-dot {
+        left: 7px;
+        width: 12px;
+        height: 12px;
+    }
+    
+    .timeline-item::before {
+        left: 12px;
+        bottom: -35px;
+    }
+    
+    #projects {
+        padding-bottom: 140px !important;
+    }
+    
+    #contact {
+        padding-top: 180px !important;
+        padding-bottom: 60px !important;
+        margin-top: 40px;
+    }
+    
+    .footer {
+        margin-top: 30px;
+        padding: 40px 0 25px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+/* === Ultra Wide Screens (1920px+) === */
+@media (min-width: 1920px) {
+    :root {
+        --section-padding-desktop: 250px;
+    }
+    
+    .container {
+        max-width: 1600px;
+    }
+    
+    .hero-content {
+        gap: 80px;
+    }
+    
+    .about-grid {
+        gap: 100px;
+    }
+    
+    .book-showcase {
+        gap: 80px;
+    }
+    
+    #projects {
+        padding-bottom: 320px !important;
+    }
+    
+    #contact {
+        padding-top: 360px !important;
+        padding-bottom: 200px !important;
+    }
+}
+
+/* === Animation and Interaction Improvements === */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s var(--ease-out-quart);
+}
+
+.animate-on-scroll.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === Tilt Effect === */
+[data-tilt] {
+    transition: transform 0.3s ease;
+}
+
+/* === Pulse Animation === */
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* === Button States === */
+.btn-success {
+    background: var(--success) !important;
+    color: white !important;
+}
+
+.btn-error {
+    background: var(--error) !important;
+    color: white !important;
+}
+
+.btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.btn.loading .btn-text {
+    transition: 0.3s ease;
+}
+
+.btn.loading::after {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-left: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+}
+
+/* === Utility Classes === */
+.hidden {
+    display: none;
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+/* === Selection Styles === */
+::selection {
+    background: var(--accent);
+    color: #333;
+}
+
+::-moz-selection {
+    background: var(--accent);
+    color: #333;
+}
+
+/* === Scrollbar Styles === */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* === Focus Styles for Accessibility === */
+.nav-link:focus,
+.btn:focus,
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-method:focus,
+.project-link:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* === Print Styles === */
+@media print {
+    .navbar,
+    .particles,
+    .cursor,
+    .cursor-trail,
+    .loading-screen {
+        display: none !important;
+    }
+    
+    .section {
+        padding: 40px 0 !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .hero {
+        min-height: auto !important;
+        padding: 40px 0 !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .container {
+        max-width: none !important;
+        padding: 0 20px !important;
+    }
+}
+
+/* === High Contrast Mode Support === */
+@media (prefers-contrast: high) {
+    :root {
+        --accent: #ffffff;
+        --text-primary: #ffffff;
+        --text-secondary: #cccccc;
+        --glass-border: #666666;
+    }
+    
+    .btn-primary {
+        border: 2px solid white;
+    }
+    
+    .skill-card,
+    .interest-card,
+    .project-card,
+    .timeline-content,
+    .book-showcase,
+    .contact-form {
+        border: 2px solid #666666;
+    }
+}
+
+/* === Reduced Motion Support === */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .cursor,
+    .cursor-trail,
+    .particles {
+        display: none;
+    }
+}
+
+/* === Performance Optimizations === */
+.section,
+.skill-card,
+.interest-card,
+.project-card,
+.timeline-content,
+.book-showcase {
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* === Final Safety Measures === */
+.section::after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+.section * {
+    margin-top: 0;
+}
+
+#hero, #about, #education, #skills, #reads, #interests, #projects, #contact {
+    position: relative;
+    isolation: isolate;
+}
+
+#hero { z-index: 10; }
+#about { z-index: 9; }
+#education { z-index: 8; }
+#skills { z-index: 7; }
+#reads { z-index: 6; }
+#interests { z-index: 5; }
+#projects { z-index: 4; }
+#contact { z-index: 3; }
+.footer { z-index: 2; }
+
+/* === Visual Separators === */
+#education::before,
+#skills::before,
+#reads::before,
+#interests::before,
+#projects::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(80px, 15vw, 100px);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+    opacity: 0.5;
+}
+
+#contact::before {
+    display: none;
+}
+
+/* === End of CSS === */220px !important;
+    }
+    
+    #contact {
+        padding-top: 260px !important;
+        padding-bottom: 120px !important;
+        margin-top: 80px;
+    }
+}
+
+/* === Tablet (600px to 767px) === */
+@media (max-width: 767px) {
+    :root {
+        --section-padding-desktop: var(--section-padding-tablet);
+        --container-padding-desktop: var(--container-padding-mobile);
+    }
+    
+    .container {
+        padding: 0 var(--container-padding-mobile);
+    }
+    
+    .navbar {
+        padding: 0 var(--container-padding-mobile);
+        height: 70px;
     }
     
     .nav-menu {
@@ -1810,6 +2381,7 @@ body {
         flex-direction: column;
         padding: 20px;
         gap: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
     
     .nav-menu.active {
@@ -1833,39 +2405,25 @@ body {
     }
     
     .hero {
-        padding: 100px 5% 60px;
+        padding: 90px var(--container-padding-mobile) 60px;
     }
     
     .section {
-        padding: 80px 0;
+        padding: var(--section-padding-tablet) 0;
+        margin-bottom: 30px;
     }
     
     .section-header {
-        margin-bottom: 50px;
-    }
-    
-    .hero-image {
-        width: 150px;
-        height: 150px;
-        font-size: 4rem;
+        margin-bottom: 60px;
     }
     
     .hero-stats {
-        gap: 20px;
-        flex-wrap: wrap;
         justify-content: center;
+        flex-wrap: wrap;
     }
     
     .form-row {
         grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .contact-form {
-        padding: 30px 25px;
-    }
-    
-    .contact-methods {
         gap: 20px;
     }
     
@@ -1884,6 +2442,7 @@ body {
     .interests-grid,
     .projects-grid {
         grid-template-columns: 1fr;
+        gap: 25px;
     }
     
     .footer-bottom {
@@ -1891,426 +2450,127 @@ body {
         gap: 20px;
         text-align: center;
     }
-}
-
-@media (max-width: 600px) {
-    .contact-methods {
-        gap: 12px;
-    }
-    .contact-method {
-        font-size: 0.9rem;
-        padding: 5px 10px;
-    }
-    .contact-method .method-icon,
-    .contact-method svg {
-        width: 18px;
-        height: 18px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-name {
-        font-size: 2.5rem;
+    
+    .timeline-item {
+        padding-left: 50px;
+        margin-bottom: 50px;
     }
     
-    .section-title {
-        font-size: 2rem;
+    #projects {
+        padding-bottom:
+        /* === Tablet (600px to 767px) === */
+@media (max-width: 767px) {
+    :root {
+        --section-padding-desktop: var(--section-padding-tablet);
+        --container-padding-desktop: var(--container-padding-mobile);
     }
     
-    .book-cover {
-        width: 150px;
-        height: 225px;
-    }
-    
-    .book-info h3 {
-        font-size: 1.5rem;
+    .container {
+        padding: 0 var(--container-padding-mobile);
     }
     
     .navbar {
+        padding: 0 var(--container-padding-mobile);
         height: 70px;
     }
     
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(15, 15, 15, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid var(--glass-border);
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
     .hero {
-        padding-top: 90px;
+        padding: 90px var(--container-padding-mobile) 60px;
     }
-}
-
-/* Utility Classes */
-.hidden {
-    display: none;
-}
-
-.fade-in {
-    animation: fadeIn 0.6s ease-in;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Selection Styles */
-::selection {
-    background: var(--accent);
-    color: #333;
-}
-
-::-moz-selection {
-    background: var(--accent);
-    color: #333;
-}
-
-/* Scrollbar Styles */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--primary-bg);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--glass-border);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent);
-}
-/* ========================================
-   MOBILE SECTION OVERLAP FIX
-   Add this CSS to the bottom of your css/style.css file
-   ======================================== */
-
-/* Fix section positioning and z-index issues */
-.section {
-    position: relative;
-    z-index: 10;
-}
-
-/* Specific fixes for reads and interests sections */
-#reads {
-    position: relative;
-    z-index: 15;
-    margin-bottom: 80px; /* Extra space after reads section */
-}
-
-#interests {
-    position: relative;
-    z-index: 12;
-    margin-top: 60px; /* Extra space before interests section */
-}
-
-/* Mobile-specific enhancements */
-@media (max-width: 768px) {
-    /* Increase section padding on mobile for better spacing */
+    
     .section {
-        padding: 100px 0; /* Increased from default 80px */
+        padding: var(--section-padding-tablet) 0;
+        margin-bottom: 30px;
     }
     
-    /* Extra spacing for reads section on mobile */
-    #reads {
-        padding-bottom: 120px; /* More bottom padding */
-        margin-bottom: 100px; /* Increased bottom margin */
-    }
-    
-    /* Extra spacing for interests section header */
-    #interests {
-        margin-top: 80px; /* Increased top margin */
-        padding-top: 120px; /* Extra top padding */
-    }
-    
-    #interests .section-header {
-        margin-top: 40px; /* Add top margin to section header */
-        margin-bottom: 80px; /* Ensure enough space below header */
-        position: relative;
-        z-index: 20; /* High z-index for section headers */
-        background: var(--primary-bg); /* Add background to prevent see-through */
-        padding: 20px 0; /* Add padding around headers */
-    }
-    
-    /* Fix book showcase spacing */
-    .book-showcase {
-        margin-bottom: 80px; /* Add bottom margin to book showcase */
-    }
-    
-    /* Ensure proper spacing for section content */
-    .reads-container {
+    .section-header {
         margin-bottom: 60px;
     }
     
-    /* Force clear any floating issues */
-    #reads::after {
-        content: "";
-        display: block;
-        clear: both;
-        height: 60px;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Even more spacing on very small screens */
-    .section {
-        padding: 120px 0;
+    .hero-stats {
+        justify-content: center;
+        flex-wrap: wrap;
     }
     
-    #reads {
-        padding-bottom: 140px;
-        margin-bottom: 120px;
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
     
-    #interests {
-        margin-top: 100px;
-        padding-top: 140px;
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
     
-    #interests .section-header {
+    .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .skills-grid,
+    .interests-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .timeline-item {
+        padding-left: 50px;
+        margin-bottom: 50px;
+    }
+    
+    /* ✅ FIXED: Completed rules */
+    #projects {
+        padding-bottom: 200px !important;
+    }
+    
+    #contact {
+        padding-top: 240px !important;
+        padding-bottom: 100px !important;
         margin-top: 60px;
-        margin-bottom: 100px;
-        padding: 30px 0;
-    }
-    
-    /* Additional clearfix for very small screens */
-    #reads::after {
-        height: 80px;
     }
 }
-
-/* Additional safety measures for section headers */
-.section-header {
-    position: relative;
-    z-index: 20;
-}
-
-/* Ensure section numbers don't overlap */
-.section-number {
-    position: relative;
-    z-index: 21;
-}
-
-/* Book progress bar fix (from your original CSS) */
-#reads .progress-fill {
-    width: 100% !important;
-}
-
-#reads .progress-text::after {
-    content: "100%";
-}
-/* Fix for overlapping Projects and Let's Connect sections */
-
-/* TARGETED FIX: Projects Section (#projects) */
-#projects.section {
-    margin-bottom: 120px !important; /* Add sufficient bottom margin */
-    padding-bottom: 100px !important; /* Add bottom padding for extra space */
-    position: relative;
-    z-index: 2; /* Ensure projects section is above background elements */
-}
-
-/* TARGETED FIX: Contact Section (#contact) */
-#contact.section {
-    position: relative;
-    z-index: 1; /* Lower z-index than projects */
-    margin-top: 100px !important; /* Add top margin to prevent overlap */
-    padding-top: 80px !important; /* Add top padding */
-}
-
-/* Fix for projects grid container */
-.projects-grid {
-    margin-bottom: 60px; /* Add extra margin to projects grid */
-    position: relative;
-    z-index: 3;
-}
-
-/* If the contact section is positioned absolutely or fixed */
-.contact-section.fixed, .contact-section.absolute {
-    position: relative !important; /* Override absolute/fixed positioning */
-    bottom: auto !important;
-    left: auto !important;
-    right: auto !important;
-}
-
-/* Fix for contact content positioning */
-.contact-content {
-    position: relative;
-    z-index: 1;
-}
-
-/* Ensure proper spacing for project cards */
-.project-card {
-    margin-bottom: 40px;
-    position: relative;
-    z-index: 2;
-}
-
-/* Fix for section headers */
-.section-header {
-    margin-bottom: 50px;
-    position: relative;
-    z-index: 2;
-}
-
-/* Media query for responsive design */
-@media (max-width: 768px) {
-    .projects-section, #projects {
-        margin-bottom: 60px;
-        padding-bottom: 40px;
-    }
-    
-    .contact-section, #contact, .lets-connect {
-        margin-top: 40px;
-        padding-top: 30px;
-    }
-    
-    .main-container {
-        gap: 40px;
-    }
-}
-
-/* Additional fix for any negative margins causing overlap */
-* {
-    margin-top: 0 !important;
-}
-
-/* Ensure proper stacking context */
-body {
-    position: relative;
-}
-
-/* Fix for any transform or filter properties creating new stacking contexts */
-.projects-section {
-    transform: none !important;
-    filter: none !important;
-}
-
-.contact-section {
-    transform: none !important;
-    filter: none !important;
-}
-/* Fix for overlapping Projects and Let's Connect sections */
-
-/* TARGETED FIX: Projects Section (#projects) */
-#projects.section {
-    margin-bottom: 120px !important; /* Add sufficient bottom margin */
-    padding-bottom: 100px !important; /* Add bottom padding for extra space */
-    position: relative;
-    z-index: 2; /* Ensure projects section is above background elements */
-}
-
-/* TARGETED FIX: Contact Section (#contact) */
-#contact.section {
-    position: relative;
-    z-index: 1; /* Lower z-index than projects */
-    margin-top: 100px !important; /* Add top margin to prevent overlap */
-    padding-top: 80px !important; /* Add top padding */
-}
-
-/* Fix for projects grid container */
-.projects-grid {
-    margin-bottom: 60px; /* Add extra margin to projects grid */
-    position: relative;
-    z-index: 3;
-}
-
-/* If the contact section is positioned absolutely or fixed */
-.contact-section.fixed, .contact-section.absolute {
-    position: relative !important; /* Override absolute/fixed positioning */
-    bottom: auto !important;
-    left: auto !important;
-    right: auto !important;
-}
-
-/* Fix for contact content positioning */
-.contact-content {
-    position: relative;
-    z-index: 1;
-}
-
-/* Ensure proper spacing for project cards */
-.project-card {
-    margin-bottom: 40px;
-    position: relative;
-    z-index: 2;
-}
-
-/* Fix for section headers */
-.section-header {
-    margin-bottom: 50px;
-    position: relative;
-    z-index: 2;
-}
-
-/* Media query for responsive design */
-@media (max-width: 768px) {
-    /* Mobile: Reduce projects section spacing */
-    #projects.section {
-        margin-bottom: 80px !important; /* Reduced from 120px */
-        padding-bottom: 60px !important; /* Reduced from 100px */
-    }
-    
-    /* Mobile: Adjust contact section spacing */
-    #contact.section {
-        margin-top: 60px !important; /* Reduced from 100px */
-        padding-top: 50px !important; /* Reduced from 80px */
-        padding-bottom: 40px !important; /* Reduce bottom padding */
-    }
-    
-    /* Mobile: Reduce projects grid bottom margin */
-    .projects-grid {
-        margin-bottom: 30px; /* Reduced from 60px */
-    }
-    
-    /* Mobile: Reduce footer padding if needed */
-    .footer {
-        padding-top: 40px !important;
-        padding-bottom: 20px !important;
-    }
-    
-    /* Mobile: Ensure project cards don't take too much space */
-    .project-card {
-        margin-bottom: 20px; /* Reduced from 40px */
-    }
-}
-
-/* Additional mobile responsive fix for smaller screens */
-@media (max-width: 480px) {
-    #projects.section {
-        margin-bottom: 60px !important;
-        padding-bottom: 40px !important;
-    }
-    
-    #contact.section {
-        margin-top: 40px !important;
-        padding-top: 40px !important;
-        padding-bottom: 30px !important;
-    }
-    
-    .projects-grid {
-        margin-bottom: 20px;
-    }
-    
-    .footer {
-        padding-top: 30px !important;
-        padding-bottom: 15px !important;
-    }
-}
-
-/* Additional fix for any negative margins causing overlap */
-* {
-    margin-top: 0 !important;
-}
-
-/* Ensure proper stacking context */
-body {
-    position: relative;
-}
-
-/* Fix for any transform or filter properties creating new stacking contexts */
-.projects-section {
-    transform: none !important;
-    filter: none !important;
-}
-
-.contact-section {
-    transform: none !important;
-    filter: none !important;
-}
+/* === End of Tablet Styles === */
