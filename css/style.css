@@ -16,10 +16,13 @@
 }
 
 /* Visually separate section 06 (Projects) and 07 (Contact) */
-#projects {
-    background-color: var(--secondary-bg);
-    padding-bottom: 220px;  /* more bottom space */
-    min-height: 100vh;       /* ensure section takes full viewport height */
+#projects::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: var(--glass-border);
+    margin-top: 80px;
+}
 }
 #contact {
     background-color: var(--primary-bg);
