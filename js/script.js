@@ -2,7 +2,7 @@
 (function() {
     try {
         emailjs.init({
-            publicKey: "kydwS1fCvasKb-02o"
+            publicKey: "UlNiT1XcTtMP6Fwtf"
         });
         console.log("EmailJS initialized successfully");
     } catch (error) {
@@ -85,11 +85,25 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         from_name: document.getElementById('from_name').value,
         from_email: document.getElementById('from_email').value,
         subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value
+        message: document.getElementById('message').value,
+        to_name: 'Sai Pawan' // Adding recipient name for the template
     };
     
-    // Send email using EmailJS
-    emailjs.send('service_your_service_id', 'template_your_template_id', formData)
+    // Validate form data
+    if (!formData.from_name || !formData.from_email || !formData.subject || !formData.message) {
+        submitBtn.textContent = 'Please fill all fields';
+        submitBtn.classList.add('btn-error');
+        submitBtn.disabled = false;
+        
+        setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.classList.remove('btn-error');
+        }, 3000);
+        return;
+    }
+    
+    // Send email using EmailJS with your credentials
+    emailjs.send('service_nx582qa', 'template_22p7xmd', formData)
         .then(function(response) {
             console.log('SUCCESS!', response.status, response.text);
             
