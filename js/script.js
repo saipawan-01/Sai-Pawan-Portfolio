@@ -676,33 +676,39 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log('🚀 Portfolio initialized successfully!');
 
-// ===== Resume Download Button with Fail-Safe =====
-document.getElementById(downloadResume).addEventListener('click', function (e) {
-    e.preventDefault(); // stop default link behavior
-    
-    const btnText = this.querySelector('.btn-text');
-    const originalText = btnText.textContent;
-    
-    // Change text to show feedback
-    btnText.textContent = "Downloading...";
-    this.classList.add("loading");
+document.addEventListener("DOMContentLoaded", function () {
+    const resumeBtn = document.getElementById('downloadResume');
 
-    // Google Drive force download link
-    const fileUrl = "https://drive.google.com/uc?export=download&id=1qMxxJbO2vd3zQkHWnPaY1AeZFKLIQa_3";
-    
-    // Create a temporary link for downloading
-    const a = document.createElement('a');
-    a.href = fileUrl;
-    a.download = "resume.pdf";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    if (!resumeBtn) return; // Exit if button not found
 
-    // Reset text after 2 seconds
-    setTimeout(() => {
-        btnText.textContent = originalText;
-        this.classList.remove("loading");
-    }, 2000);
+    resumeBtn.addEventListener('click', function (e) {
+        e.preventDefault(); // Prevent default link behavior
+        
+        const btnText = this.querySelector('.btn-text');
+        const originalText = btnText.textContent;
+
+        // Show loading state
+        btnText.textContent = "Downloading...";
+        this.classList.add("loading");
+
+        // Google Drive direct download link (force download)
+        const fileUrl = "https://drive.google.com/uc?export=download&id=1qMxxJbO2vd3zQkHWnPaY1AeZFKLIQa_3";
+
+        // Create temporary link element to trigger download
+        const a = document.createElement('a');
+        a.href = fileUrl;
+        a.download = "resume.pdf";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        // Reset button state after 2 seconds
+        setTimeout(() => {
+            btnText.textContent = originalText;
+            this.classList.remove("loading");
+        }, 2000);
+    });
 });
+
 
 });
