@@ -1984,3 +1984,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
 }
+.project-link {
+  pointer-events: auto !important;
+  z-index: 10;
+}
