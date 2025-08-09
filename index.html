@@ -1,473 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seeramreddi Sai Pawan - Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sai Pawan Portfolio</title>
+  <link rel="icon" type="image/png" href="images/favicon.png"/>
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loader-container">
-            <div class="loader"></div>
-            <div class="loading-text">Crafting Excellence...</div>
-        </div>
+  <!-- 01 -->
+  <section id="section01" class="portfolio-section">
+    <span class="section-number">01</span>
+    <h2>About Me</h2>
+    <div class="about-inner">
+      <img src="images/pfp.jpg" alt="Sai Pawan Seeramreddi" class="profile-pic"/>
+      <div>
+        <p>Hi, I'm <strong>Sai Pawan Seeramreddi</strong>, a passionate and dedicated web developer. I love bringing creative ideas to life through code, always learning and pushing myself to create meaningful digital experiences.</p>
+        <p>With a deep curiosity for technology and a strong foundation in both frontend and backend, I craft responsive, accessible, and visually striking websites. I thrive on problem solving and believe in code that is not only functional, but elegant and maintainable.</p>
+      </div>
     </div>
+  </section>
 
-    <!-- Custom Cursor -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-trail" id="cursorTrail"></div>
+  <!-- 02 -->
+  <section id="section02" class="portfolio-section">
+    <span class="section-number">02</span>
+    <h2>Projects</h2>
+    <div class="projects-list">
+      <div class="project-card">
+        <h3>Movie Info App</h3>
+        <p>A responsive app to search for movies, view details, and save favorites using the OMDB API.</p>
+        <a href="https://movie-info-app-lovat.vercel.app/" target="_blank">Live Demo</a> | 
+        <a href="https://github.com/saipawan-01/movie-info-app" target="_blank">GitHub</a>
+      </div>
+      <div class="project-card">
+        <h3>Spotify UI Clone</h3>
+        <p>A visually accurate Spotify web UI recreation, built for practice in modern CSS layouts and responsive design.</p>
+        <a href="https://spotify-ui1-clone.netlify.app/" target="_blank">Live Demo</a> | 
+        <a href="https://github.com/saipawan-01/Spotify-UI1-Clone" target="_blank">GitHub</a>
+      </div>
+      <div class="project-card">
+        <h3>Portfolio Website</h3>
+        <p>This portfolio you are viewing, designed with glassmorphism and custom animations for a modern, personal showcase.</p>
+        <a href="https://sai-pawan-portfolio.vercel.app/" target="_blank">Live Demo</a> | 
+        <a href="https://github.com/saipawan-01/Sai-Pawan-Portfolio" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Floating Particles -->
-    <div class="particles" id="particles"></div>
+  <!-- 03 -->
+  <section id="section03" class="portfolio-section">
+    <span class="section-number">03</span>
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li>HTML5, CSS3, JavaScript (ES6+)</li>
+      <li>React.js, Node.js, Express.js</li>
+      <li>Responsive Design, Flexbox, Grid</li>
+      <li>API integration (REST, third-party)</li>
+      <li>Git & GitHub, Deployment (Vercel, Netlify)</li>
+      <li>UI/UX Design, Glassmorphism</li>
+    </ul>
+  </section>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-brand">
-            <span class="brand-text">SP</span>
-        </div>
-        <ul class="nav-menu">
-            <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#education" class="nav-link">Education</a></li>
-            <li><a href="#skills" class="nav-link">Skills</a></li>
-            <li><a href="#reads" class="nav-link">Reads</a></li>
-            <li><a href="#interests" class="nav-link">Interests</a></li>
-            <li><a href="#projects" class="nav-link">Projects</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
+  <!-- 04 -->
+  <section id="section04" class="portfolio-section">
+    <span class="section-number">04</span>
+    <h2>Experience</h2>
+    <div class="exp-list">
+      <div class="exp-item">
+        <h3>Web Developer (Freelance)</h3>
+        <p class="exp-duration">2022 – Present</p>
+        <ul>
+          <li>Built and deployed web solutions for startups and local businesses.</li>
+          <li>Specialized in modern UI, performance, and accessibility.</li>
         </ul>
-        <div class="mobile-menu-toggle" id="mobileToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
+      </div>
+      <div class="exp-item">
+        <h3>Intern, Tech Startup</h3>
+        <p class="exp-duration">Summer 2022</p>
+        <ul>
+          <li>Worked on React components and RESTful API integration.</li>
+          <li>Collaborated with senior devs on launch-critical code.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg">
-            <div class="hero-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-            </div>
-        </div>
-        <div class="hero-content">
-            <div class="hero-image-container">
-                <div class="hero-image">
-                    <span class="hero-initials">SP</span>
-                    <div class="image-glow"></div>
-                </div>
-                <div class="status-indicator">
-                    <div class="status-dot"></div>
-                    <span>Available for opportunities</span>
-                </div>
-            </div>
-            <div class="hero-text">
-                <div class="hero-greeting">Hello World! 👋</div>
-                <h1 class="hero-name">
-                    I'm <span class="gradient-text">Seeramreddi</span><br>
-                    <span class="gradient-text typing-text">Sai Pawan</span>
-                </h1>
-                <p class="hero-tagline">
-                    Transforming ideas into <span class="highlight">impactful digital experiences</span> 
-                    and <span class="highlight">groundbreaking prototypes</span>
-                </p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">2+</div>
-                        <div class="stat-label">Years Learning</div>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Technologies</div>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <div class="stat-number">∞</div>
-                        <div class="stat-label">Curiosity</div>
-                    </div>
-                </div>
-            </div>
-            <div class="cta-section">
-                <div class="cta-buttons">
-                    <a href="https://github.com/saipawan-01" class="btn btn-primary" target="_blank">
-                        <span class="btn-text">Explore My Work</span>
-                        <div class="btn-bg"></div>
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <span class="btn-text">Let's Connect</span>
-                        <div class="btn-bg"></div>
-                    </a>
-                </div>
-                <div class="scroll-indicator">
-                    <div class="scroll-line"></div>
-                    <span class="scroll-text">Scroll to explore</span>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- 05 -->
+  <section id="section05" class="portfolio-section">
+    <span class="section-number">05</span>
+    <h2>Education</h2>
+    <div class="edu-list">
+      <div class="edu-item">
+        <strong>Bachelor of Technology, Computer Science</strong>
+        <p>XYZ University, 2021 – Present</p>
+      </div>
+      <div class="edu-item">
+        <strong>Intermediate (MPC)</strong>
+        <p>ABC Junior College, 2019 – 2021</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="section-number">01</div>
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Passionate learner exploring the intersection of technology and creativity</p>
-            </div>
-            <div class="about-grid animate-on-scroll">
-                <div class="about-visual">
-                    <div class="about-image">
-                        <span class="about-emoji">🚀</span>
-                        <div class="about-bg-pattern"></div>
-                    </div>
-                    <div class="about-decorations">
-                        <div class="deco deco-1"></div>
-                        <div class="deco deco-2"></div>
-                        <div class="deco deco-3"></div>
-                    </div>
-                </div>
-                <div class="about-content">
-                    <div class="content-block">
-                        <h3>My Journey</h3>
-                        <p>Hi! I'm Seeramreddi Sai Pawan, currently in my 2nd year of B.Tech in Electronics and Communication Engineering (ECE). I'm a passionate learner, deeply engaged in exploring and mastering my core domain, while also diving into interdisciplinary fields that excite me.</p>
-                    </div>
-                    
-                    <div class="content-block">
-                        <h3>What Drives Me</h3>
-                        <p>I am exploring all facets of Artificial Intelligence. I love building stories through visuals, words, and design, and I'm especially curious about how Artificial Intelligence is transforming the way we create, think, and innovate.</p>
-                    </div>
-                    
-                    <div class="content-block">
-                        <h3>Beyond Technology</h3>
-                        <p>Alongside my academic journey, I actively explore UI/UX design using tools like Figma, Canva, and Penpot, creating intuitive and visually compelling user experiences. I also run a blog — <a href="https://fuelyourfiretoelevate.blogspot.com" target="_blank" class="text-link">fuelyourfiretoelevate.blogspot.com</a> — where I share thoughts on personal growth, self-worth, and the importance of not settling for less.</p>
-                    </div>
-                    
-                    <div class="mission-statement">
-                        <div class="mission-icon">💫</div>
-                        <p><strong>My mission is to learn relentlessly, create meaningfully, and inspire consistently — whether it's through design, content, or technology.</strong></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- 06 -->
+  <section id="section06" class="portfolio-section">
+    <span class="section-number">06</span>
+    <h2>My Readings</h2>
+    <div class="reading-progress">
+      Progress: <strong>100%</strong>
+    </div>
+    <ul class="reading-list">
+      <li><strong>Clean Code</strong> — Robert C. Martin (Completed)</li>
+      <li><strong>JavaScript: The Good Parts</strong> — Douglas Crockford (Completed)</li>
+      <li><strong>The Pragmatic Programmer</strong> — Andrew Hunt, David Thomas (Completed)</li>
+    </ul>
+  </section>
 
-    <!-- Education Section -->
-    <section id="education" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="section-number">02</div>
-                <h2 class="section-title">Education</h2>
-                <p class="section-subtitle">Academic journey shaping my technical foundation</p>
-            </div>
-            <div class="education-timeline animate-on-scroll">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-year">2023 - 2027</div>
-                        <h3>Bachelor of Technology</h3>
-                        <h4>Electronics & Communication Engineering</h4>
-                        <p class="institution">Indian Institute of Technology (IIT)</p>
-                        <p class="location">📍 India</p>
-                        <div class="education-highlights">
-                            <span class="highlight-tag">Current Student</span>
-                            <span class="highlight-tag">Second Year</span>
-                            <span class="highlight-tag">ECE Specialization</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="section-number">03</div>
-                <h2 class="section-title">Skills & Expertise</h2>
-                <p class="section-subtitle">Technical proficiencies across multiple domains</p>
-            </div>
-            <div class="skills-grid animate-on-scroll">
-                <div class="skill-card">
-                    <div class="skill-icon">💻</div>
-                    <h3>Programming Languages</h3>
-                    <p>Proficient in multiple programming languages with focus on problem-solving and algorithm development.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">MATLAB</span>
-                    </div>
-                    <div class="skill-progress">
-                        <div class="progress-bar" data-progress="85"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">⚡</div>
-                    <h3>Electronics & Hardware</h3>
-                    <p>Strong foundation in electronics engineering with hands-on experience in circuit design and analysis.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Circuit Theory</span>
-                        <span class="skill-tag">Analog Electronics</span>
-                        <span class="skill-tag">Digital Electronics</span>
-                        <span class="skill-tag">Linear IC</span>
-                        <span class="skill-tag">Analog IC Lab</span>
-                    </div>
-                    <div class="skill-progress">
-                        <div class="progress-bar" data-progress="78"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🌐</div>
-                    <h3>Communication & Networking</h3>
-                    <p>Understanding of data communication networks and fundamental networking concepts and protocols.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Data Communication</span>
-                        <span class="skill-tag">Network Protocols</span>
-                        <span class="skill-tag">Basic Networking</span>
-                    </div>
-                    <div class="skill-progress">
-                        <div class="progress-bar" data-progress="72"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3>Design & Creativity</h3>
-                    <p>Creating intuitive user experiences and compelling visual narratives through modern design tools.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">UI/UX Design</span>
-                        <span class="skill-tag">Figma</span>
-                        <span class="skill-tag">Canva</span>
-                        <span class="skill-tag">Penpot</span>
-                    </div>
-                    <div class="skill-progress">
-                        <div class="progress-bar" data-progress="80"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reads Section -->
-    <section id="reads" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="section-number">04</div>
-                <h2 class="section-title">Currently Reading</h2>
-                <p class="section-subtitle">Books that shape my perspective and mindset</p>
-            </div>
-            <div class="reads-container animate-on-scroll">
-                <div class="book-showcase">
-                    <div class="book-cover">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ff006e;stop-opacity:1' /%3E%3Cstop offset='25%25' style='stop-color:%23fb5607;stop-opacity:1' /%3E%3Cstop offset='50%25' style='stop-color:%23ffbe0b;stop-opacity:1' /%3E%3Cstop offset='75%25' style='stop-color:%238338ec;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%233a86ff;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='600' fill='white'/%3E%3Ctext x='200' y='80' text-anchor='middle' font-family='Arial, sans-serif' font-size='24' font-weight='bold' fill='%23e63946'%3EDR JOSEPH MURPHY%3C/text%3E%3Cg transform='translate(50, 120)'%3E%3Cpath d='M100 50 Q150 0 200 50 Q200 100 150 150 Q100 100 100 50 Z' fill='url(%23grad1)' /%3E%3C/g%3E%3Ctext x='200' y='220' text-anchor='middle' font-family='Arial, sans-serif' font-size='18' fill='%23f77f00'%3EONE MILLION%3C/text%3E%3Ctext x='200' y='240' text-anchor='middle' font-family='Arial, sans-serif' font-size='18' fill='%23f77f00'%3ECOPIES SOLD%3C/text%3E%3Ctext x='200' y='320' text-anchor='middle' font-family='Arial, sans-serif' font-size='48' font-weight='bold' fill='black'%3EThe%3C/text%3E%3Ctext x='200' y='380' text-anchor='middle' font-family='Arial, sans-serif' font-size='72' font-weight='900' fill='black'%3EPower%3C/text%3E%3Ctext x='200' y='420' text-anchor='middle' font-family='Arial, sans-serif' font-size='28' fill='black'%3Eof your%3C/text%3E%3Ctext x='200' y='480' text-anchor='middle' font-family='Arial, sans-serif' font-size='32' fill='%23e63946'%3Esubconscious%3C/text%3E%3Ctext x='200' y='540' text-anchor='middle' font-family='Arial, sans-serif' font-size='64' font-weight='900' fill='black'%3EMind%3C/text%3E%3C/svg%3E" alt="The Power of Your Subconscious Mind">
-                        <div class="book-glow"></div>
-                    </div>
-                    <div class="book-info">
-                        <h3>The Power of Your Subconscious Mind</h3>
-                        <p class="book-author">by Dr. Joseph Murphy</p>
-                        <div class="book-quote">
-                            <div class="quote-icon">"</div>
-                            <p>The Power of Your Subconscious Mind reshaped my thinking, turning possibility into belief.</p>
-                        </div>
-                        <div class="reading-status">
-                            <div class="status-indicator-book">
-                                <div class="status-dot-book"></div>
-                                <span>Currently Reading</span>
-                            </div>
-                            <div class="reading-progress">
-                                <div class="progress-label">Progress</div>
-                                <div class="progress-bar-book">
-                                    <div class="progress-fill" style="width: 65%"></div>
-                                </div>
-                                <span class="progress-text">65%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Creative Interests Section -->
-    <section id="interests" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="section-number">05</div>
-                <h2 class="section-title">Creative & Personal Interests</h2>
-                <p class="section-subtitle">Exploring passions beyond the realm of technology</p>
-            </div>
-            <div class="interests-grid animate-on-scroll">
-                <div class="interest-card" data-tilt>
-                    <div class="interest-icon">📝</div>
-                    <h3>Blogging</h3>
-                    <p>Writing about personal growth, self-worth, and inspiring others to never settle for less.</p>
-                    <a href="https://fuelyourfiretoelevate.blogspot.com" target="_blank" class="interest-link">Visit Blog →</a>
-                </div>
-                <div class="interest-card" data-tilt>
-                    <div class="interest-icon">🎬</div>
-                    <h3>Movies</h3>
-                    <p>Exploring storytelling through cinema, analyzing narratives and visual aesthetics.</p>
-                </div>
-                <div class="interest-card" data-tilt>
-                    <div class="interest-icon">🎵</div>
-                    <h3>Music</h3>
-                    <p>Finding inspiration in melodies, rhythms that fuel creativity and innovation.</p>
-                </div>
-                <div class="interest-card" data-tilt>
-                    <div class="interest-icon">✈️</div>
-                    <h3>Travelling</h3>
-                    <p>Discovering new perspectives, cultures, and experiences that broaden horizons.</p>
-                </div>
-                <div class="interest-card" data-tilt>
-                    <div class="interest-icon">🎨</div>
-                    <h3>Designing</h3>
-                    <p>Creating visual narratives and user experiences that connect and inspire people.</p>
-                </div>
-                <div class="interest-card" data-tilt>
-                    <div class="interest-icon">📚</div>
-                    <h3>Learning</h3>
-                    <p>Continuously exploring new domains, technologies, and ideas that shape the future.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="section-number">06</div>
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Innovation through practical implementation</p>
-            </div>
-            <div class="projects-grid animate-on-scroll">
-                <div class="project-card" data-tilt>
-                    <div class="project-image">
-                        <div class="project-icon">💡</div>
-                        <div class="project-bg-pattern"></div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-category">Hardware Engineering</div>
-                        <h3>Automatic Street Lights Using IR Sensors</h3>
-                        <p>An energy-efficient lighting system that automatically turns street lights ON and OFF based on IR sensor detection of vehicles or pedestrians. This system reduces energy consumption, extends equipment lifespan, and enhances smart infrastructure development for urban and rural areas.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Electronics</span>
-                            <span class="tech-tag">IR Sensors</span>
-                            <span class="tech-tag">Circuit Design</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://docs.google.com/document/d/1UMtTjkOt2FVrOtXioqkYDQKIErjQ_vVL/edit?usp=sharing&ouid=110624517811539726024&rtpof=true&sd=true" class="project-link" target="_blank">
-                                <span>Documentation</span>
-                                <div class="link-arrow">→</div>
-                            </a>
-                            <a href="https://docs.google.com/document/d/1UMtTjkOt2FVrOtXioqkYDQKIErjQ_vVL/edit?usp=sharing&ouid=110624517811539726024&rtpof=true&sd=true" class="project-link" target="_blank">
-                                <span>Proof of Work</span>
-                                <div class="link-arrow">→</div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="section-number">07</div>
-                <h2 class="section-title">Let's Connect</h2>
-                <p class="section-subtitle">Ready to collaborate or just want to chat?</p>
-            </div>
-            <div class="contact-content animate-on-scroll">
-                <div class="contact-intro">
-                    <p>I'd love to hear from you! Whether it's about a potential collaboration, a question about my work, or just a friendly hello.</p>
-                </div>
-                
-                <form class="contact-form" id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="from_name">Name *</label>
-                            <input type="text" name="from_name" id="from_name" placeholder="Your full name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="from_email">Email *</label>
-                            <input type="email" name="from_email" id="from_email" placeholder="your@email.com" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject *</label>
-                        <input type="text" name="subject" id="subject" placeholder="What's this about?" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea name="message" id="message" placeholder="Tell me more about your project or inquiry..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary submit-btn" id="submit-btn">
-                        <span class="btn-text">Send Message</span>
-                        <div class="btn-bg"></div>
-                    </button>
-                </form>
-                
-                <div class="contact-alternatives">
-                    <p>Prefer other ways to connect?</p>
-                    <div class="contact-methods">
-                        <a href="mailto:saiseeramreddi@gmail.com" class="contact-method">
-                            <div class="method-icon">📧</div>
-                            <span>Email directly</span>
-                        </a>
-                        <a href="https://github.com/saipawan-01" target="_blank" class="contact-method">
-                            <div class="method-icon">💻</div>
-                            <span>GitHub</span>
-                        </a>
-                        <a href="https://fuelyourfiretoelevate.blogspot.com" target="_blank" class="contact-method">
-                            <div class="method-icon">📝</div>
-                            <span>My Blog</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="brand-logo">SP</div>
-                    <p>Crafting digital experiences with passion and innovation.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-section">
-                        <h4>Connect</h4>
-                        <a href="mailto:saiseeramreddi@gmail.com">Email</a>
-                        <a href="https://github.com/saipawan-01" target="_blank">GitHub</a>
-                        <a href="https://fuelyourfiretoelevate.blogspot.com" target="_blank">Blog</a>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Quick Links</h4>
-                        <a href="#about">About</a>
-                        <a href="#projects">Projects</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Seeramreddi Sai Pawan. Crafted with passion and innovation.</p>
-                <div class="footer-decoration"></div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- EmailJS CDN -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script src="js/script.js"></script>
+  <!-- 07 -->
+  <section id="section07" class="portfolio-section">
+    <span class="section-number">07</span>
+    <h2>Contact Me</h2>
+    <ul class="social-links">
+      <li><a href="https://www.instagram.com/sai_seeramreddi?igsh=MTI4MmYzZXVqdWhuMg==" target="_blank">Instagram</a></li>
+      <li><a href="https://x.com/sai_seeramreddi?t=0nKDJSN1El1A3wNyEIHPrQ&s=09" target="_blank">X (Twitter)</a></li>
+      <li><a href="https://wa.me/qr/RKEY6OETLAH3L1" target="_blank">WhatsApp</a></li>
+      <li><a href="https://www.facebook.com/share/1V23uMRX6L/" target="_blank">Facebook</a></li>
+      <li><a href="https://www.linkedin.com/in/sai-pawan-seeramreddi-5a9825218?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a></li>
+      <li><a href="mailto:saiseeramreddi@gmail.com">Email</a></li>
+    </ul>
+    <form id="contact-form">
+      <input type="text" name="user_name" placeholder="Enter your name" required>
+      <input type="email" name="user_email" placeholder="Enter your email" required>
+      <textarea name="message" rows="4" placeholder="Your message" required></textarea>
+      <button type="submit">Send Message</button>
+      <div id="form-status"></div>
+    </form>
+  </section>
+  <script src="js/script.js"></script>
 </body>
 </html>
