@@ -683,4 +683,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     console.log('🚀 Portfolio initialized successfully!');
+
+    document.getElementById('downloadResume').addEventListener('click', function (e) {
+  e.preventDefault(); // stop the default link behavior
+  window.location.href = 'https://drive.google.com/uc?export=download&id=1qMxxJbO2vd3zQkHWnPaY1AeZFKLIQa_3';
+});
+
 });
