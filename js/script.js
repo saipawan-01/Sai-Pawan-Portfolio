@@ -677,7 +677,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 Portfolio initialized successfully!');
 
 // ===== Resume Download Button with Fail-Safe =====
-document.getElementById(download Resume).addEventListener('click', function (e) {
+document.getElementById(downloadResume).addEventListener('click', function (e) {
     e.preventDefault(); // stop default link behavior
     
     const btnText = this.querySelector('.btn-text');
