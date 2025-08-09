@@ -555,7 +555,7 @@ function updateReadingProgress() {
     const progressText = document.querySelector('.progress-text');
     
     if (progressFill && progressText) {
-        let currentProgress = 65;
+        let currentProgress = 100;
         const targetProgress = Math.min(currentProgress + Math.random() * 2, 100);
         
         let current = currentProgress;
