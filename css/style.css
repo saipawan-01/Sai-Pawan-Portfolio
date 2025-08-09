@@ -1334,8 +1334,8 @@ body {
     border-radius: 25px;
     display: flex;
     flex-direction: column;
-    height: auto;              /* Auto height for full content */
-    overflow: visible;         /* Avoid clipping content/buttons */
+    height: auto;              /* Allow natural height */
+    overflow: visible;         /* Prevent clipping */
     transition: all 0.4s var(--ease-out-quart);
     position: relative;
 }
@@ -1354,7 +1354,7 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    z-index: 0; /* Keep behind content */
+    z-index: 0; /* Ensure it stays behind content */
 }
 
 .project-icon {
@@ -1382,7 +1382,7 @@ body {
 .project-content {
     padding: 35px;
     position: relative;
-    z-index: 2; /* So links stay clickable */
+    z-index: 2; /* Keep content above background */
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -1428,7 +1428,6 @@ body {
     border: 1px solid rgba(245, 230, 211, 0.2);
 }
 
-/* Links */
 .project-links {
     display: flex;
     gap: 16px;
@@ -1450,9 +1449,9 @@ body {
     font-size: 0.9rem;
     transition: all 0.3s var(--ease-out-quart);
     position: relative;
-    z-index: 1;
-    pointer-events: auto;
     cursor: pointer;
+    pointer-events: auto;
+    z-index: 1;
 }
 
 .project-link::before {
