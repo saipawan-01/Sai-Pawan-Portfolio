@@ -712,7 +712,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Initialize reading progress update
-    setTimeout(updateReadingProgress, 3000);
+// setTimeout(updateReadingProgress, 3000);
     
     // Preload critical images
     const criticalImages = [
