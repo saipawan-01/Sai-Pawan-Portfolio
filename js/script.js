@@ -242,15 +242,23 @@ document.querySelectorAll('[data-tilt]').forEach(element => {
         const rect = element.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / centerY * 10;
-        const rotateY = (centerX - x) / centerX * 10;
-        
+
+        const rotateX = ((y - centerY) / centerY) * 10;
+        const rotateY = ((centerX - x) / centerX) * 10;
+
         element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+        element.style.transition = 'transform 0s'; // immediate during mousemove
     });
+
+    element.addEventListener('mouseleave', () => {
+        element.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        element.style.transition = 'transform 0.3s ease-out'; // smooth reset
+    });
+});
+
     
     element.addEventListener('mouseleave', () => {
         element.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';

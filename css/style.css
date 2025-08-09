@@ -1442,6 +1442,24 @@ body {
     overflow: hidden;
 }
 
+.project-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--accent);
+    text-decoration: none;
+    border: 2px solid var(--accent);
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s var(--ease-out-quart);
+    position: relative;       /* Make it a stacking context */
+    z-index: 1;               /* Ensure it stacks above overlays */
+    pointer-events: auto;     /* Ensure clicks are accepted */
+}
+
 .project-link::before {
     content: '';
     position: absolute;
@@ -1451,7 +1469,8 @@ body {
     height: 100%;
     background: var(--accent);
     transition: left 0.3s var(--ease-out-quart);
-    z-index: 1;
+    z-index: 0;               /* Lower than .project-link content */
+    pointer-events: none;     /* Allow clicks to pass through the background */
 }
 
 .project-link:hover::before {
@@ -1466,13 +1485,14 @@ body {
 .project-link span,
 .link-arrow {
     position: relative;
-    z-index: 2;
+    z-index: 2;               /* Above the background */
     transition: transform 0.3s ease;
 }
 
 .project-link:hover .link-arrow {
     transform: translateX(5px);
 }
+
 
 /* Contact Section */
 .contact-content {
