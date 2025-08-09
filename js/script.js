@@ -684,9 +684,33 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log('🚀 Portfolio initialized successfully!');
 
-    document.getElementById('downloadResume').addEventListener('click', function (e) {
-  e.preventDefault(); // stop the default link behavior
-  window.location.href = 'https://drive.google.com/uc?export=download&id=1qMxxJbO2vd3zQkHWnPaY1AeZFKLIQa_3';
+// ===== Resume Download Button with Fail-Safe =====
+document.getElementById('downloadBtn').addEventListener('click', function (e) {
+    e.preventDefault(); // stop default link behavior
+    
+    const btnText = this.querySelector('.btn-text');
+    const originalText = btnText.textContent;
+    
+    // Change text to show feedback
+    btnText.textContent = "Downloading...";
+    this.classList.add("loading");
+
+    // Google Drive force download link
+    const fileUrl = "https://drive.google.com/uc?export=download&id=1qMxxJbO2vd3zQkHWnPaY1AeZFKLIQa_3";
+    
+    // Create a temporary link for downloading
+    const a = document.createElement('a');
+    a.href = fileUrl;
+    a.download = "resume.pdf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // Reset text after 2 seconds
+    setTimeout(() => {
+        btnText.textContent = originalText;
+        this.classList.remove("loading");
+    }, 2000);
 });
 
 });

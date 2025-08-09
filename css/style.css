@@ -2004,3 +2004,11 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
 }
+.btn.loading {
+    pointer-events: none; /* Disable clicks while loading */
+    opacity: 0.7;
+}
+
+.btn.loading .btn-text {
+    transition: 0.3s ease;
+}
