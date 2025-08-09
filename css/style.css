@@ -1332,7 +1332,10 @@ body {
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 25px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: auto;              /* Auto height for full content */
+    overflow: visible;         /* Avoid clipping content/buttons */
     transition: all 0.4s var(--ease-out-quart);
     position: relative;
 }
@@ -1351,13 +1354,14 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    z-index: 0; /* Keep behind content */
 }
 
 .project-icon {
     font-size: 4rem;
     color: #333;
-    z-index: 2;
     position: relative;
+    z-index: 2;
     transition: transform 0.4s var(--ease-elastic);
 }
 
@@ -1371,12 +1375,17 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') repeat;
     opacity: 0.5;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') repeat;
 }
 
 .project-content {
     padding: 35px;
+    position: relative;
+    z-index: 2; /* So links stay clickable */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .project-category {
@@ -1399,14 +1408,14 @@ body {
 .project-content p {
     color: var(--text-secondary);
     line-height: 1.7;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .project-tech {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .tech-tag {
@@ -1419,10 +1428,12 @@ body {
     border: 1px solid rgba(245, 230, 211, 0.2);
 }
 
+/* Links */
 .project-links {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
+    margin-top: auto;
 }
 
 .project-link {
@@ -1439,25 +1450,9 @@ body {
     font-size: 0.9rem;
     transition: all 0.3s var(--ease-out-quart);
     position: relative;
-    overflow: hidden;
-}
-
-.project-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background: transparent;
-    color: var(--accent);
-    text-decoration: none;
-    border: 2px solid var(--accent);
-    border-radius: 25px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s var(--ease-out-quart);
-    position: relative;       /* Make it a stacking context */
-    z-index: 1;               /* Ensure it stacks above overlays */
-    pointer-events: auto;     /* Ensure clicks are accepted */
+    z-index: 1;
+    pointer-events: auto;
+    cursor: pointer;
 }
 
 .project-link::before {
@@ -1469,8 +1464,8 @@ body {
     height: 100%;
     background: var(--accent);
     transition: left 0.3s var(--ease-out-quart);
-    z-index: 0;               /* Lower than .project-link content */
-    pointer-events: none;     /* Allow clicks to pass through the background */
+    z-index: 0;
+    pointer-events: none;
 }
 
 .project-link:hover::before {
@@ -1485,7 +1480,7 @@ body {
 .project-link span,
 .link-arrow {
     position: relative;
-    z-index: 2;               /* Above the background */
+    z-index: 2;
     transition: transform 0.3s ease;
 }
 
