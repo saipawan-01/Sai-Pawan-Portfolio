@@ -2186,3 +2186,131 @@ body {
     transform: none !important;
     filter: none !important;
 }
+/* Fix for overlapping Projects and Let's Connect sections */
+
+/* TARGETED FIX: Projects Section (#projects) */
+#projects.section {
+    margin-bottom: 120px !important; /* Add sufficient bottom margin */
+    padding-bottom: 100px !important; /* Add bottom padding for extra space */
+    position: relative;
+    z-index: 2; /* Ensure projects section is above background elements */
+}
+
+/* TARGETED FIX: Contact Section (#contact) */
+#contact.section {
+    position: relative;
+    z-index: 1; /* Lower z-index than projects */
+    margin-top: 100px !important; /* Add top margin to prevent overlap */
+    padding-top: 80px !important; /* Add top padding */
+}
+
+/* Fix for projects grid container */
+.projects-grid {
+    margin-bottom: 60px; /* Add extra margin to projects grid */
+    position: relative;
+    z-index: 3;
+}
+
+/* If the contact section is positioned absolutely or fixed */
+.contact-section.fixed, .contact-section.absolute {
+    position: relative !important; /* Override absolute/fixed positioning */
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+}
+
+/* Fix for contact content positioning */
+.contact-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure proper spacing for project cards */
+.project-card {
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Fix for section headers */
+.section-header {
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+    /* Mobile: Reduce projects section spacing */
+    #projects.section {
+        margin-bottom: 80px !important; /* Reduced from 120px */
+        padding-bottom: 60px !important; /* Reduced from 100px */
+    }
+    
+    /* Mobile: Adjust contact section spacing */
+    #contact.section {
+        margin-top: 60px !important; /* Reduced from 100px */
+        padding-top: 50px !important; /* Reduced from 80px */
+        padding-bottom: 40px !important; /* Reduce bottom padding */
+    }
+    
+    /* Mobile: Reduce projects grid bottom margin */
+    .projects-grid {
+        margin-bottom: 30px; /* Reduced from 60px */
+    }
+    
+    /* Mobile: Reduce footer padding if needed */
+    .footer {
+        padding-top: 40px !important;
+        padding-bottom: 20px !important;
+    }
+    
+    /* Mobile: Ensure project cards don't take too much space */
+    .project-card {
+        margin-bottom: 20px; /* Reduced from 40px */
+    }
+}
+
+/* Additional mobile responsive fix for smaller screens */
+@media (max-width: 480px) {
+    #projects.section {
+        margin-bottom: 60px !important;
+        padding-bottom: 40px !important;
+    }
+    
+    #contact.section {
+        margin-top: 40px !important;
+        padding-top: 40px !important;
+        padding-bottom: 30px !important;
+    }
+    
+    .projects-grid {
+        margin-bottom: 20px;
+    }
+    
+    .footer {
+        padding-top: 30px !important;
+        padding-bottom: 15px !important;
+    }
+}
+
+/* Additional fix for any negative margins causing overlap */
+* {
+    margin-top: 0 !important;
+}
+
+/* Ensure proper stacking context */
+body {
+    position: relative;
+}
+
+/* Fix for any transform or filter properties creating new stacking contexts */
+.projects-section {
+    transform: none !important;
+    filter: none !important;
+}
+
+.contact-section {
+    transform: none !important;
+    filter: none !important;
+}
