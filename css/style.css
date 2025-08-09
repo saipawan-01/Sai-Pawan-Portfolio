@@ -1320,13 +1320,14 @@ body {
     transform: translateX(5px);
 }
 
-/* Projects Section */
+/* Projects Section Grid */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 40px;
 }
 
+/* Make cards flexible height */
 .project-card {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
@@ -1334,10 +1335,11 @@ body {
     border-radius: 25px;
     display: flex;
     flex-direction: column;
-    height: auto;              /* Allow natural height */
-    overflow: visible;         /* Prevent clipping */
+    height: auto;
+    overflow: visible;
     transition: all 0.4s var(--ease-out-quart);
     position: relative;
+    padding-bottom: 20px; /* extra breathing room */
 }
 
 .project-card:hover {
@@ -1354,78 +1356,33 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    z-index: 0; /* Ensure it stays behind content */
+    z-index: 0;
 }
 
 .project-icon {
     font-size: 4rem;
     color: #333;
-    position: relative;
     z-index: 2;
     transition: transform 0.4s var(--ease-elastic);
 }
-
 .project-card:hover .project-icon {
     transform: scale(1.2) rotate(15deg);
 }
 
 .project-bg-pattern {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     opacity: 0.5;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') repeat;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>')
+        repeat;
 }
 
 .project-content {
     padding: 35px;
     position: relative;
-    z-index: 2; /* Keep content above background */
+    z-index: 2;
     display: flex;
     flex-direction: column;
-    flex: 1;
-}
-
-.project-category {
-    color: var(--accent);
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-}
-
-.project-content h3 {
-    color: var(--text-primary);
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    line-height: 1.3;
-}
-
-.project-content p {
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 20px;
-}
-
-.project-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.tech-tag {
-    background: var(--accent-light);
-    color: var(--accent);
-    padding: 6px 12px;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    border: 1px solid rgba(245, 230, 211, 0.2);
 }
 
 .project-links {
@@ -1440,51 +1397,29 @@ body {
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
+    border: 2px solid var(--accent);
     background: transparent;
     color: var(--accent);
-    text-decoration: none;
-    border: 2px solid var(--accent);
     border-radius: 25px;
     font-weight: 600;
     font-size: 0.9rem;
     transition: all 0.3s var(--ease-out-quart);
-    position: relative;
     cursor: pointer;
-    pointer-events: auto;
-    z-index: 1;
-}
-
-.project-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--accent);
-    transition: left 0.3s var(--ease-out-quart);
-    z-index: 0;
-    pointer-events: none;
-}
-
-.project-link:hover::before {
-    left: 0;
 }
 
 .project-link:hover {
     color: #333;
+    background: var(--accent);
     transform: translateY(-2px);
 }
 
-.project-link span,
-.link-arrow {
+/* ---- Fix Section Spacing & Layering ---- */
+#projects {
     position: relative;
     z-index: 2;
-    transition: transform 0.3s ease;
-}
-
-.project-link:hover .link-arrow {
-    transform: translateX(5px);
+    padding-top: 80px;
+    padding-bottom: 80px;
+    margin-bottom: 60px; /* creates gap before Let's Connect */
 }
 
 
