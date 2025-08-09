@@ -262,14 +262,6 @@ document.querySelectorAll('[data-tilt]').forEach(element => {
     });
 });
 
-    element.addEventListener('mouseleave', () => {
-        element.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        element.style.transition = 'transform 0.3s ease-out'; // smooth reset
-    });
-  
-    element.addEventListener('mouseleave', () => {
-        element.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-    });
 
 // Typing Animation for Hero
 function typeWriter(element, text, speed = 100) {
