@@ -33,9 +33,10 @@
 #reads .progress-fill {
     width: 100% !important;
 }
-#reads .progress-text {
+#reads .progress-text::after {
     content: "100%";
 }
+
 /* CSS Custom Properties */
 :root {
     --primary-bg: #0f0f0f;
@@ -81,7 +82,7 @@ html {
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: var(--primary-bg);
     color: var(--text-primary);
     line-height: 1.6;
@@ -218,18 +219,15 @@ body {
     z-index: 1000;
     transition: all 0.3s var(--ease-out-quart);
     padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
 }
 
 .navbar.scrolled {
     background: rgba(15, 15, 15, 0.95);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 80px;
 }
 
 .nav-brand {
@@ -245,6 +243,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    color: transparent;
 }
 
 .nav-menu {
@@ -334,6 +333,7 @@ body {
     opacity: 0.03;
     border-radius: 50%;
     animation: float-shapes 20s ease-in-out infinite;
+    will-change: transform;
 }
 
 .shape-1 {
@@ -397,6 +397,7 @@ body {
     position: relative;
     box-shadow: var(--glow);
     animation: hero-float 6s ease-in-out infinite;
+    will-change: transform;
 }
 
 .hero-initials {
@@ -434,6 +435,7 @@ body {
     padding: 8px 16px;
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     font-size: 0.8rem;
@@ -471,7 +473,7 @@ body {
     font-weight: 900;
     line-height: 0.9;
     margin-bottom: 24px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
     animation: slideUp 1s var(--ease-out-quart) 0.4s both;
 }
 
@@ -480,6 +482,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    color: transparent;
 }
 
 .typing-text {
@@ -672,7 +675,7 @@ body {
 
 /* Section Styles */
 .section {
-    padding: 120px 0;
+    padding: 160px 0; /* Updated from earlier custom section */
     position: relative;
 }
 
@@ -684,7 +687,7 @@ body {
 
 .section-header {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 100px; /* Updated from earlier custom section */
     position: relative;
 }
 
@@ -692,7 +695,7 @@ body {
     font-size: 0.9rem;
     color: var(--accent);
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 25px; /* Updated from earlier custom section */
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -704,8 +707,9 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    color: transparent;
     margin-bottom: 20px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
 }
 
 .section-subtitle {
@@ -840,6 +844,7 @@ body {
 .mission-statement {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 30px;
@@ -900,6 +905,7 @@ body {
 .timeline-content {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 30px;
@@ -974,6 +980,7 @@ body {
 .skill-card {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 40px 30px;
@@ -1074,6 +1081,7 @@ body {
     align-items: center;
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 30px;
     padding: 50px;
@@ -1233,6 +1241,7 @@ body {
     font-size: 0.9rem;
     font-weight: 600;
     align-self: flex-end;
+    position: relative;
 }
 
 /* Interests Section */
@@ -1245,6 +1254,7 @@ body {
 .interest-card {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 40px 30px;
@@ -1331,6 +1341,7 @@ body {
 .project-card {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 25px;
     display: flex;
@@ -1422,8 +1433,12 @@ body {
     margin-bottom: 60px; /* creates gap before Let's Connect */
 }
 
-
 /* Contact Section */
+#contact {
+    background-color: var(--primary-bg);
+    padding-top: 180px;
+}
+
 .contact-content {
     max-width: 800px;
     margin: 0 auto;
@@ -1443,6 +1458,7 @@ body {
 .contact-form {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 25px;
     padding: 50px;
@@ -1472,6 +1488,7 @@ body {
 .contact-form textarea {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 2px solid var(--glass-border);
     border-radius: 15px;
     padding: 16px 20px;
@@ -1524,69 +1541,56 @@ body {
 }
 
 .contact-methods {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-  margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 16px;
 }
 
 .contact-method {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 6px 12px;
-  border-radius: 6px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  border: 1.5px solid var(--glass-border);
-  transition: color 0.3s ease, background 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid var(--glass-border);
+    transition: color 0.3s ease, background 0.3s ease;
 }
+
 .contact-method .method-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
 }
 
 .contact-method svg {
-  width: 20px;
-  height: 20px;
-  fill: var(--accent);
-  transition: fill 0.3s ease;
+    width: 20px;
+    height: 20px;
+    fill: var(--accent);
+    transition: fill 0.3s ease;
 }
 
 .contact-method:hover {
-  color: var(--accent);
-  background: var(--accent-light);
-  border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+    border-color: var(--accent);
 }
 
 .contact-method:hover .method-icon,
 .contact-method:hover svg {
-  color: #333;
-  fill: #333;
-}
-
-@media (max-width: 600px) {
-  .contact-methods {
-    gap: 12px;
-  }
-  .contact-method {
-    font-size: 0.9rem;
-    padding: 5px 10px;
-  }
-  .contact-method .method-icon,
-  .contact-method svg {
-    width: 18px;
-    height: 18px;
-  }
+    color: #333;
+    fill: #333;
 }
 
 /* Footer */
@@ -1725,6 +1729,30 @@ body {
     color: white !important;
 }
 
+/* Button Loading States */
+.btn.loading {
+    pointer-events: none; /* Disable clicks while loading */
+    opacity: 0.7;
+}
+
+.btn.loading .btn-text {
+    transition: 0.3s ease;
+}
+
+/* Spinner loader next to the loading text */
+.btn.loading::after {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-left: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .hero-content {
@@ -1777,6 +1805,7 @@ body {
         width: 100%;
         background: rgba(15, 15, 15, 0.95);
         backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         border-top: 1px solid var(--glass-border);
         flex-direction: column;
         padding: 20px;
@@ -1864,6 +1893,21 @@ body {
     }
 }
 
+@media (max-width: 600px) {
+    .contact-methods {
+        gap: 12px;
+    }
+    .contact-method {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+    .contact-method .method-icon,
+    .contact-method svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
 @media (max-width: 480px) {
     .hero-name {
         font-size: 2.5rem;
@@ -1932,32 +1976,4 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
-}
-.btn.loading {
-    pointer-events: none; /* Disable clicks while loading */
-    opacity: 0.7;
-}
-
-.btn.loading .btn-text {
-    transition: 0.3s ease;
-}
-
-/* Spinner loader next to the loading text */
-.btn.loading::after {
-    content: "";
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    margin-left: 8px;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin 0.6s linear infinite;
-    vertical-align: middle;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
 }
