@@ -18,7 +18,8 @@
 /* Visually separate section 06 (Projects) and 07 (Contact) */
 #projects {
     background-color: var(--secondary-bg);
-    padding-bottom: 180px;
+    padding-bottom: 220px;  /* more bottom space */
+    min-height: 100vh;       /* ensure section takes full viewport height */
 }
 #contact {
     background-color: var(--primary-bg);
