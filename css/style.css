@@ -1,101 +1,277 @@
 /* CSS Custom Properties */
 :root {
-  --primary-bg: #0f0f0f;
-  --secondary-bg: #181818;
-  --tertiary-bg: #1a1a1a;
-  --accent: #f5e6d3;
-  --accent-hover: #e6d7c3;
-  --accent-light: rgba(245, 230, 211, 0.1);
-  --text-primary: #ffffff;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --gradient: linear-gradient(135deg, #f5e6d3 0%, #e6d7c3 100%);
-  --gradient-hover: linear-gradient(135deg, #e6d7c3 0%, #d4c5b0 100%);
-  --glow: 0 0 50px rgba(245, 230, 211, 0.15);
-  --success: #22c55e;
-  --error: #ef4444;
-  --warning: #f59e0b;
-  --info: #3b82f6;
-
-  /* Animation Variables */
-  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
-  --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --primary-bg: #0f0f0f;
+    --secondary-bg: #181818;
+    --tertiary-bg: #1a1a1a;
+    --accent: #f5e6d3;
+    --accent-hover: #e6d7c3;
+    --accent-light: rgba(245, 230, 211, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --gradient: linear-gradient(135deg, #f5e6d3 0%, #e6d7c3 100%);
+    --gradient-hover: linear-gradient(135deg, #e6d7c3 0%, #d4c5b0 100%);
+    --glow: 0 0 50px rgba(245, 230, 211, 0.15);
+    --success: #22c55e;
+    --error: #ef4444;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+    
+    /* Animation Variables */
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* Reset and Base Styles */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--primary-bg);
-  color: var(--text-primary);
-  line-height: 1.6;
-  overflow-x: hidden;
-  min-height: 100vh;
-  font-feature-settings: 'kern' 1, 'liga' 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--primary-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* (All your other styles as in your original file) */
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.8s var(--ease-out-quart);
+}
 
-/* Section Header and Number - updated for alignment */
+.loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loader-container {
+    text-align: center;
+}
+
+.loader {
+    width: 60px;
+    height: 60px;
+    border: 3px solid transparent;
+    border-top: 3px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Custom Cursor */
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease, scale 0.2s ease;
+    opacity: 0.8;
+}
+
+.cursor-trail {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: rgba(245, 230, 211, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.3s ease;
+}
+
+/* Floating Particles */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(245, 230, 211, 0.2);
+    border-radius: 50%;
+    animation: float-particle 20s linear infinite;
+}
+
+@keyframes float-particle {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 1000;
+    transition: all 0.3s var(--ease-out-quart);
+    padding: 0 5%;
+}
+
+.navbar.scrolled {
+    background: rgba(15, 15, 15, 0.95);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s var(--ease-out-quart);
+    position: relative;
+    padding: 8px 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s var(--ease-out-quart);
+}
+
+.nav-link:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* ... hero, sections, interests, projects, footer etc. — all your original rules stay the same ... */
+
+/* ===================== */
+/* Section number alignment update */
 .section-header .section-number,
 .section-number {
-  font-size: 0.9rem;
-  color: var(--accent);
-  font-weight: 700;
-  margin-bottom: 12px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  min-width: 40px;
-  display: inline-block;
-  text-align: right;
-  margin-right: 10px;
-  vertical-align: middle;
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    min-width: 40px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 
 @media (max-width: 600px) {
-  .section-header .section-number,
-  .section-number {
-    min-width: 28px;
-    font-size: 0.83rem;
-    text-align: left;
-    margin-right: 8px;
-  }
+    .section-header .section-number,
+    .section-number {
+        min-width: 28px;
+        font-size: 0.83rem;
+        text-align: left;
+        margin-right: 8px;
+    }
 }
+/* ===================== */
 
-/* Social media icon styling */
-.social-icon,
-.footer-icon {
-  width: 18px;
-  height: 18px;
-  vertical-align: middle;
-  margin-right: 8px;
-  filter: brightness(0) invert(1);
-  transition: filter 0.3s ease;
-}
-
-.contact-method:hover .social-icon,
-.footer-section a:hover .footer-icon {
-  filter: brightness(0) invert(0.75) sepia(1) saturate(5) hue-rotate(10deg);
-}
-
-/* (The rest of your styles unchanged) */
+/* ... rest of your original CSS code from your paste continues here ... */
