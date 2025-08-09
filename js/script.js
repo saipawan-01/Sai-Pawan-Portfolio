@@ -549,27 +549,6 @@ function animateCounters() {
     });
 }
 
-// Reading progress simulation for book
-function updateReadingProgress() {
-    const progressFill = document.querySelector('.progress-fill');
-    const progressText = document.querySelector('.progress-text');
-    
-    if (progressFill && progressText) {
-        let currentProgress = 100;
-        const targetProgress = Math.min(currentProgress + Math.random() * 2, 100);
-        
-        let current = currentProgress;
-        const timer = setInterval(() => {
-            if (current >= targetProgress) {
-                clearInterval(timer);
-            } else {
-                current += 0.5;
-                progressFill.style.width = current + '%';
-                progressText.textContent = Math.floor(current) + '%';
-            }
-        }, 100);
-    }
-}
 
 // Advanced keyboard navigation
 document.addEventListener('keydown', (e) => {
