@@ -10,6 +10,11 @@
     }
 })();
 
+// Add: simple mobile detection helper
+function isMobile() {
+    return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 // Loading screen with enhanced animation
 window.addEventListener('load', function() {
     setTimeout(function() {
@@ -76,7 +81,7 @@ if (cursor || cursorTrail) {
 // Floating Particles System
 function createParticles() {
     const particleContainer = document.getElementById('particles');
-    if (!particleContainer) return;
+    if (!particleContainer || isMobile()) return; // disable particles on mobile
     
     const particleCount = 50;
     
@@ -112,6 +117,12 @@ if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', () => {
         mobileToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
+        // prevent body scroll when menu is open
+        if (navMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
     });
 
     // Close mobile menu when clicking on links
@@ -119,6 +130,7 @@ if (mobileToggle && navMenu) {
         link.addEventListener('click', () => {
             mobileToggle.classList.remove('active');
             navMenu.classList.remove('active');
+            document.body.style.overflow = '';
         });
     });
 }
@@ -164,7 +176,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         try {
             const target = document.querySelector(href);
             if (target) {
-                const offsetTop = target.offsetTop - 80; // Account for navbar height
+                // Use actual navbar height for offset
+                const headerOffset = navbar ? navbar.offsetHeight : 0;
+                const offsetTop = target.offsetTop - headerOffset;
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -459,212 +473,20 @@ function createSuccessParticles(button) {
     }
 }
 
-// Parallax Effects
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const rate = scrolled * -0.5;
-    
-    // Hero background parallax
-    const heroShapes = document.querySelectorAll('.shape');
-    heroShapes.forEach((shape, index) => {
-        const speed = 0.3 + (index * 0.1);
-        shape.style.transform = `translateY(${scrolled * speed}px)`;
+// Parallax Effects - Desktop only, avoid section transforms to prevent overlap
+function resetParallaxTransforms() {
+    document.querySelectorAll('.shape').forEach(shape => {
+        shape.style.transform = '';
     });
-    
-    // Section backgrounds
-    const sections = document.querySelectorAll('.section');
-    sections.forEach((section, index) => {
-        if (index % 2 === 0) {
-            section.style.transform = `translateY(${rate * 0.1}px)`;
-        }
-    });
-});
-
-// Enhanced Intersection Observer for Advanced Animations
-const advancedObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            // Stagger animations for multiple elements
-            if (entry.target.classList.contains('skill-card') || 
-                entry.target.classList.contains('interest-card') || 
-                entry.target.classList.contains('project-card')) {
-                
-                const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 100;
-                setTimeout(() => {
-                    entry.target.classList.add('animate');
-                }, delay);
-            } else {
-                entry.target.classList.add('animate');
-            }
-            
-            // Special animations for specific elements
-            if (entry.target.id === 'reads') {
-                animateBookCover();
-            }
-            
-            if (entry.target.classList.contains('hero-stats')) {
-                animateCounters();
-            }
-        }
-    });
-}, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-});
-
-// Observe all animated elements
-document.querySelectorAll('.animate-on-scroll, .skill-card, .interest-card, .project-card').forEach(el => {
-    advancedObserver.observe(el);
-});
-
-// Book cover 3D animation
-function animateBookCover() {
-    const bookCover = document.querySelector('.book-cover');
-    if (bookCover) {
-        setTimeout(() => {
-            bookCover.style.transform = 'rotateY(-15deg) rotateX(5deg)';
-        }, 500);
-    }
-}
-
-// Counter animations for hero stats
-function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    
-    counters.forEach(counter => {
-        const target = counter.textContent === '∞' ? '∞' : parseInt(counter.textContent);
-        if (target === '∞') return;
-        
-        let current = 0;
-        const increment = target / 30;
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                counter.textContent = target + '+';
-                clearInterval(timer);
-            } else {
-                counter.textContent = Math.floor(current);
-            }
-        }, 50);
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.transform = '';
     });
 }
 
-// Reading progress simulation for book
-function updateReadingProgress() {
-    const progressFill = document.querySelector('.progress-fill');
-    const progressText = document.querySelector('.progress-text');
-    
-    if (progressFill && progressText) {
-        let currentProgress = 65;
-        const targetProgress = Math.min(currentProgress + Math.random() * 2, 100);
-        
-        let current = currentProgress;
-        const timer = setInterval(() => {
-            if (current >= targetProgress) {
-                clearInterval(timer);
-            } else {
-                current += 0.5;
-                progressFill.style.width = current + '%';
-                progressText.textContent = Math.floor(current) + '%';
-            }
-        }, 100);
-    }
-}
-
-// Advanced keyboard navigation
-document.addEventListener('keydown', (e) => {
-    // ESC key functionality
-    if (e.key === 'Escape') {
-        // Close mobile menu
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navMenu = document.querySelector('.nav-menu');
-        if (mobileToggle) mobileToggle.classList.remove('active');
-        if (navMenu) navMenu.classList.remove('active');
-        
-        // Remove focus from active elements
-        document.activeElement.blur();
-    }
-    
-    // Arrow key navigation for sections
-    if (e.key === 'ArrowDown' && e.ctrlKey) {
-        e.preventDefault();
-        navigateToNextSection();
-    }
-    
-    if (e.key === 'ArrowUp' && e.ctrlKey) {
-        e.preventDefault();
-        navigateToPrevSection();
-    }
-});
-
-function navigateToNextSection() {
-    const sections = document.querySelectorAll('section[id]');
-    const currentSection = getCurrentSection();
-    const currentIndex = Array.from(sections).findIndex(section => section.id === currentSection);
-    
-    if (currentIndex < sections.length - 1) {
-        const nextSection = sections[currentIndex + 1];
-        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-}
-
-function navigateToPrevSection() {
-    const sections = document.querySelectorAll('section[id]');
-    const currentSection = getCurrentSection();
-    const currentIndex = Array.from(sections).findIndex(section => section.id === currentSection);
-    
-    if (currentIndex > 0) {
-        const prevSection = sections[currentIndex - 1];
-        prevSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-}
-
-function getCurrentSection() {
-    const sections = document.querySelectorAll('section[id]');
-    let currentSection = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
-        const sectionHeight = section.offsetHeight;
-        
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-            currentSection = section.getAttribute('id');
-        }
-    });
-    
-    return currentSection;
-}
-
-// Performance optimizations
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Throttle function for scroll events
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
-
-// Apply throttling to scroll-heavy functions
 const throttledParallax = throttle(() => {
+    if (isMobile()) return; // guard
     const scrolled = window.pageYOffset;
+    // Only move hero shapes; do NOT transform sections
     const heroShapes = document.querySelectorAll('.shape');
     heroShapes.forEach((shape, index) => {
         const speed = 0.3 + (index * 0.1);
@@ -672,7 +494,18 @@ const throttledParallax = throttle(() => {
     });
 }, 16);
 
-window.addEventListener('scroll', throttledParallax);
+function updateParallaxBinding() {
+    resetParallaxTransforms();
+    window.removeEventListener('scroll', throttledParallax);
+    if (!isMobile()) {
+        window.addEventListener('scroll', throttledParallax);
+    }
+}
+
+// initial bind/unbind
+updateParallaxBinding();
+// re-evaluate on resize
+window.addEventListener('resize', debounce(updateParallaxBinding, 150));
 
 // Add CSS animation keyframes via JavaScript for shake effect
 const shakeKeyframes = `
