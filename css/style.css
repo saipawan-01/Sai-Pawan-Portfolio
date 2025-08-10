@@ -2580,4 +2580,191 @@ body {
 
 .footer { z-index: 1; }
 
+/* === Additional Mobile Fixes === */
+@media (max-width: 767px) {
+    /* Fix any remaining overlapping issues */
+    .hero-content {
+        gap: 30px;
+    }
+    
+    .hero-image-container {
+        order: -1; /* Move image to top on mobile */
+    }
+    
+    .hero-text {
+        order: 1;
+    }
+    
+    /* Fix button spacing on mobile */
+    .cta-buttons {
+        gap: 12px;
+    }
+    
+    .btn {
+        min-width: 200px;
+    }
+    
+    /* Fix project card spacing */
+    .project-card {
+        margin-bottom: 20px;
+    }
+    
+    .project-links {
+        gap: 10px;
+    }
+    
+    .project-link {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    
+    /* Fix skill card spacing */
+    .skill-card {
+        margin-bottom: 20px;
+    }
+    
+    /* Fix interest card spacing */
+    .interest-card {
+        margin-bottom: 20px;
+    }
+    
+    /* Fix timeline spacing */
+    .timeline-item {
+        margin-bottom: 30px;
+    }
+    
+    /* Fix book showcase spacing */
+    .book-showcase {
+        margin-bottom: 20px;
+    }
+    
+    /* Fix contact form spacing */
+    .contact-form {
+        margin-bottom: 30px;
+    }
+    
+    /* Fix footer spacing */
+    .footer {
+        margin-top: 20px;
+    }
+    
+    /* Fix navigation spacing */
+    .nav-menu {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+    
+    /* Fix hero stats on very small screens */
+    .hero-stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .stat-divider {
+        display: none;
+    }
+    
+    /* Fix section headers */
+    .section-header {
+        padding: 0 10px;
+    }
+    
+    /* Fix container padding */
+    .container {
+        padding: 0 15px;
+    }
+}
+
+/* === Extra Small Screen Fixes === */
+@media (max-width: 375px) {
+    .hero-name {
+        font-size: 2rem;
+        line-height: 1.1;
+    }
+    
+    .hero-tagline {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .btn {
+        min-width: 180px;
+        padding: 10px 20px;
+    }
+    
+    .project-link {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .contact-method {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+}
+
+/* === Landscape Mobile Fixes === */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+        padding: 60px 5% 30px;
+    }
+    
+    .hero-content {
+        gap: 20px;
+    }
+    
+    .hero-image {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+    
+    .hero-name {
+        font-size: 1.8rem;
+    }
+    
+    .hero-tagline {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+    
+    .hero-stats {
+        margin-bottom: 15px;
+    }
+    
+    .section {
+        padding: 40px 0;
+    }
+    
+    .section-header {
+        margin-bottom: 30px;
+    }
+}
+
+/* === Touch Device Optimizations === */
+@media (hover: none) and (pointer: coarse) {
+    .project-card:hover,
+    .skill-card:hover,
+    .interest-card:hover {
+        transform: none;
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+    
+    .nav-link:hover {
+        transform: none;
+    }
+    
+    .cursor,
+    .cursor-trail {
+        display: none;
+    }
+}
+
 /* === End of CSS === */
