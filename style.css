@@ -3,6 +3,8 @@
 /* Increase space between all numbered sections */
 .section {
     padding: 160px 0; /* was 120px */
+    position: relative;
+    z-index: 0;
 }
 
 /* More breathing room under the section number */
@@ -1486,7 +1488,7 @@ body {
 /* Section Spacing & Layering */
 #projects {
     position: relative;
-    z-index: 2;
+    z-index: 0;
     padding-top: 80px;
     padding-bottom: 80px;
     margin-bottom: 60px;
