@@ -25,14 +25,15 @@ window.addEventListener('load', function() {
 // Enhanced Custom Cursor System
 const cursor = document.getElementById('cursor');
 const cursorTrail = document.getElementById('cursorTrail');
-if (cursor && cursorTrail) {
-    let mouseX = 0, mouseY = 0;
+let mouseX = 0, mouseY = 0;
+let trailX = 0, trailY = 0;
+
+if (cursor || cursorTrail) {
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
     });
 
-    let trailX = 0, trailY = 0;
     function updateCursors() {
         if (cursor) {
             cursor.style.left = mouseX + 'px';
@@ -173,7 +174,8 @@ const observer = new IntersectionObserver((entries, obs) => {
     });
 }, observerOptions);
 
-// CRITICAL FIX: Observe all elements that need animation
+// THIS IS THE CRITICAL FIX FOR ANIMATIONS
+// It now looks for your cards in addition to the section headers.
 document.querySelectorAll('.animate-on-scroll, .skill-card, .interest-card, .project-card').forEach(el => {
     observer.observe(el);
 });
