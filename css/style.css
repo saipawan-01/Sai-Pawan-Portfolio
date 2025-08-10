@@ -103,7 +103,7 @@ body {
 .scroll-indicator { margin-top: 40px; }
 
 /* General Section Styling */
-.section { padding: var(--section-padding-desktop) 0; }
+.section { padding: 160px 0; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--container-padding-desktop); }
 .section-header { text-align: center; margin-bottom: 100px; }
 .section-number { color: var(--accent); font-weight: 700; margin-bottom: 25px; }
