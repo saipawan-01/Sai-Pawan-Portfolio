@@ -675,15 +675,24 @@ body {
     clear: both;
 }
 
-/* FIXED: Ensure each section has unique z-index in descending order */
-#hero { z-index: 10; }
-#about { z-index: 9; }
-#education { z-index: 8; }
-#skills { z-index: 7; }
-#reads { z-index: 6; }
-#interests { z-index: 5; }
-#projects { z-index: 4; }
-#contact { z-index: 3; }
+/* FIXED: Proper z-index stacking for sections */
+#home { z-index: 10; position: relative; }
+#about { z-index: 9; position: relative; }
+#education { z-index: 8; position: relative; }
+#skills { z-index: 7; position: relative; }
+#reads { z-index: 6; position: relative; }
+#interests { z-index: 5; position: relative; }
+#projects { z-index: 4; position: relative; }
+#contact { z-index: 3; position: relative; }
+
+/* Ensure proper stacking context */
+.section {
+    position: relative;
+    z-index: auto;
+    isolation: isolate;
+    clear: both;
+    overflow: hidden;
+}
 
 .container {
     max-width: 1200px;
@@ -1961,16 +1970,26 @@ body {
     
     .hero {
         padding: 90px var(--container-padding-mobile) 60px;
+        min-height: 100vh;
+        position: relative;
+        z-index: 10;
     }
     
     .section {
         padding: var(--section-padding-tablet) 0;
         margin-bottom: var(--section-gap-mobile);
+        position: relative;
+        z-index: auto;
+        isolation: isolate;
+        clear: both;
+        overflow: hidden;
     }
     
     #reads {
         padding-bottom: var(--section-padding-tablet);
         margin-bottom: var(--section-gap-mobile);
+        position: relative;
+        z-index: 6;
     }
     
     #interests {
@@ -1978,6 +1997,8 @@ body {
         margin-bottom: var(--section-gap-mobile);
         padding-top: var(--section-padding-tablet);
         padding-bottom: var(--section-padding-tablet);
+        position: relative;
+        z-index: 5;
     }
     
     #projects {
@@ -1985,12 +2006,16 @@ body {
         margin-bottom: var(--section-gap-mobile);
         padding-top: var(--section-padding-tablet);
         padding-bottom: calc(var(--section-padding-tablet) * 1.5);
+        position: relative;
+        z-index: 4;
     }
     
     #contact {
         margin-top: calc(var(--section-gap-mobile) * 2);
         padding-top: calc(var(--section-padding-tablet) * 2);
         padding-bottom: var(--section-padding-tablet);
+        position: relative;
+        z-index: 3;
     }
     
     .section-header {
@@ -2047,11 +2072,18 @@ body {
     .section {
         padding: var(--section-padding-mobile) 0;
         margin-bottom: var(--section-gap-mobile);
+        position: relative;
+        z-index: auto;
+        isolation: isolate;
+        clear: both;
+        overflow: hidden;
     }
     
     #reads {
         padding-bottom: var(--section-padding-mobile);
         margin-bottom: var(--section-gap-mobile);
+        position: relative;
+        z-index: 6;
     }
     
     #interests {
@@ -2059,6 +2091,8 @@ body {
         margin-bottom: var(--section-gap-mobile);
         padding-top: var(--section-padding-mobile);
         padding-bottom: var(--section-padding-mobile);
+        position: relative;
+        z-index: 5;
     }
     
     #projects {
@@ -2066,12 +2100,16 @@ body {
         margin-bottom: var(--section-gap-mobile);
         padding-top: var(--section-padding-mobile);
         padding-bottom: calc(var(--section-padding-mobile) * 1.5);
+        position: relative;
+        z-index: 4;
     }
     
     #contact {
         margin-top: calc(var(--section-gap-mobile) * 2);
         padding-top: calc(var(--section-padding-mobile) * 2);
         padding-bottom: var(--section-padding-mobile);
+        position: relative;
+        z-index: 3;
     }
     
     .section-header {
@@ -2141,11 +2179,18 @@ body {
     .section {
         padding: var(--section-padding-small) 0;
         margin-bottom: 30px;
+        position: relative;
+        z-index: auto;
+        isolation: isolate;
+        clear: both;
+        overflow: hidden;
     }
     
     #reads {
         padding-bottom: var(--section-padding-small);
         margin-bottom: 30px;
+        position: relative;
+        z-index: 6;
     }
     
     #interests {
@@ -2153,6 +2198,8 @@ body {
         margin-bottom: 30px;
         padding-top: var(--section-padding-small);
         padding-bottom: var(--section-padding-small);
+        position: relative;
+        z-index: 5;
     }
     
     #projects {
@@ -2160,12 +2207,16 @@ body {
         margin-bottom: 30px;
         padding-top: var(--section-padding-small);
         padding-bottom: calc(var(--section-padding-small) * 1.5);
+        position: relative;
+        z-index: 4;
     }
     
     #contact {
         margin-top: 60px;
         padding-top: calc(var(--section-padding-small) * 2);
         padding-bottom: var(--section-padding-small);
+        position: relative;
+        z-index: 3;
     }
     
     .section-header {
@@ -2579,5 +2630,124 @@ body {
 }
 
 .footer { z-index: 1; }
+
+/* === Additional Mobile Fixes for Section Overlapping === */
+@media (max-width: 767px) {
+    /* Ensure proper stacking and prevent overlapping */
+    body {
+        overflow-x: hidden;
+    }
+    
+    /* Force proper section separation */
+    .section + .section {
+        margin-top: 0;
+    }
+    
+    /* Ensure navbar doesn't overlap content */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+    
+    /* Add extra spacing for mobile to prevent overlap */
+    #about {
+        padding-top: 120px;
+    }
+    
+    #education {
+        padding-top: 100px;
+    }
+    
+    #skills {
+        padding-top: 100px;
+    }
+    
+    #reads {
+        padding-top: 100px;
+    }
+    
+    #interests {
+        padding-top: 100px;
+    }
+    
+    #projects {
+        padding-top: 100px;
+    }
+    
+    #contact {
+        padding-top: 120px;
+    }
+    
+    /* Ensure proper container spacing */
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+    
+    /* Fix for any floating elements */
+    .hero-bg,
+    .hero-shapes,
+    .particles {
+        position: fixed;
+        z-index: 1;
+    }
+    
+    /* Ensure cards don't overlap */
+    .skill-card,
+    .interest-card,
+    .project-card {
+        position: relative;
+        z-index: 2;
+        margin-bottom: 20px;
+    }
+}
+
+/* === Extra Small Mobile Fixes === */
+@media (max-width: 479px) {
+    /* Reduce padding for very small screens */
+    .section {
+        padding: 60px 0;
+        margin-bottom: 20px;
+    }
+    
+    #about,
+    #education,
+    #skills,
+    #reads,
+    #interests,
+    #projects {
+        padding-top: 80px;
+        padding-bottom: 60px;
+    }
+    
+    #contact {
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+    
+    /* Ensure proper text sizing */
+    .section-title {
+        font-size: 1.6rem;
+        line-height: 1.2;
+    }
+    
+    .hero-name {
+        font-size: 2rem;
+        line-height: 1.1;
+    }
+    
+    /* Fix button spacing */
+    .cta-buttons {
+        gap: 15px;
+    }
+    
+    .btn {
+        padding: 14px 24px;
+        font-size: 0.9rem;
+    }
+}
 
 /* === End of CSS === */

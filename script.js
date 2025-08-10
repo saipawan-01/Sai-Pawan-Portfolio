@@ -866,6 +866,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     viewport.content = "width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes";
     
+    // Mobile-specific optimizations
+    if (isMobile()) {
+        // Reduce particle count on mobile for better performance
+        const particleContainer = document.getElementById('particles');
+        if (particleContainer) {
+            const existingParticles = particleContainer.querySelectorAll('.particle');
+            existingParticles.forEach((particle, index) => {
+                if (index > 20) { // Keep only 20 particles on mobile
+                    particle.remove();
+                }
+            });
+        }
+        
+        // Disable tilt effects on mobile for better performance
+        document.querySelectorAll('[data-tilt]').forEach(element => {
+            element.removeAttribute('data-tilt');
+        });
+        
+        // Optimize scroll animations for mobile
+        const mobileObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            mobileObserver.observe(el);
+        });
+    }
+    
     console.log('🚀 Portfolio initialized successfully!');
 });
 
