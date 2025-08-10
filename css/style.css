@@ -43,6 +43,9 @@
     
     --container-padding-desktop: 5%;
     --container-padding-mobile: 20px;
+    
+    /* New: navbar height for anchor offsets */
+    --nav-height: 80px;
 }
 
 /* === Reset and Base Styles === */
@@ -61,6 +64,7 @@ html {
     scroll-behavior: smooth;
     overflow-x: hidden;
     font-size: 16px;
+    scroll-padding-top: var(--nav-height);
 }
 
 body {
@@ -673,6 +677,7 @@ body {
     z-index: auto;
     isolation: isolate;
     clear: both;
+    scroll-margin-top: var(--nav-height);
 }
 
 /* FIXED: Ensure each section has unique z-index in descending order */
@@ -1808,6 +1813,7 @@ body {
     :root {
         --section-padding-desktop: 140px;
         --section-gap-desktop: 100px;
+        --nav-height: 80px;
     }
     
     .container {
@@ -1841,6 +1847,7 @@ body {
         --section-padding-desktop: var(--section-padding-laptop);
         --section-gap-desktop: var(--section-gap-tablet);
         --container-padding-desktop: 4%;
+        --nav-height: 80px;
     }
     
     .section {
@@ -1912,6 +1919,7 @@ body {
         --section-padding-desktop: var(--section-padding-tablet);
         --section-gap-desktop: var(--section-gap-mobile);
         --container-padding-desktop: var(--container-padding-mobile);
+        --nav-height: 70px;
     }
     
     .container {
@@ -2042,6 +2050,7 @@ body {
     :root {
         --section-padding-desktop: var(--section-padding-mobile);
         --section-gap-desktop: var(--section-gap-mobile);
+        --nav-height: 70px;
     }
     
     .section {
@@ -2132,6 +2141,7 @@ body {
     :root {
         --section-padding-desktop: var(--section-padding-small);
         --section-gap-desktop: 30px;
+        --nav-height: 60px;
     }
     
     html {

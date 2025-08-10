@@ -26,13 +26,17 @@ window.addEventListener('load', function() {
     }, 1500);
 });
 
+// Helpers to detect touch/coarse pointer devices
+const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+const isHoverNone = window.matchMedia('(hover: none)').matches;
+
 // Enhanced Custom Cursor System
 const cursor = document.getElementById('cursor');
 const cursorTrail = document.getElementById('cursorTrail');
 let mouseX = 0, mouseY = 0;
 let trailX = 0, trailY = 0;
 
-if (cursor || cursorTrail) {
+if (!isCoarsePointer && (cursor || cursorTrail)) {
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
@@ -78,7 +82,8 @@ function createParticles() {
     const particleContainer = document.getElementById('particles');
     if (!particleContainer) return;
     
-    const particleCount = 50;
+    const smallScreen = window.innerWidth < 768 || isCoarsePointer;
+    const particleCount = smallScreen ? 16 : 50;
     
     for (let i = 0; i < particleCount; i++) {
         createParticle();
@@ -97,7 +102,7 @@ function createParticles() {
         // Remove and recreate particle when animation ends
         particle.addEventListener('animationend', () => {
             particle.remove();
-            createParticle();
+            if (!smallScreen) createParticle();
         });
     }
 }
@@ -136,15 +141,26 @@ if (navbar) {
             navbar.classList.remove('scrolled');
         }
         
-        // Hide/show navbar on scroll
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
+        // Hide/show navbar on scroll (keep stable on coarse pointers)
+        if (!isCoarsePointer) {
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
         }
         
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
+}
+
+// Get CSS var for nav height
+function getNavHeight() {
+    const root = getComputedStyle(document.documentElement);
+    const v = root.getPropertyValue('--nav-height').trim();
+    // Fallback
+    const px = parseInt(v || '80', 10);
+    return isNaN(px) ? 80 : px;
 }
 
 // Fixed Smooth scrolling for navigation links
@@ -156,7 +172,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         
         // Validate href - must be more than just "#"
         if (!href || href === '#' || href.length <= 1) {
-            // For empty hash, scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
             return;
         }
@@ -164,7 +179,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         try {
             const target = document.querySelector(href);
             if (target) {
-                const offsetTop = target.offsetTop - 80; // Account for navbar height
+                const offsetTop = target.getBoundingClientRect().top + window.scrollY - getNavHeight();
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -186,7 +201,8 @@ window.addEventListener('scroll', () => {
     let currentSection = '';
     
     sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
+        const threshold = getNavHeight() + 40;
+        const sectionTop = section.offsetTop - threshold;
         const sectionHeight = section.offsetHeight;
         
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
@@ -265,30 +281,32 @@ function animateProjectCard(card) {
 }
 
 // Tilt Effect for Cards
-document.querySelectorAll('[data-tilt]').forEach(element => {
-    element.addEventListener('mousemove', (e) => {
-        const rect = element.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+if (!isCoarsePointer) {
+    document.querySelectorAll('[data-tilt]').forEach(element => {
+        element.addEventListener('mousemove', (e) => {
+            const rect = element.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-        const rotateX = ((y - centerY) / centerY) * 10;
-        const rotateY = ((centerX - x) / centerX) * 10;
+            const rotateX = ((y - centerY) / centerY) * 10;
+            const rotateY = ((centerX - x) / centerX) * 10;
 
-        element.style.transform =
-            `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)
-             scale3d(1.05, 1.05, 1.05)`;
-        element.style.transition = 'transform 0s'; // immediate during mousemove
+            element.style.transform =
+                `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)
+                 scale3d(1.05, 1.05, 1.05)`;
+            element.style.transition = 'transform 0s';
+        });
+
+        element.addEventListener('mouseleave', () => {
+            element.style.transform =
+                'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+            element.style.transition = 'transform 0.3s ease-out';
+        });
     });
-
-    element.addEventListener('mouseleave', () => {
-        element.style.transform =
-            'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
-        element.style.transition = 'transform 0.3s ease-out'; // smooth reset
-    });
-});
+}
 
 // Typing Animation for Hero
 function typeWriter(element, text, speed = 100) {
@@ -413,7 +431,7 @@ function showFormError(submitBtn, btnText, originalText, message) {
 
 function createSuccessParticles(button) {
     const rect = button.getBoundingClientRect();
-    const particles = 15;
+    const particles = isCoarsePointer ? 8 : 15;
     
     for (let i = 0; i < particles; i++) {
         const particle = document.createElement('div');
@@ -431,7 +449,7 @@ function createSuccessParticles(button) {
         
         // Animate particle
         const angle = (360 / particles) * i;
-        const velocity = 100;
+        const velocity = isCoarsePointer ? 70 : 100;
         const gravity = 0.5;
         const friction = 0.99;
         
@@ -459,26 +477,19 @@ function createSuccessParticles(button) {
     }
 }
 
-// Parallax Effects
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const rate = scrolled * -0.5;
-    
-    // Hero background parallax
-    const heroShapes = document.querySelectorAll('.shape');
-    heroShapes.forEach((shape, index) => {
-        const speed = 0.3 + (index * 0.1);
-        shape.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-    
-    // Section backgrounds
-    const sections = document.querySelectorAll('.section');
-    sections.forEach((section, index) => {
-        if (index % 2 === 0) {
-            section.style.transform = `translateY(${rate * 0.1}px)`;
-        }
-    });
-});
+// Parallax Effects (disabled on coarse pointers)
+if (!isCoarsePointer) {
+    const throttledParallax = throttle(() => {
+        const scrolled = window.pageYOffset;
+        const heroShapes = document.querySelectorAll('.shape');
+        heroShapes.forEach((shape, index) => {
+            const speed = 0.3 + (index * 0.1);
+            shape.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+        // Optional: section subtle shift removed to prevent overlap
+    }, 16);
+    window.addEventListener('scroll', throttledParallax);
+}
 
 // Enhanced Intersection Observer for Advanced Animations
 const advancedObserver = new IntersectionObserver((entries) => {
@@ -582,7 +593,9 @@ document.addEventListener('keydown', (e) => {
         if (navMenu) navMenu.classList.remove('active');
         
         // Remove focus from active elements
-        document.activeElement.blur();
+        if (document.activeElement && document.activeElement.blur) {
+            document.activeElement.blur();
+        }
     }
     
     // Arrow key navigation for sections
@@ -604,7 +617,8 @@ function navigateToNextSection() {
     
     if (currentIndex < sections.length - 1) {
         const nextSection = sections[currentIndex + 1];
-        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const y = nextSection.getBoundingClientRect().top + window.scrollY - getNavHeight();
+        window.scrollTo({ top: y, behavior: 'smooth' });
     }
 }
 
@@ -615,7 +629,8 @@ function navigateToPrevSection() {
     
     if (currentIndex > 0) {
         const prevSection = sections[currentIndex - 1];
-        prevSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const y = prevSection.getBoundingClientRect().top + window.scrollY - getNavHeight();
+        window.scrollTo({ top: y, behavior: 'smooth' });
     }
 }
 
@@ -624,7 +639,8 @@ function getCurrentSection() {
     let currentSection = '';
     
     sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
+        const threshold = getNavHeight() + 40;
+        const sectionTop = section.offsetTop - threshold;
         const sectionHeight = section.offsetHeight;
         
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
@@ -661,18 +677,6 @@ function throttle(func, limit) {
         }
     }
 }
-
-// Apply throttling to scroll-heavy functions
-const throttledParallax = throttle(() => {
-    const scrolled = window.pageYOffset;
-    const heroShapes = document.querySelectorAll('.shape');
-    heroShapes.forEach((shape, index) => {
-        const speed = 0.3 + (index * 0.1);
-        shape.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-}, 16);
-
-window.addEventListener('scroll', throttledParallax);
 
 // Add CSS animation keyframes via JavaScript for shake effect
 const shakeKeyframes = `
