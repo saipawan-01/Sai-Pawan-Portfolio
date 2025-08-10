@@ -149,7 +149,6 @@ body {
 }
 
 @media (max-width: 767px) {
-    :root { --nav-height: 70px; }
     .section { padding: 80px 0; }
     #home { padding: 100px 20px 60px; }
     #contact { padding-top: 100px; }
