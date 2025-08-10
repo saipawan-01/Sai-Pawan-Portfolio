@@ -1,6 +1,6 @@
 /* ========================================
-   COMPLETE RESPONSIVE CSS - NO OVERLAPPING
-   Advanced portfolio styling with perfect separation
+   COMPLETE RESPONSIVE CSS - MOBILE & LAPTOP PERFECT
+   Advanced portfolio styling with zero overlapping
    ======================================== */
 
 /* === CSS Custom Properties === */
@@ -29,20 +29,26 @@
     --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
     --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     
-    /* FIXED: Responsive Spacing Variables for proper section separation */
+    /* FIXED: Desktop-first spacing (works perfectly on laptop) */
     --section-padding-desktop: 120px;
     --section-padding-laptop: 100px;
-    --section-padding-tablet: 80px;
-    --section-padding-mobile: 60px;
-    --section-padding-small: 50px;
+    --section-padding-tablet: 70px;
+    --section-padding-mobile: 50px;
+    --section-padding-small: 35px;
     
-    /* FIXED: Consistent section gaps */
-    --section-gap-desktop: 80px;
-    --section-gap-tablet: 60px;
-    --section-gap-mobile: 40px;
+    /* FIXED: Consistent section gaps with no overlapping */
+    --section-gap-desktop: 120px;
+    --section-gap-laptop: 100px;
+    --section-gap-tablet: 80px;
+    --section-gap-mobile: 60px;
+    --section-gap-small: 40px;
     
     --container-padding-desktop: 5%;
-    --container-padding-mobile: 20px;
+    --container-padding-mobile: 15px;
+    
+    /* MOBILE: Navigation heights */
+    --nav-height-desktop: 80px;
+    --nav-height-mobile: 70px;
 }
 
 /* === Reset and Base Styles === */
@@ -211,7 +217,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: clamp(70px, 12vh, 80px);
+    height: var(--nav-height-desktop);
 }
 
 .navbar.scrolled {
@@ -300,7 +306,7 @@ body {
     position: relative;
     overflow: hidden;
     background: var(--primary-bg);
-    padding: clamp(80px, 15vh, 120px) var(--container-padding-desktop) 0;
+    padding: var(--nav-height-desktop) var(--container-padding-desktop) 0;
 }
 
 .hero-bg {
@@ -665,25 +671,26 @@ body {
     }
 }
 
-/* FIXED: Section Base Styles - Proper spacing and isolation */
+/* FIXED: Section Base Styles - Perfect spacing for all devices */
 .section {
-    padding: var(--section-padding-desktop) 0;
-    margin-bottom: var(--section-gap-desktop);
     position: relative;
     z-index: auto;
     isolation: isolate;
     clear: both;
+    padding: var(--section-padding-desktop) 0;
+    margin-bottom: var(--section-gap-desktop);
 }
 
-/* FIXED: Ensure each section has unique z-index in descending order */
-#hero { z-index: 10; }
-#about { z-index: 9; }
-#education { z-index: 8; }
-#skills { z-index: 7; }
-#reads { z-index: 6; }
-#interests { z-index: 5; }
-#projects { z-index: 4; }
-#contact { z-index: 3; }
+/* FIXED: Unique z-index for each section (no conflicts) */
+#hero { z-index: 100; }
+#about { z-index: 90; }
+#education { z-index: 80; }
+#skills { z-index: 70; }
+#reads { z-index: 60; }
+#interests { z-index: 50; }
+#projects { z-index: 40; }
+#contact { z-index: 30; }
+.footer { z-index: 20; }
 
 .container {
     max-width: 1200px;
@@ -1083,15 +1090,7 @@ body {
     transition: width 1s var(--ease-out-quart);
 }
 
-/* FIXED: Reads Section - Proper spacing and isolation */
-#reads {
-    position: relative;
-    isolation: isolate;
-    z-index: 6;
-    margin-bottom: var(--section-gap-desktop);
-    padding-bottom: var(--section-padding-desktop);
-}
-
+/* === Reads Section === */
 .reads-container {
     max-width: 900px;
     margin: 0 auto;
@@ -1268,30 +1267,7 @@ body {
     position: relative;
 }
 
-/* FIXED: Interests Section - Proper spacing and no overlap */
-#interests {
-    position: relative;
-    isolation: isolate;
-    z-index: 5;
-    margin-top: var(--section-gap-desktop);
-    margin-bottom: var(--section-gap-desktop);
-    padding-top: var(--section-padding-desktop);
-    padding-bottom: var(--section-padding-desktop);
-}
-
-/* FIXED: Add visual separator before interests */
-#interests::before {
-    content: "";
-    position: absolute;
-    top: calc(var(--section-padding-desktop) * -0.5);
-    left: 50%;
-    transform: translateX(-50%);
-    width: clamp(80px, 15vw, 100px);
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: 0.3;
-}
-
+/* === Interests Section === */
 .interests-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 40vw, 280px), 1fr));
@@ -1384,30 +1360,7 @@ body {
     transform: translateX(5px);
 }
 
-/* FIXED: Projects Section - Better spacing and no overlap */
-#projects {
-    position: relative;
-    isolation: isolate;
-    z-index: 4;
-    margin-top: var(--section-gap-desktop);
-    margin-bottom: var(--section-gap-desktop);
-    padding-top: var(--section-padding-desktop);
-    padding-bottom: calc(var(--section-padding-desktop) * 1.5);
-}
-
-/* FIXED: Add visual separator before projects */
-#projects::before {
-    content: "";
-    position: absolute;
-    top: calc(var(--section-padding-desktop) * -0.5);
-    left: 50%;
-    transform: translateX(-50%);
-    width: clamp(80px, 15vw, 100px);
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: 0.3;
-}
-
+/* === Projects Section === */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(clamp(300px, 45vw, 400px), 1fr));
@@ -1520,29 +1473,15 @@ body {
     transform: translateY(-2px);
 }
 
-/* FIXED: Contact Section - Much better spacing and no overlap */
+/* === Contact Section === */
 #contact {
     background-color: var(--primary-bg);
     position: relative;
     isolation: isolate;
-    z-index: 3;
-    margin-top: calc(var(--section-gap-desktop) * 2);
-    padding-top: calc(var(--section-padding-desktop) * 2);
+    z-index: 30;
+    margin-top: calc(var(--section-gap-desktop) * 1.5);
+    padding-top: calc(var(--section-padding-desktop) * 1.5);
     padding-bottom: var(--section-padding-desktop);
-}
-
-/* FIXED: Add strong visual separator before contact */
-#contact::before {
-    content: "";
-    position: absolute;
-    top: calc(var(--section-padding-desktop) * -1);
-    left: 50%;
-    transform: translateX(-50%);
-    width: clamp(120px, 20vw, 150px);
-    height: 3px;
-    background: var(--gradient);
-    border-radius: 2px;
-    opacity: 0.5;
 }
 
 .contact-content {
@@ -1702,7 +1641,7 @@ body {
     border-top: 1px solid var(--glass-border);
     padding: clamp(60px, 12vh, 100px) 0 clamp(30px, 6vh, 60px);
     position: relative;
-    z-index: 2;
+    z-index: 20;
     margin-top: var(--section-gap-desktop);
 }
 
@@ -1801,82 +1740,102 @@ body {
     opacity: 0.3;
 }
 
-/* === FIXED: Responsive Design Breakpoints === */
+/* ===============================================
+   RESPONSIVE DESIGN - MOBILE & LAPTOP PERFECT
+   =============================================== */
 
-/* === Desktop Large (1440px+) === */
+/* === DESKTOP LARGE (1440px+) === */
 @media (min-width: 1440px) {
     :root {
         --section-padding-desktop: 140px;
-        --section-gap-desktop: 100px;
+        --section-gap-desktop: 120px;
     }
     
     .container {
         max-width: 1400px;
     }
-}
-
-/* === Desktop (1024px to 1439px) === */
-@media (max-width: 1439px) and (min-width: 1024px) {
-    :root {
-        --section-padding-desktop: 120px;
-        --section-gap-desktop: 80px;
-    }
     
     .hero-content {
-        gap: 50px;
+        gap: 80px;
     }
     
     .about-grid {
-        gap: 60px;
+        gap: 100px;
     }
     
     .book-showcase {
-        gap: 50px;
+        gap: 80px;
     }
 }
 
-/* === Laptop (768px to 1023px) === */
-@media (max-width: 1023px) {
+/* === LAPTOP/DESKTOP (1024px to 1439px) - PERFECT FOR LAPTOPS === */
+@media (max-width: 1439px) and (min-width: 1024px) {
     :root {
         --section-padding-desktop: var(--section-padding-laptop);
-        --section-gap-desktop: var(--section-gap-tablet);
-        --container-padding-desktop: 4%;
+        --section-gap-desktop: var(--section-gap-laptop);
     }
     
     .section {
         padding: var(--section-padding-laptop) 0;
-        margin-bottom: var(--section-gap-tablet);
-    }
-    
-    #reads {
-        padding-bottom: var(--section-padding-laptop);
-        margin-bottom: var(--section-gap-tablet);
-    }
-    
-    #interests {
-        margin-top: var(--section-gap-tablet);
-        margin-bottom: var(--section-gap-tablet);
-        padding-top: var(--section-padding-laptop);
-        padding-bottom: var(--section-padding-laptop);
-    }
-    
-    #projects {
-        margin-top: var(--section-gap-tablet);
-        margin-bottom: var(--section-gap-tablet);
-        padding-top: var(--section-padding-laptop);
-        padding-bottom: calc(var(--section-padding-laptop) * 1.5);
+        margin-bottom: var(--section-gap-laptop);
     }
     
     #contact {
-        margin-top: calc(var(--section-gap-tablet) * 2);
-        padding-top: calc(var(--section-padding-laptop) * 2);
+        margin-top: calc(var(--section-gap-laptop) * 1.5);
+        padding-top: calc(var(--section-padding-laptop) * 1.5);
         padding-bottom: var(--section-padding-laptop);
+    }
+    
+    .hero-content {
+        gap: 60px;
+    }
+    
+    .about-grid {
+        gap: 70px;
+    }
+    
+    .book-showcase {
+        gap: 60px;
+    }
+    
+    .footer {
+        margin-top: var(--section-gap-laptop);
+    }
+}
+
+/* === TABLET (768px to 1023px) === */
+@media (max-width: 1023px) {
+    :root {
+        --section-padding-desktop: var(--section-padding-tablet);
+        --section-gap-desktop: var(--section-gap-tablet);
+        --container-padding-desktop: 4%;
+        --nav-height-desktop: var(--nav-height-mobile);
+    }
+    
+    .navbar {
+        height: var(--nav-height-mobile);
+        padding: 0 var(--container-padding-mobile);
+    }
+    
+    .section {
+        padding: var(--section-padding-tablet) 0;
+        margin-bottom: var(--section-gap-tablet);
+    }
+    
+    #contact {
+        margin-top: calc(var(--section-gap-tablet) * 1.5);
+        padding-top: calc(var(--section-padding-tablet) * 1.5);
+        padding-bottom: var(--section-padding-tablet);
+    }
+    
+    .hero {
+        padding: var(--nav-height-mobile) var(--container-padding-mobile) 0;
     }
     
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 40px;
+        gap: 50px;
     }
     
     .hero-text {
@@ -1904,23 +1863,33 @@ body {
     .footer-links {
         justify-content: center;
     }
+    
+    .footer {
+        margin-top: var(--section-gap-tablet);
+    }
 }
 
-/* === Tablet (600px to 767px) === */
+/* === MOBILE LARGE (600px to 767px) - CRITICAL MOBILE FIXES === */
 @media (max-width: 767px) {
     :root {
-        --section-padding-desktop: var(--section-padding-tablet);
+        --section-padding-desktop: var(--section-padding-mobile);
         --section-gap-desktop: var(--section-gap-mobile);
         --container-padding-desktop: var(--container-padding-mobile);
+        --nav-height-desktop: var(--nav-height-mobile);
     }
     
+    html {
+        font-size: 15px;
+    }
+    
+    /* FIXED: Navigation mobile menu */
     .container {
         padding: 0 var(--container-padding-mobile);
     }
     
     .navbar {
         padding: 0 var(--container-padding-mobile);
-        height: 70px;
+        height: var(--nav-height-mobile);
     }
     
     .nav-menu {
@@ -1937,6 +1906,7 @@ body {
         padding: 20px;
         gap: 20px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        z-index: 999;
     }
     
     .nav-menu.active {
@@ -1959,179 +1929,132 @@ body {
         transform: rotate(-45deg) translate(7px, -6px);
     }
     
+    /* FIXED: Hero section mobile spacing */
     .hero {
-        padding: 90px var(--container-padding-mobile) 60px;
+        padding: calc(var(--nav-height-mobile) + 20px) var(--container-padding-mobile) 40px;
+        min-height: calc(100vh - var(--nav-height-mobile));
     }
     
-    .section {
-        padding: var(--section-padding-tablet) 0;
-        margin-bottom: var(--section-gap-mobile);
+    .hero-content {
+        gap: 40px;
     }
     
-    #reads {
-        padding-bottom: var(--section-padding-tablet);
-        margin-bottom: var(--section-gap-mobile);
-    }
-    
-    #interests {
-        margin-top: var(--section-gap-mobile);
-        margin-bottom: var(--section-gap-mobile);
-        padding-top: var(--section-padding-tablet);
-        padding-bottom: var(--section-padding-tablet);
-    }
-    
-    #projects {
-        margin-top: var(--section-gap-mobile);
-        margin-bottom: var(--section-gap-mobile);
-        padding-top: var(--section-padding-tablet);
-        padding-bottom: calc(var(--section-padding-tablet) * 1.5);
-    }
-    
-    #contact {
-        margin-top: calc(var(--section-gap-mobile) * 2);
-        padding-top: calc(var(--section-padding-tablet) * 2);
-        padding-bottom: var(--section-padding-tablet);
-    }
-    
-    .section-header {
-        margin-bottom: 60px;
-    }
-    
-    .hero-stats {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-    
-    .btn {
-        width: 100%;
-        max-width: 280px;
-    }
-    
-    .skills-grid,
-    .interests-grid,
-    .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
-    .footer-bottom {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-    
-    .timeline-item {
-        padding-left: 50px;
-        margin-bottom: 50px;
-    }
-}
-
-/* === Mobile Large (480px to 599px) === */
-@media (max-width: 599px) {
-    :root {
-        --section-padding-desktop: var(--section-padding-mobile);
-        --section-gap-desktop: var(--section-gap-mobile);
-    }
-    
+    /* FIXED: Section spacing - no overlaps */
     .section {
         padding: var(--section-padding-mobile) 0;
         margin-bottom: var(--section-gap-mobile);
+        position: relative;
+        clear: both;
     }
     
-    #reads {
-        padding-bottom: var(--section-padding-mobile);
-        margin-bottom: var(--section-gap-mobile);
-    }
-    
-    #interests {
-        margin-top: var(--section-gap-mobile);
-        margin-bottom: var(--section-gap-mobile);
-        padding-top: var(--section-padding-mobile);
-        padding-bottom: var(--section-padding-mobile);
-    }
-    
-    #projects {
-        margin-top: var(--section-gap-mobile);
-        margin-bottom: var(--section-gap-mobile);
-        padding-top: var(--section-padding-mobile);
-        padding-bottom: calc(var(--section-padding-mobile) * 1.5);
-    }
-    
+    /* FIXED: Contact section mobile */
     #contact {
         margin-top: calc(var(--section-gap-mobile) * 2);
         padding-top: calc(var(--section-padding-mobile) * 2);
         padding-bottom: var(--section-padding-mobile);
     }
     
+    /* FIXED: Section headers mobile */
     .section-header {
         margin-bottom: 50px;
     }
     
-    .hero {
-        padding: 80px var(--container-padding-mobile) 50px;
-    }
-    
-    .hero-stats {
-        gap: 15px;
-    }
-    
-    .stat-divider {
-        height: 30px;
-    }
-    
-    .contact-methods {
-        gap: 10px;
-    }
-    
-    .contact-method {
-        font-size: 0.85rem;
-        padding: 5px 10px;
-    }
-    
-    .contact-method .method-icon,
-    .contact-method svg {
-        width: 16px;
-        height: 16px;
-    }
-    
-    .book-cover {
-        width: 140px;
-        height: 210px;
-    }
-    
-    .projects-grid {
+    /* FIXED: Mobile forms */
+    .form-row {
         grid-template-columns: 1fr;
         gap: 20px;
     }
     
+    .contact-form {
+        padding: 25px 20px;
+    }
+    
+    /* FIXED: Mobile buttons */
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        min-width: auto;
+    }
+    
+    /* FIXED: Mobile grids */
     .skills-grid,
     .interests-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
     
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    /* FIXED: Mobile timeline */
+    .timeline-item {
+        padding-left: 50px;
+        margin-bottom: 45px;
+    }
+    
+    .timeline-dot {
+        left: 12px;
+        width: 14px;
+        height: 14px;
+    }
+    
+    .timeline-item::before {
+        left: 18px;
+        bottom: -45px;
+    }
+    
+    /* FIXED: Mobile hero stats */
+    .hero-stats {
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .stat-divider {
+        height: 35px;
+    }
+    
+    /* FIXED: Mobile contact methods */
+    .contact-methods {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .contact-method {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+    
+    /* FIXED: Mobile footer */
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
     .footer {
-        margin-top: 40px;
+        margin-top: var(--section-gap-mobile);
         padding: 50px 0 30px;
+    }
+    
+    .footer-content {
+        gap: 30px;
     }
 }
 
-/* === Mobile Small (320px to 479px) === */
-@media (max-width: 479px) {
+/* === MOBILE MEDIUM (480px to 599px) - ADDITIONAL MOBILE FIXES === */
+@media (max-width: 599px) {
     :root {
         --section-padding-desktop: var(--section-padding-small);
-        --section-gap-desktop: 30px;
+        --section-gap-desktop: var(--section-gap-small);
     }
     
     html {
@@ -2140,30 +2063,11 @@ body {
     
     .section {
         padding: var(--section-padding-small) 0;
-        margin-bottom: 30px;
-    }
-    
-    #reads {
-        padding-bottom: var(--section-padding-small);
-        margin-bottom: 30px;
-    }
-    
-    #interests {
-        margin-top: 30px;
-        margin-bottom: 30px;
-        padding-top: var(--section-padding-small);
-        padding-bottom: var(--section-padding-small);
-    }
-    
-    #projects {
-        margin-top: 30px;
-        margin-bottom: 30px;
-        padding-top: var(--section-padding-small);
-        padding-bottom: calc(var(--section-padding-small) * 1.5);
+        margin-bottom: var(--section-gap-small);
     }
     
     #contact {
-        margin-top: 60px;
+        margin-top: calc(var(--section-gap-small) * 2);
         padding-top: calc(var(--section-padding-small) * 2);
         padding-bottom: var(--section-padding-small);
     }
@@ -2173,15 +2077,135 @@ body {
     }
     
     .hero {
-        padding: 70px var(--container-padding-mobile) 40px;
+        padding: calc(var(--nav-height-mobile) + 15px) var(--container-padding-mobile) 30px;
+    }
+    
+    .hero-content {
+        gap: 30px;
+    }
+    
+    .hero-stats {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .stat-divider {
+        height: 30px;
+    }
+    
+    .book-cover {
+        width: 140px;
+        height: 210px;
+    }
+    
+    .book-showcase {
+        gap: 30px;
+        padding: 25px 20px;
+    }
+    
+    .projects-grid,
+    .skills-grid,
+    .interests-grid {
+        gap: 20px;
+    }
+    
+    .project-card,
+    .skill-card,
+    .interest-card {
+        padding: 25px 20px;
+    }
+    
+    .timeline-item {
+        padding-left: 40px;
+        margin-bottom: 35px;
+    }
+    
+    .timeline-item::before {
+        left: 15px;
+        bottom: -35px;
+    }
+    
+    .timeline-dot {
+        left: 10px;
+        width: 12px;
+        height: 12px;
+    }
+    
+    .contact-methods {
+        gap: 8px;
+    }
+    
+    .contact-method {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+    
+    .contact-method .method-icon,
+    .contact-method svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .footer {
+        margin-top: var(--section-gap-small);
+        padding: 40px 0 25px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+/* === MOBILE SMALL (320px to 479px) - FINAL MOBILE FIXES === */
+@media (max-width: 479px) {
+    :root {
+        --container-padding-mobile: 15px;
+        --section-padding-small: 30px;
+        --section-gap-small: 30px;
+    }
+    
+    html {
+        font-size: 13px;
+    }
+    
+    body {
+        overflow-x: hidden;
+    }
+    
+    /* FIXED: Extra small mobile spacing */
+    .section {
+        padding: var(--section-padding-small) 0;
+        margin-bottom: var(--section-gap-small);
+    }
+    
+    #contact {
+        margin-top: calc(var(--section-gap-small) * 2);
+        padding-top: calc(var(--section-padding-small) * 2);
+        padding-bottom: var(--section-padding-small);
+    }
+    
+    .section-header {
+        margin-bottom: 30px;
+    }
+    
+    .hero {
+        padding: calc(var(--nav-height-mobile) + 10px) var(--container-padding-mobile) 25px;
     }
     
     .navbar {
         height: 60px;
+        padding: 0 var(--container-padding-mobile);
+    }
+    
+    .hero-content {
+        gap: 25px;
     }
     
     .hero-name {
-        font-size: 2.2rem;
+        font-size: 2rem;
+        line-height: 1.1;
     }
     
     .section-title {
@@ -2190,6 +2214,8 @@ body {
     
     .hero-stats {
         gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .stat-item {
@@ -2207,18 +2233,25 @@ body {
     
     .book-info h3 {
         font-size: 1.3rem;
+        line-height: 1.2;
+    }
+    
+    .book-showcase {
+        gap: 25px;
+        padding: 20px 15px;
     }
     
     .contact-form {
-        padding: 25px 20px;
+        padding: 20px 15px;
     }
     
     .contact-methods {
-        gap: 8px;
+        gap: 6px;
+        flex-wrap: wrap;
     }
     
     .contact-method {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         padding: 4px 8px;
     }
     
@@ -2231,49 +2264,55 @@ body {
     .projects-grid,
     .skills-grid,
     .interests-grid {
-        grid-template-columns: 1fr;
         gap: 15px;
     }
     
     .project-card,
     .skill-card,
     .interest-card {
-        margin-bottom: 15px;
+        padding: 20px 15px;
     }
     
     .timeline-item {
         padding-left: 35px;
-        margin-bottom: 35px;
-    }
-    
-    .timeline-dot {
-        left: 7px;
-        width: 12px;
-        height: 12px;
+        margin-bottom: 30px;
     }
     
     .timeline-item::before {
         left: 12px;
-        bottom: -35px;
+        bottom: -30px;
+    }
+    
+    .timeline-dot {
+        left: 8px;
+        width: 10px;
+        height: 10px;
     }
     
     .footer {
-        margin-top: 30px;
-        padding: 40px 0 25px;
+        margin-top: var(--section-gap-small);
+        padding: 30px 0 20px;
     }
     
-    .footer-links {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
+    .footer-content {
+        gap: 25px;
+    }
+    
+    .cta-buttons {
+        gap: 12px;
+    }
+    
+    .btn {
+        max-width: 250px;
+        padding: 12px 20px;
     }
 }
 
-/* === Ultra Wide Screens (1920px+) === */
+/* === ULTRA WIDE SCREENS (1920px+) === */
 @media (min-width: 1920px) {
     :root {
         --section-padding-desktop: 160px;
-        --section-gap-desktop: 120px;
+        --section-gap-desktop: 140px;
     }
     
     .container {
@@ -2281,22 +2320,26 @@ body {
     }
     
     .hero-content {
-        gap: 80px;
-    }
-    
-    .about-grid {
         gap: 100px;
     }
     
+    .about-grid {
+        gap: 120px;
+    }
+    
     .book-showcase {
-        gap: 80px;
+        gap: 100px;
     }
     
     #contact {
-        margin-top: calc(var(--section-gap-desktop) * 2);
-        padding-top: calc(var(--section-padding-desktop) * 2);
+        margin-top: calc(var(--section-gap-desktop) * 1.5);
+        padding-top: calc(var(--section-padding-desktop) * 1.5);
     }
 }
+
+/* ===============================================
+   ADDITIONAL FIXES & UTILITIES
+   =============================================== */
 
 /* === Animation and Interaction Improvements === */
 .animate-on-scroll {
@@ -2308,17 +2351,6 @@ body {
 .animate-on-scroll.animate {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* === Tilt Effect === */
-[data-tilt] {
-    transition: transform 0.3s ease;
-}
-
-/* === Pulse Animation === */
-@keyframes pulse {
-    0%, 100% { opacity: 0.8; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.05); }
 }
 
 /* === Button States === */
@@ -2335,10 +2367,6 @@ body {
 .btn.loading {
     pointer-events: none;
     opacity: 0.7;
-}
-
-.btn.loading .btn-text {
-    transition: 0.3s ease;
 }
 
 .btn.loading::after {
@@ -2456,37 +2484,6 @@ body {
     outline-offset: 2px;
 }
 
-/* === Print Styles === */
-@media print {
-    .navbar,
-    .particles,
-    .cursor,
-    .cursor-trail,
-    .loading-screen {
-        display: none !important;
-    }
-    
-    .section {
-        padding: 40px 0 !important;
-        margin-bottom: 20px !important;
-    }
-    
-    .hero {
-        min-height: auto !important;
-        padding: 40px 0 !important;
-    }
-    
-    body {
-        background: white !important;
-        color: black !important;
-    }
-    
-    .container {
-        max-width: none !important;
-        padding: 0 20px !important;
-    }
-}
-
 /* === High Contrast Mode Support === */
 @media (prefers-contrast: high) {
     :root {
@@ -2528,6 +2525,34 @@ body {
     }
 }
 
+/* === CRITICAL MOBILE FIXES === */
+
+/* Prevent horizontal scroll on mobile */
+@media (max-width: 767px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .hero-content,
+    .about-grid,
+    .book-showcase,
+    .projects-grid,
+    .skills-grid,
+    .interests-grid {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .section {
+        overflow-x: hidden;
+    }
+    
+    /* Fix mobile viewport units */
+    .hero {
+        min-height: 100svh;
+    }
+}
+
 /* === Performance Optimizations === */
 .section,
 .skill-card,
@@ -2553,31 +2578,59 @@ body {
     margin-top: 0;
 }
 
-/* === FIXED: Final positioning and spacing fixes === */
-#hero, #about, #education, #skills, #reads, #interests, #projects, #contact {
-    position: relative;
-    isolation: isolate;
+/* === Print Styles === */
+@media print {
+    .navbar,
+    .particles,
+    .cursor,
+    .cursor-trail,
+    .loading-screen {
+        display: none !important;
+    }
+    
+    .section {
+        padding: 40px 0 !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .hero {
+        min-height: auto !important;
+        padding: 40px 0 !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .container {
+        max-width: none !important;
+        padding: 0 20px !important;
+    }
 }
 
-/* === FIXED: Ensure visual separators don't interfere === */
-#education::before,
-#skills::before {
-    content: "";
-    position: absolute;
-    top: calc(var(--section-padding-desktop) * -0.5);
-    left: 50%;
-    transform: translateX(-50%);
-    width: clamp(80px, 15vw, 100px);
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
-    opacity: 0.5;
+/* === Touch Device Optimizations === */
+@media (hover: none) and (pointer: coarse) {
+    .skill-card:hover,
+    .interest-card:hover,
+    .project-card:hover {
+        transform: none;
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+    
+    /* Improve touch targets */
+    .nav-link,
+    .btn,
+    .contact-method,
+    .project-link {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
-
-/* FIXED: Remove conflicting separators */
-#reads::before {
-    display: none;
-}
-
-.footer { z-index: 1; }
 
 /* === End of CSS === */
