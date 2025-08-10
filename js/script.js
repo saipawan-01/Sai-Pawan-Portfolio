@@ -17,7 +17,11 @@ window.addEventListener('load', function() {
         if (loadingScreen) {
             loadingScreen.classList.add('hidden');
         }
+        
+        // Initialize particles after loading
         createParticles();
+        
+        // Start skill progress animations
         animateSkillBars();
     }, 1500);
 });
@@ -39,16 +43,19 @@ if (cursor || cursorTrail) {
             cursor.style.left = mouseX + 'px';
             cursor.style.top = mouseY + 'px';
         }
+        
         if (cursorTrail) {
             trailX += (mouseX - trailX) * 0.1;
             trailY += (mouseY - trailY) * 0.1;
             cursorTrail.style.left = trailX + 'px';
             cursorTrail.style.top = trailY + 'px';
         }
+        
         requestAnimationFrame(updateCursors);
     }
     updateCursors();
 
+    // Cursor interactions - with safety check
     if (cursor) {
         document.querySelectorAll('a, button, [data-cursor="pointer"]').forEach(element => {
             element.addEventListener('mouseenter', () => {
@@ -56,6 +63,7 @@ if (cursor || cursorTrail) {
                 cursor.style.mixBlendMode = 'normal';
                 cursor.style.background = 'var(--accent)';
             });
+            
             element.addEventListener('mouseleave', () => {
                 cursor.style.transform = 'scale(1)';
                 cursor.style.mixBlendMode = 'difference';
@@ -69,24 +77,28 @@ if (cursor || cursorTrail) {
 function createParticles() {
     const particleContainer = document.getElementById('particles');
     if (!particleContainer) return;
+    
     const particleCount = 50;
+    
     for (let i = 0; i < particleCount; i++) {
         createParticle(particleContainer);
     }
-}
-
-function createParticle(container) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
-    particle.style.animationDelay = Math.random() * 20 + 's';
-    particle.style.opacity = Math.random() * 0.5 + 0.1;
-    container.appendChild(particle);
-    particle.addEventListener('animationend', () => {
-        particle.remove();
-        createParticle(container);
-    });
+    
+    function createParticle(container) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        
+        container.appendChild(particle);
+        
+        particle.addEventListener('animationend', () => {
+            particle.remove();
+            createParticle(container);
+        });
+    }
 }
 
 // Enhanced Navigation
@@ -121,7 +133,7 @@ if (navbar) {
     });
 }
 
-// Fixed Smooth scrolling for navigation links
+// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -134,10 +146,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const target = document.querySelector(href);
             if (target) {
                 const offsetTop = target.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: offsetTop, behavior: 'smooth' });
             }
         } catch (error) {
             console.error('Invalid selector:', href, error);
@@ -165,10 +174,12 @@ const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
 };
+
 const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animate');
+            // Animate only once by unobserving the element
             obs.unobserve(entry.target);
         }
     });
@@ -202,6 +213,7 @@ document.querySelectorAll('[data-tilt]').forEach(element => {
         const rotateY = ((centerX - x) / centerX) * 10;
         element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
     });
+
     element.addEventListener('mouseleave', () => {
         element.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
     });
@@ -238,7 +250,7 @@ if (contactForm) {
     });
 }
 
-// Resume download functionality
+// Resume Download
 document.addEventListener("DOMContentLoaded", function () {
     const resumeBtn = document.getElementById('downloadResume');
     if (!resumeBtn) return;
