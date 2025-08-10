@@ -10,7 +10,7 @@
     }
 })();
 
-// Loading screen
+// Loading screen with enhanced animation
 window.addEventListener('load', function() {
     setTimeout(function() {
         const loadingScreen = document.getElementById('loadingScreen');
@@ -22,7 +22,7 @@ window.addEventListener('load', function() {
     }, 1500);
 });
 
-// Custom Cursor System
+// Enhanced Custom Cursor System
 const cursor = document.getElementById('cursor');
 const cursorTrail = document.getElementById('cursorTrail');
 if (cursor && cursorTrail) {
@@ -34,28 +34,34 @@ if (cursor && cursorTrail) {
 
     let trailX = 0, trailY = 0;
     function updateCursors() {
-        cursor.style.left = mouseX + 'px';
-        cursor.style.top = mouseY + 'px';
-        trailX += (mouseX - trailX) * 0.1;
-        trailY += (mouseY - trailY) * 0.1;
-        cursorTrail.style.left = trailX + 'px';
-        cursorTrail.style.top = trailY + 'px';
+        if (cursor) {
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        }
+        if (cursorTrail) {
+            trailX += (mouseX - trailX) * 0.1;
+            trailY += (mouseY - trailY) * 0.1;
+            cursorTrail.style.left = trailX + 'px';
+            cursorTrail.style.top = trailY + 'px';
+        }
         requestAnimationFrame(updateCursors);
     }
     updateCursors();
-    
-    document.querySelectorAll('a, button, [data-cursor="pointer"]').forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'scale(1.5)';
-            cursor.style.mixBlendMode = 'normal';
-            cursor.style.background = 'var(--accent)';
+
+    if (cursor) {
+        document.querySelectorAll('a, button, [data-cursor="pointer"]').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursor.style.mixBlendMode = 'normal';
+                cursor.style.background = 'var(--accent)';
+            });
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.mixBlendMode = 'difference';
+                cursor.style.background = 'var(--accent)';
+            });
         });
-        element.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'scale(1)';
-            cursor.style.mixBlendMode = 'difference';
-            cursor.style.background = 'var(--accent)';
-        });
-    });
+    }
 }
 
 // Floating Particles System
@@ -67,6 +73,7 @@ function createParticles() {
         createParticle(particleContainer);
     }
 }
+
 function createParticle(container) {
     const particle = document.createElement('div');
     particle.className = 'particle';
@@ -81,7 +88,7 @@ function createParticle(container) {
     });
 }
 
-// Navigation
+// Enhanced Navigation
 const navbar = document.getElementById('navbar');
 const mobileToggle = document.getElementById('mobileToggle');
 const navMenu = document.querySelector('.nav-menu');
@@ -104,17 +111,21 @@ if (navbar) {
     window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         navbar.classList.toggle('scrolled', scrollTop > 100);
-        navbar.style.transform = (scrollTop > lastScrollTop && scrollTop > 100) ? 'translateY(-100%)' : 'translateY(0)';
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            navbar.style.transform = 'translateY(-100%)';
+        } else {
+            navbar.style.transform = 'translateY(0)';
+        }
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
 }
 
-// Smooth Scrolling
+// Fixed Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const href = this.getAttribute('href');
-        if (href === '#') {
+        if (!href || href === '#') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             return;
         }
@@ -122,7 +133,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const target = document.querySelector(href);
             if (target) {
                 const offsetTop = target.offsetTop - 80;
-                window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
             }
         } catch (error) {
             console.error('Invalid selector:', href, error);
@@ -130,10 +144,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Active Nav Link Highlighting
+// Active navigation link highlighting
 window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
     let currentSection = '';
+    const sections = document.querySelectorAll('section[id]');
     sections.forEach(section => {
         const sectionTop = section.offsetTop - 120;
         if (window.scrollY >= sectionTop) {
@@ -141,20 +155,20 @@ window.addEventListener('scroll', () => {
         }
     });
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-        }
+        link.classList.toggle('active', link.getAttribute('href') === `#${currentSection}`);
     });
 });
 
-// Scroll Animations
-const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+// Advanced Scroll Animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
 const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animate');
-            obs.unobserve(entry.target); // Animate only once
+            obs.unobserve(entry.target);
         }
     });
 }, observerOptions);
@@ -164,12 +178,13 @@ document.querySelectorAll('.animate-on-scroll, .skill-card, .interest-card, .pro
     observer.observe(el);
 });
 
-
-// Skill Bar Animations
+// Skill Progress Bar Animations
 function animateSkillBars() {
     document.querySelectorAll('.progress-bar').forEach(bar => {
         const progress = bar.getAttribute('data-progress');
-        bar.style.width = progress + '%';
+        if (progress) {
+            bar.style.width = progress + '%';
+        }
     });
 }
 
@@ -190,12 +205,13 @@ document.querySelectorAll('[data-tilt]').forEach(element => {
     });
 });
 
-// Contact Form
+// Enhanced Contact Form
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const submitBtn = document.getElementById('submit-btn');
+        if (!submitBtn) return;
         const btnText = submitBtn.querySelector('.btn-text');
         const originalText = btnText.textContent;
         btnText.textContent = 'Sending...';
@@ -220,22 +236,27 @@ if (contactForm) {
     });
 }
 
-// Resume Download
-document.getElementById('downloadResume')?.addEventListener('click', function (e) {
-    e.preventDefault();
-    const btnText = this.querySelector('.btn-text');
-    const originalText = btnText.textContent;
-    btnText.textContent = "Downloading...";
-    
-    const fileUrl = "https://docs.google.com/document/d/1qMxxJbO2vd3zQkHWnPaY1AeZFKLIQa_3/export?format=pdf";
-    const a = document.createElement('a');
-    a.href = fileUrl;
-    a.download = "Sai-Pawan-Resume.pdf";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    setTimeout(() => {
-        btnText.textContent = originalText;
-    }, 2000);
+// Resume download functionality
+document.addEventListener("DOMContentLoaded", function () {
+    const resumeBtn = document.getElementById('downloadResume');
+    if (!resumeBtn) return;
+    resumeBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const btnText = this.querySelector('.btn-text');
+        if (!btnText) return;
+        const originalText = btnText.textContent;
+        btnText.textContent = "Downloading...";
+        this.classList.add("loading");
+        const fileUrl = "https://drive.google.com/uc?export=download&id=1qMxxJbO2vd3zQkHWnPaY1AeZFKLIQa_3";
+        const a = document.createElement('a');
+        a.href = fileUrl;
+        a.download = "Sai-Pawan-Resume.pdf";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => {
+            btnText.textContent = originalText;
+            this.classList.remove("loading");
+        }, 2000);
+    });
 });
