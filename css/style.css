@@ -306,7 +306,7 @@ body {
     position: relative;
     overflow: hidden;
     background: var(--primary-bg);
-    padding: var(--nav-height-desktop) var(--container-padding-desktop) 0;
+    padding: calc(var(--nav-height-desktop) + 40px) var(--container-padding-desktop) 60px;
 }
 
 .hero-bg {
@@ -678,7 +678,7 @@ body {
     isolation: isolate;
     clear: both;
     padding: var(--section-padding-desktop) 0;
-    margin-bottom: var(--section-gap-desktop);
+    margin-bottom: 0;
 }
 
 /* FIXED: Unique z-index for each section (no conflicts) */
@@ -1479,7 +1479,7 @@ body {
     position: relative;
     isolation: isolate;
     z-index: 30;
-    margin-top: calc(var(--section-gap-desktop) * 1.5);
+      margin-top: 0;
     padding-top: calc(var(--section-padding-desktop) * 1.5);
     padding-bottom: var(--section-padding-desktop);
 }
@@ -1642,7 +1642,7 @@ body {
     padding: clamp(60px, 12vh, 100px) 0 clamp(30px, 6vh, 60px);
     position: relative;
     z-index: 20;
-    margin-top: var(--section-gap-desktop);
+     margin-top: 0;
 }
 
 .footer::before {
@@ -1931,7 +1931,8 @@ body {
     
     /* FIXED: Hero section mobile spacing */
     .hero {
-        padding: calc(var(--nav-height-mobile) + 20px) var(--container-padding-mobile) 40px;
+        padding: calc(var(--nav-height-mobile) + 60px) var(--container-padding-mobile) 80px;
+}
         min-height: calc(100vh - var(--nav-height-mobile));
     }
     
@@ -1949,7 +1950,7 @@ body {
     
     /* FIXED: Contact section mobile */
     #contact {
-        margin-top: calc(var(--section-gap-mobile) * 2);
+       margin-top: 0;
         padding-top: calc(var(--section-padding-mobile) * 2);
         padding-bottom: var(--section-padding-mobile);
     }
@@ -2332,7 +2333,7 @@ body {
     }
     
     #contact {
-        margin-top: calc(var(--section-gap-desktop) * 1.5);
+          margin-top: 0;
         padding-top: calc(var(--section-padding-desktop) * 1.5);
     }
 }
