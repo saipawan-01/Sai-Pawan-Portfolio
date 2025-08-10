@@ -26,13 +26,16 @@ window.addEventListener('load', function() {
     }, 1500);
 });
 
-// Enhanced Custom Cursor System
+// Enhanced Custom Cursor System - Mobile Optimized
 const cursor = document.getElementById('cursor');
 const cursorTrail = document.getElementById('cursorTrail');
 let mouseX = 0, mouseY = 0;
 let trailX = 0, trailY = 0;
 
-if (cursor || cursorTrail) {
+// Check if device supports hover (desktop)
+const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+if ((cursor || cursorTrail) && isDesktop) {
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
@@ -71,6 +74,10 @@ if (cursor || cursorTrail) {
             });
         });
     }
+} else {
+    // Hide cursor elements on mobile/touch devices
+    if (cursor) cursor.style.display = 'none';
+    if (cursorTrail) cursorTrail.style.display = 'none';
 }
 
 // Floating Particles System
@@ -264,31 +271,33 @@ function animateProjectCard(card) {
     });
 }
 
-// Tilt Effect for Cards
-document.querySelectorAll('[data-tilt]').forEach(element => {
-    element.addEventListener('mousemove', (e) => {
-        const rect = element.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+// Tilt Effect for Cards - Desktop Only
+if (isDesktop) {
+    document.querySelectorAll('[data-tilt]').forEach(element => {
+        element.addEventListener('mousemove', (e) => {
+            const rect = element.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-        const rotateX = ((y - centerY) / centerY) * 10;
-        const rotateY = ((centerX - x) / centerX) * 10;
+            const rotateX = ((y - centerY) / centerY) * 10;
+            const rotateY = ((centerX - x) / centerX) * 10;
 
-        element.style.transform =
-            `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)
-             scale3d(1.05, 1.05, 1.05)`;
-        element.style.transition = 'transform 0s'; // immediate during mousemove
+            element.style.transform =
+                `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)
+                 scale3d(1.05, 1.05, 1.05)`;
+            element.style.transition = 'transform 0s'; // immediate during mousemove
+        });
+
+        element.addEventListener('mouseleave', () => {
+            element.style.transform =
+                'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+            element.style.transition = 'transform 0.3s ease-out'; // smooth reset
+        });
     });
-
-    element.addEventListener('mouseleave', () => {
-        element.style.transform =
-            'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
-        element.style.transition = 'transform 0.3s ease-out'; // smooth reset
-    });
-});
+}
 
 // Typing Animation for Hero
 function typeWriter(element, text, speed = 100) {
@@ -459,26 +468,28 @@ function createSuccessParticles(button) {
     }
 }
 
-// Parallax Effects
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const rate = scrolled * -0.5;
-    
-    // Hero background parallax
-    const heroShapes = document.querySelectorAll('.shape');
-    heroShapes.forEach((shape, index) => {
-        const speed = 0.3 + (index * 0.1);
-        shape.style.transform = `translateY(${scrolled * speed}px)`;
+// Parallax Effects - Mobile Optimized
+if (isDesktop) {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        
+        // Hero background parallax
+        const heroShapes = document.querySelectorAll('.shape');
+        heroShapes.forEach((shape, index) => {
+            const speed = 0.3 + (index * 0.1);
+            shape.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+        
+        // Section backgrounds
+        const sections = document.querySelectorAll('.section');
+        sections.forEach((section, index) => {
+            if (index % 2 === 0) {
+                section.style.transform = `translateY(${rate * 0.1}px)`;
+            }
+        });
     });
-    
-    // Section backgrounds
-    const sections = document.querySelectorAll('.section');
-    sections.forEach((section, index) => {
-        if (index % 2 === 0) {
-            section.style.transform = `translateY(${rate * 0.1}px)`;
-        }
-    });
-});
+}
 
 // Enhanced Intersection Observer for Advanced Animations
 const advancedObserver = new IntersectionObserver((entries) => {
@@ -726,11 +737,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Add smooth loading animation to elements
-    const elements = document.querySelectorAll('*');
-    elements.forEach((el, index) => {
-        el.style.animationDelay = `${index * 0.01}s`;
-    });
+    // Add smooth loading animation to elements (only on desktop)
+    if (isDesktop) {
+        const elements = document.querySelectorAll('*');
+        elements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.01}s`;
+        });
+    }
     
     // Initialize reading progress update
     setTimeout(updateReadingProgress, 3000);
@@ -745,5 +758,25 @@ document.addEventListener('DOMContentLoaded', () => {
         img.src = src;
     });
     
+    // Mobile-specific optimizations
+    if (!isDesktop) {
+        // Disable hover effects on mobile
+        document.querySelectorAll('.project-card, .skill-card, .interest-card').forEach(card => {
+            card.style.transform = 'none';
+        });
+        
+        // Optimize touch interactions
+        document.querySelectorAll('button, a, .project-link').forEach(element => {
+            element.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            element.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    }
+    
     console.log('🚀 Portfolio initialized successfully!');
+    console.log('📱 Device type:', isDesktop ? 'Desktop' : 'Mobile/Touch');
 });
