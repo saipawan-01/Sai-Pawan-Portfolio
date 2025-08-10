@@ -1,4 +1,34 @@
-// Initialize EmailJS
+// ========================================
+// COMPLETE FIXED JAVASCRIPT FILE
+// All utility functions, error handling, and optimizations included
+// ========================================
+
+// === UTILITY FUNCTIONS ===
+function throttle(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Initialize EmailJS with error handling
 (function() {
     try {
         emailjs.init({
@@ -10,10 +40,16 @@
     }
 })();
 
-// Add: simple mobile detection helper
+// Enhanced mobile detection helper
 function isMobile() {
     return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
+
+// Global error handler for EmailJS and other promises
+window.addEventListener('unhandledrejection', (event) => {
+    console.error('Unhandled promise rejection:', event.reason);
+    // Could show user-friendly error message here
+});
 
 // Loading screen with enhanced animation
 window.addEventListener('load', function() {
@@ -112,7 +148,7 @@ const navbar = document.getElementById('navbar');
 const mobileToggle = document.getElementById('mobileToggle');
 const navMenu = document.querySelector('.nav-menu');
 
-// Mobile menu toggle
+// Enhanced Mobile menu toggle with keyboard support
 if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', () => {
         mobileToggle.classList.toggle('active');
@@ -133,12 +169,32 @@ if (mobileToggle && navMenu) {
             document.body.style.overflow = '';
         });
     });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navMenu.classList.contains('active') && 
+            !navMenu.contains(e.target) && 
+            !mobileToggle.contains(e.target)) {
+            mobileToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Keyboard navigation support
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            mobileToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
 }
 
 // Navbar scroll effects
 if (navbar) {
     let lastScrollTop = 0;
-    window.addEventListener('scroll', () => {
+    const scrollHandler = throttle(() => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         // Add scrolled class for styling
@@ -156,10 +212,12 @@ if (navbar) {
         }
         
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    });
+    }, 16);
+
+    window.addEventListener('scroll', scrollHandler);
 }
 
-// Fixed Smooth scrolling for navigation links
+// Enhanced smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -193,7 +251,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Active navigation link highlighting
-window.addEventListener('scroll', () => {
+const activeNavHandler = throttle(() => {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
     
@@ -214,7 +272,9 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
-});
+}, 100);
+
+window.addEventListener('scroll', activeNavHandler);
 
 // Advanced Scroll Animations
 const observerOptions = {
@@ -278,9 +338,11 @@ function animateProjectCard(card) {
     });
 }
 
-// Tilt Effect for Cards
+// Enhanced Tilt Effect for Cards
 document.querySelectorAll('[data-tilt]').forEach(element => {
     element.addEventListener('mousemove', (e) => {
+        if (isMobile()) return; // Disable on mobile
+        
         const rect = element.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -329,7 +391,7 @@ window.addEventListener('load', () => {
     }, 2000);
 });
 
-// Enhanced Contact Form
+// Enhanced Contact Form with better error handling
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -345,14 +407,15 @@ if (contactForm) {
         btnText.textContent = 'Sending...';
         submitBtn.disabled = true;
         submitBtn.classList.remove('btn-success', 'btn-error');
+        submitBtn.classList.add('loading');
         submitBtn.style.transform = 'scale(0.98)';
         
         // Get form data with validation
         const formData = {
-            from_name: document.getElementById('from_name').value.trim(),
-            from_email: document.getElementById('from_email').value.trim(),
-            subject: document.getElementById('subject').value.trim(),
-            message: document.getElementById('message').value.trim(),
+            from_name: document.getElementById('from_name')?.value.trim() || '',
+            from_email: document.getElementById('from_email')?.value.trim() || '',
+            subject: document.getElementById('subject')?.value.trim() || '',
+            message: document.getElementById('message')?.value.trim() || '',
             to_name: 'Sai Pawan'
         };
         
@@ -368,15 +431,33 @@ if (contactForm) {
             showFormError(submitBtn, btnText, originalText, 'Please enter a valid email');
             return;
         }
+
+        // Name validation
+        if (formData.from_name.length < 2) {
+            showFormError(submitBtn, btnText, originalText, 'Please enter a valid name');
+            return;
+        }
+
+        // Message validation
+        if (formData.message.length < 10) {
+            showFormError(submitBtn, btnText, originalText, 'Please enter a longer message');
+            return;
+        }
         
-        // Send email using EmailJS
-        emailjs.send('service_nx582qa', 'template_22p7xmd', formData)
+        // Send email using EmailJS with timeout
+        const sendPromise = emailjs.send('service_nx582qa', 'template_22p7xmd', formData);
+        const timeoutPromise = new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Request timeout')), 10000)
+        );
+
+        Promise.race([sendPromise, timeoutPromise])
             .then(function(response) {
                 console.log('SUCCESS!', response.status, response.text);
                 
                 // Show success state with celebration animation
                 btnText.textContent = 'Message Sent! 🎉';
                 submitBtn.classList.add('btn-success');
+                submitBtn.classList.remove('loading');
                 submitBtn.style.transform = 'scale(1.05)';
                 
                 // Create success particles
@@ -402,9 +483,20 @@ if (contactForm) {
                     submitBtn.style.transform = 'scale(1)';
                 }, 4000);
                 
-            }, function(error) {
+            })
+            .catch(function(error) {
                 console.error('FAILED...', error);
-                showFormError(submitBtn, btnText, originalText, 'Failed to send message');
+                let errorMessage = 'Failed to send message';
+                
+                if (error.message === 'Request timeout') {
+                    errorMessage = 'Request timed out. Please try again.';
+                } else if (error.status === 400) {
+                    errorMessage = 'Invalid form data. Please check your inputs.';
+                } else if (error.status >= 500) {
+                    errorMessage = 'Server error. Please try again later.';
+                }
+                
+                showFormError(submitBtn, btnText, originalText, errorMessage);
             });
     });
 }
@@ -412,6 +504,7 @@ if (contactForm) {
 function showFormError(submitBtn, btnText, originalText, message) {
     btnText.textContent = message;
     submitBtn.classList.add('btn-error');
+    submitBtn.classList.remove('loading');
     submitBtn.style.transform = 'scale(1)';
     
     // Add shake animation
@@ -426,6 +519,8 @@ function showFormError(submitBtn, btnText, originalText, message) {
 }
 
 function createSuccessParticles(button) {
+    if (isMobile()) return; // Skip particles on mobile
+    
     const rect = button.getBoundingClientRect();
     const particles = 15;
     
@@ -507,20 +602,7 @@ updateParallaxBinding();
 // re-evaluate on resize
 window.addEventListener('resize', debounce(updateParallaxBinding, 150));
 
-// Add CSS animation keyframes via JavaScript for shake effect
-const shakeKeyframes = `
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-    20%, 40%, 60%, 80% { transform: translateX(5px); }
-}
-`;
-
-const styleSheet = document.createElement('style');
-styleSheet.textContent = shakeKeyframes;
-document.head.appendChild(styleSheet);
-
-// Resume download functionality
+// Resume download functionality with enhanced error handling
 document.addEventListener("DOMContentLoaded", function () {
     const resumeBtn = document.getElementById('downloadResume');
 
@@ -538,16 +620,29 @@ document.addEventListener("DOMContentLoaded", function () {
         btnText.textContent = "Downloading...";
         this.classList.add("loading");
 
-        // Google Drive direct download link (force download)
-        const fileUrl = "https://drive.google.com/uc?export=download&id=1qMxxJbO2vd3zQkHWnPaY1AeZFKLIQa_3";
+        try {
+            // Google Drive direct download link (force download)
+            const fileUrl = "https://drive.google.com/uc?export=download&id=1qMxxJbO2vd3zQkHWnPaY1AeZFKLIQa_3";
 
-        // Create temporary link element to trigger download
-        const a = document.createElement('a');
-        a.href = fileUrl;
-        a.download = "resume.pdf";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+            // Create temporary link element to trigger download
+            const a = document.createElement('a');
+            a.href = fileUrl;
+            a.download = "Sai_Pawan_Resume.pdf";
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // Show success state
+            setTimeout(() => {
+                btnText.textContent = "Downloaded!";
+            }, 1000);
+
+        } catch (error) {
+            console.error('Download failed:', error);
+            btnText.textContent = "Download Failed";
+        }
 
         // Reset button state after 2 seconds
         setTimeout(() => {
@@ -557,26 +652,146 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Enhanced reading progress update function
+function updateReadingProgress() {
+    const progressBar = document.querySelector('.progress-fill');
+    if (!progressBar) return;
+    
+    // Simulate reading progress (you can replace this with actual logic)
+    let currentProgress = 0;
+    const targetProgress = 100; // 100% for "Atomic Habits"
+    
+    const interval = setInterval(() => {
+        currentProgress += 2;
+        if (progressBar) {
+            progressBar.style.width = currentProgress + '%';
+        }
+        
+        const progressText = document.querySelector('.progress-text');
+        if (progressText) {
+            progressText.textContent = `${currentProgress}% Complete`;
+        }
+        
+        if (currentProgress >= targetProgress) {
+            clearInterval(interval);
+            if (progressText) {
+                progressText.textContent = "Finished Reading!";
+            }
+        }
+    }, 100);
+}
+
+// Performance monitoring
+function initPerformanceMonitoring() {
+    // Monitor frame rate
+    let frameCount = 0;
+    let lastTime = performance.now();
+    
+    function checkFPS() {
+        frameCount++;
+        const now = performance.now();
+        
+        if (now - lastTime >= 1000) {
+            const fps = Math.round((frameCount * 1000) / (now - lastTime));
+            
+            // If FPS is too low, disable expensive animations
+            if (fps < 30 && !isMobile()) {
+                console.warn('Low FPS detected, disabling some animations');
+                document.body.classList.add('low-performance');
+            }
+            
+            frameCount = 0;
+            lastTime = now;
+        }
+        
+        requestAnimationFrame(checkFPS);
+    }
+    
+    // Only monitor performance on desktop
+    if (!isMobile()) {
+        requestAnimationFrame(checkFPS);
+    }
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Add smooth loading animation to elements
     const elements = document.querySelectorAll('*');
     elements.forEach((el, index) => {
-        el.style.animationDelay = `${index * 0.01}s`;
+        if (index < 100) { // Limit to first 100 elements for performance
+            el.style.animationDelay = `${index * 0.01}s`;
+        }
     });
     
     // Initialize reading progress update
     setTimeout(updateReadingProgress, 3000);
     
+    // Initialize performance monitoring
+    initPerformanceMonitoring();
+    
     // Preload critical images
     const criticalImages = [
-        'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">...</svg>' // Book cover
+        // Add any critical image URLs here
     ];
     
     criticalImages.forEach(src => {
         const img = new Image();
         img.src = src;
+        img.loading = 'eager';
     });
     
     console.log('🚀 Portfolio initialized successfully!');
+    
+    // Add service worker registration for offline functionality
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    }
 });
+
+// Handle page visibility changes for performance
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        // Page is hidden, pause expensive animations
+        document.body.classList.add('page-hidden');
+    } else {
+        // Page is visible, resume animations
+        document.body.classList.remove('page-hidden');
+    }
+});
+
+// Handle online/offline status
+window.addEventListener('online', () => {
+    console.log('Connection restored');
+    document.body.classList.remove('offline');
+});
+
+window.addEventListener('offline', () => {
+    console.log('Connection lost');
+    document.body.classList.add('offline');
+});
+
+// Cleanup function for better memory management
+window.addEventListener('beforeunload', () => {
+    // Clear any intervals or timeouts
+    observer?.disconnect?.();
+    
+    // Remove event listeners that might cause memory leaks
+    window.removeEventListener('scroll', throttledParallax);
+    window.removeEventListener('scroll', activeNavHandler);
+    
+    console.log('Cleanup completed');
+});
+
+// Export functions for testing (if needed)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        throttle,
+        debounce,
+        isMobile,
+        typeWriter,
+        createSuccessParticles,
+        updateReadingProgress
+    };
+}
