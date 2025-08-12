@@ -1,6 +1,6 @@
 # Sai-Pawan-Portfolio
 A modern, responsive portfolio website showcasing my journey as an Electronics & Communication Engineering student with a passion for AI, UI/UX design, and innovative technology solutions.
-🌟 Features
+ Features
 
 Modern Glassmorphism Design - Contemporary UI with glass-like effects and blur backgrounds
 Responsive Design - Optimized for all devices (desktop, tablet, mobile)
@@ -12,9 +12,9 @@ Performance Optimized - Fast loading times and smooth navigation
 Accessibility - Keyboard navigation and semantic HTML
 Dark Theme - Modern dark color scheme with accent highlights
 
-🚀 Live Demo
+ Live Demo
 Visit the live portfolio: saipawan-01.github.io/Sai-Pawan-Portfolio
-🛠️ Built With
+ Built With
 
 Frontend:
 
@@ -42,7 +42,7 @@ Responsive design with mobile-first approach
 Deployment:
 
 GitHub Pages (recommended for static hosting)
-🎯 Sections
+ Sections
 
 Hero Section - Introduction with animated elements and call-to-action buttons
 About - Personal information, background, and mission statement
